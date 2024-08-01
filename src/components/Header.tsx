@@ -28,7 +28,7 @@ const Wrapper = styled.header`
   border-radius: 30px;
   height: 50px;
   margin: 10px 20px;
-  box-shadow: 4px 4px 10px 1px rgb(0 0 0 / 10%);
+  box-shadow: 4px 4px 8px 1px rgb(0 0 0 / 12%);
 `;
 
 const NavigationsContainer = styled.div`
