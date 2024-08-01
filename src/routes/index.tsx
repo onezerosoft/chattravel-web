@@ -2,8 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import Badge from "../components/Badge";
 import styled from "styled-components";
 import Button from "../components/Button";
+import { getTourPhotos } from "../utils/get";
 
 export const Route = createFileRoute("/")({
+  loader: getTourPhotos,
+  shouldReload: false,
   component: Home,
 });
 
