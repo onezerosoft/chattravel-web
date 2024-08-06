@@ -13,7 +13,7 @@ export const tourApi = axios.create({
   withCredentials: true,
   params: {
     serviceKey: import.meta.env.VITE_TOUR_SERVICE_KEY,
-    numOfRows: 1,
+    numOfRows: 3,
     pageNo: 10,
     _type: "json",
     MobileOS: "IOS",

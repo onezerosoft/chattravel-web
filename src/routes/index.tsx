@@ -1,8 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
 import Badge from "../components/Badge";
 import styled from "styled-components";
 import Button from "../components/Button";
 import { getTourPhotos } from "../utils/get";
+import { TourApiResponse } from "../types";
+import Slider from "react-slick";
 
 export const Route = createFileRoute("/")({
   loader: getTourPhotos,
@@ -10,7 +12,35 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+interface ItemType {
+  galTitle: string;
+  galWebImageUrl: string;
+}
+
+interface GalleryItemsType {
+  items: {
+    item: ItemType[];
+  };
+}
+
 function Home() {
+  const sliderSettings = {
+    infinite: true,
+    speed: 400,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2200,
+    cssEase: "linear",
+  };
+
+  const galleryItems = useLoaderData({
+    from: "/",
+    // FIXME
+    select: (data: TourApiResponse<GalleryItemsType>) =>
+      data.response.body.items.item,
+  });
+
   return (
     <Wrapper>
       <Badge text="Welcome to Chattravel!" />
@@ -27,12 +57,47 @@ function Home() {
         여행코스를 짜요.
       </p>
       <ButtonsContainer>
-        <Button>채팅 시작하기</Button>
-        <Button type="secondary">스타일 등록하기</Button>
+        <Button>
+          <Link to={"/chat"}>채팅 시작하기</Link>
+        </Button>
+        <Button type="secondary">
+          <Link to={"/style"}>스타일 등록하기</Link>
+        </Button>
       </ButtonsContainer>
+      <SliderWrapper>
+        <Slider {...sliderSettings}>
+          {galleryItems.map((item) => (
+            <GalleryItem>
+              <p>#{item.galTitle}</p>
+              <img src={item.galWebImageUrl} />
+            </GalleryItem>
+          ))}
+        </Slider>
+      </SliderWrapper>
+      <footer>기업: 공일즈</footer>
     </Wrapper>
   );
 }
+
+const GalleryItem = styled.div`
+  & > p {
+    width: 100%;
+    text-align: left;
+    height: 16px;
+    margin-left: 20px;
+  }
+  & > img {
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const SliderWrapper = styled.div`
+  margin: 50px;
+  width: 80%;
+  height: 50%;
+`;
 
 const Wrapper = styled.div`
   display: flex;
