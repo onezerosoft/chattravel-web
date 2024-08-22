@@ -85,6 +85,7 @@ const GalleryItem = styled.div`
     text-align: left;
     height: 16px;
     margin-left: 20px;
+    font-weight: 600;
   }
   & > img {
     border-radius: 30px;
@@ -103,7 +104,7 @@ const Wrapper = styled.div`
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  padding: 90px 10px 0 10px;
+  padding: 140px 10px 0 10px;
   align-items: center;
   text-align: center;
 
