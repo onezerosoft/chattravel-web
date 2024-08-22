@@ -1,17 +1,23 @@
 import styled from "styled-components";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import Logo from "./Logo";
 import Button from "./Button";
 
 const Header = () => {
+  const location = useLocation();
+
   return (
     <Wrapper>
-      <Logo />
+      <Link to={"/"}>
+        <Logo />
+      </Link>
       <NavigationsContainer>
         <Link to={"/style"}>Login</Link>
-        <Button type="primary">
-          <Link to={"/chat"}>채팅 시작하기</Link>
-        </Button>
+        {location.pathname != "/chat" && (
+          <Button type="primary">
+            <Link to={"/chat"}>채팅 시작하기</Link>
+          </Button>
+        )}
       </NavigationsContainer>
     </Wrapper>
   );
@@ -20,7 +26,7 @@ const Header = () => {
 export default Header;
 
 const Wrapper = styled.header`
-  padding: 0 10px;
+  padding: 0 15px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;

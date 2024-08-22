@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Badge from "../components/Badge";
+import Badge from "../components/common/Badge";
 import styled from "styled-components";
+import { ChetChatBox, UserChatBox } from "../components/chat/ChatBox";
 
 export const Route = createFileRoute("/chat")({
   // loader: fetchPosts,
@@ -15,7 +16,8 @@ function Chat() {
         <h1>Chat</h1>
       </PageName>
       <ChatList>
-        <li>dfdfd</li>
+        <ChetChatBox isFirst={true} />
+        <UserChatBox>전주로 떠나</UserChatBox>
       </ChatList>
     </Wrapper>
   );
@@ -37,16 +39,29 @@ const PageName = styled.div`
     font-weight: 600;
     margin-top: 10px;
   }
+
+  @media screen and (width <= 500px) {
+    left: 30px;
+  }
 `;
 
 const ChatList = styled.ul`
   margin-left: auto;
   margin-right: auto;
 
-  background-color: pink;
-  width: 500px;
+  width: 45vw;
   height: 80vh;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  gap: 20px;
+
+  @media screen and (width <= 500px) {
+    padding-top: 100px;
+    width: 100vw;
+    padding-left: 15px;
+  }
 `;
 
 export default Chat;
