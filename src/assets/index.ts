@@ -1,2 +1,2 @@
 export { default as ChetSVG } from "./chet.svg?react";
-export { default as MapSVG } from "./map.svg?react";
+export { default as PinSVG } from "./pin.svg?react";

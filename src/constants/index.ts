@@ -1,7 +1,19 @@
+export const REGION_MAP = {
+  "seoul-si": "서울",
+  "gyeonggi-do": "경기도",
+  "gangwon-do": "강원도",
+  "gyeongsangbuk-do": "경상북도",
+  "gyeongsangnam-do": "경상남도",
+  "chungcheongbuk-do": "충청북도",
+  "chungcheongnam-do": "충청남도",
+  "jeollabuk-do": "전라북도",
+  "jeollanam-do": "전라남도",
+  "jeju-do": "제주도",
+};
+
 export const REGION = {
-  수도권: [
+  서울: [
     "강남구",
-    "중랑구",
     "강북구",
     "강서구",
     "관악구",
@@ -23,6 +35,9 @@ export const REGION = {
     "은평구",
     "종로구",
     "중구",
+    "중랑구",
+  ],
+  경기: [
     "수원시",
     "성남시",
     "고양시",
@@ -168,4 +183,5 @@ export const REGION = {
     "고성군",
     "양구군",
   ],
+  제주도: ["제주시", "서귀포시"],
 };
