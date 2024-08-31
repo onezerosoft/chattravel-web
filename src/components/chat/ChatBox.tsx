@@ -1,53 +1,40 @@
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { ChetSVG } from "../../assets";
-import Map from "./Map";
+import { ChatWho } from "../../types";
 
-interface ChetChatBoxProps {
-  isFirst: boolean;
+interface ChatGroup {
+  who: ChatWho;
 }
 
-export function ChetChatBox({
-  isFirst,
-  children,
-}: ChetChatBoxProps & PropsWithChildren) {
-  if (isFirst)
+function ChatGroup({ who, children }: ChatGroup & PropsWithChildren) {
+  if (who == "user")
     return (
-      <ChetWrapper>
-        <ChetSVG />
+      <UserWrapper>
         <ChatBoxContainer>
-          <ChatBox type="chet">
-            안녕! 나는 너만을 위한 여행 가이드, 체트라고 해. <br />
-            이번 여행은 어디로 떠나?
-          </ChatBox>
-          <ChatBox type="chet">
-            <Map />
-          </ChatBox>
+          {React.Children.toArray(children).map((child) => (
+            <ChatBox type={who}>{child}</ChatBox>
+          ))}
         </ChatBoxContainer>
-      </ChetWrapper>
+      </UserWrapper>
     );
 
   return (
     <ChetWrapper>
-      <ChetSVG />
-      <ChatBox type="chet">{children}</ChatBox>
+      <ChetSVG height={100} />
+      <ChatBoxContainer>
+        {React.Children.toArray(children).map((child) => (
+          <ChatBox type={who}>{child}</ChatBox>
+        ))}
+      </ChatBoxContainer>
     </ChetWrapper>
   );
 }
 
-export function UserChatBox({ children }: PropsWithChildren) {
-  return (
-    <UserWrapper>
-      <ChatBox type="user">{children}</ChatBox>
-    </UserWrapper>
-  );
-}
+export default ChatGroup;
 
 const ChetWrapper = styled.li`
   display: flex;
-  align-self: flex-start;
-  justify-content: flex-start;
-  margin-right: 20px;
 
   @media screen and (width <= 500px) {
     & > svg {
@@ -64,9 +51,10 @@ const UserWrapper = styled.li`
 `;
 
 const ChatBox = styled.div<{ type: "chet" | "user" }>`
-  background-color: #f5f5f5;
+  background-color: ${({ type }) => (type == "chet" ? "#f5f5f5" : "#3B3B3B")};
+  color: ${({ type }) => (type == "chet" ? "black" : "white")};
   border-radius: 20px;
-  padding: 15px;
+  padding: 10px 15px;
   font-weight: 500;
   text-align: start;
 `;
@@ -75,4 +63,5 @@ const ChatBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 15px;
 `;

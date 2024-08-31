@@ -6,4 +6,6 @@ export interface TourApiResponse<T> {
   };
 }
 
-export type region = keyof typeof REGION_MAP;
+export type Region = keyof typeof REGION_MAP;
+
+export type ChatWho = "chet" | "user";
