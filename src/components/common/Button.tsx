@@ -1,37 +1,46 @@
-import { PropsWithChildren } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import styled from "styled-components";
 
-interface ButtonProps {
-  type?: "primary" | "secondary";
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  design?: "primary" | "secondary";
 }
 
 const Button = ({
-  type = "primary",
+  design = "primary",
   children,
+  ...props
 }: ButtonProps & PropsWithChildren) => {
-  return <Wrapper type={type}>{children}</Wrapper>;
+  return (
+    <Wrapper {...props} design={design}>
+      {children}
+    </Wrapper>
+  );
 };
 
 export default Button;
 
-const Wrapper = styled.button<{ type: ButtonProps["type"] }>`
+const Wrapper = styled.button<{ design: ButtonProps["design"] }>`
   padding: 0 15px;
   height: 36px;
-  background-color: ${({ type }) => (type == "primary" ? "#232323" : "white")};
-  color: ${({ type }) => (type == "primary" ? "white" : "#232323")};
-  border: ${({ type }) => type == "secondary" && "1px solid #232323"};
+  background-color: ${({ design }) =>
+    design == "primary" ? "#232323" : "white"};
+  color: ${({ design }) => (design == "primary" ? "white" : "#232323")};
+  border: ${({ design }) => design == "secondary" && "1px solid #232323"};
   text-align: center;
   line-height: 34px;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 500;
+  &:hover {
+    transform: scale(1.02);
+  }
 
   & > a {
-    color: ${({ type }) => (type == "primary" ? "white" : "#232323")};
+    color: ${({ design }) => (design == "primary" ? "white" : "#232323")};
 
     &:hover {
-      color: ${({ type }) =>
-        type == "primary" ? "#ededed" : "#525252"} !important;
+      color: ${({ design }) =>
+        design == "primary" ? "#ededed" : "#525252"} !important;
     }
   }
 `;

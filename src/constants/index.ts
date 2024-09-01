@@ -11,8 +11,8 @@ export const REGION_MAP = {
   "jeju-do": "제주도",
 };
 
-export const REGION = {
-  서울: [
+export const DISTRICT_MAP = {
+  "seoul-si": [
     "강남구",
     "강북구",
     "강서구",
@@ -37,7 +37,7 @@ export const REGION = {
     "중구",
     "중랑구",
   ],
-  경기: [
+  "gyeonggi-do": [
     "수원시",
     "성남시",
     "고양시",
@@ -60,9 +60,9 @@ export const REGION = {
     "시흥시",
     "의정부시",
     "안성시",
-    "세종특별자치시",
+    "세종특별시",
   ],
-  경상남도: [
+  "gyeongsangnam-do": [
     "창원시",
     "진주시",
     "통영시",
@@ -82,7 +82,7 @@ export const REGION = {
     "합천군",
     "부산광역시",
   ],
-  경상북도: [
+  "gyeongsangbuk-do": [
     "포항시",
     "경주시",
     "김천시",
@@ -100,8 +100,7 @@ export const REGION = {
     "울산광역시",
     "대구광역시",
   ],
-  전라남도: [
-    "광주시",
+  "jeollanam-do": [
     "목포시",
     "여수시",
     "순천시",
@@ -120,7 +119,7 @@ export const REGION = {
     "순천시",
     "광주광역시",
   ],
-  전라북도: [
+  "jeollabuk-do": [
     "전주시",
     "익산시",
     "군산시",
@@ -136,7 +135,7 @@ export const REGION = {
     "고창군",
     "부안군",
   ],
-  충청남도: [
+  "chungcheongnam-do": [
     "천안시",
     "공주시",
     "보령시",
@@ -153,7 +152,7 @@ export const REGION = {
     "보령시",
     "대전광역시",
   ],
-  충청북도: [
+  "chungcheongbuk-do": [
     "청주시",
     "충주시",
     "제천시",
@@ -164,7 +163,7 @@ export const REGION = {
     "증평군",
     "성과군",
   ],
-  강원도: [
+  "gangwon-do": [
     "춘천시",
     "원주시",
     "강릉시",
@@ -183,5 +182,5 @@ export const REGION = {
     "고성군",
     "양구군",
   ],
-  제주도: ["제주시", "서귀포시"],
+  "jeju-do": ["제주시", "서귀포시"],
 };

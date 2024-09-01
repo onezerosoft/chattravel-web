@@ -8,6 +8,7 @@ import { isRegion } from "../../utils";
 interface MapProps {
   handleClick: (event: React.SyntheticEvent<SVGPathElement>) => void;
 }
+
 const Map = ({ handleClick }: MapProps) => {
   const [hoveredRegion, setHoveredRegion] = useState<Region | null>(null);
 
@@ -185,6 +186,7 @@ const PinWrapper = styled.div`
 `;
 
 const Wrapper = styled.div`
+  padding: 10px;
   & > svg {
     width: 100%;
     cursor: pointer;
