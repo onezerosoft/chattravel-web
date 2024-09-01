@@ -5,6 +5,7 @@ import type { ChatKind, Chat, Region } from "../../types";
 import Map from "./Map";
 import Button from "../common/Button";
 import DistrictGrid from "./DistrictGrid";
+import { Link } from "@tanstack/react-router";
 
 interface ChatGroupProps extends Chat {
   region: Region;
@@ -59,6 +60,13 @@ function ChatGroup({
             case 3:
               content = (
                 <Button onClick={firstButtonHandler}>{kind.text}</Button>
+              );
+              break;
+            case 4:
+              content = (
+                <Button onClick={firstButtonHandler}>
+                  <Link to={"/style"}>{kind.text}</Link>
+                </Button>
               );
               break;
             default:

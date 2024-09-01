@@ -60,7 +60,7 @@ function Home() {
         <Button>
           <Link to={"/chat"}>채팅 시작하기</Link>
         </Button>
-        <Button type="secondary">
+        <Button design="secondary">
           <Link to={"/style"}>스타일 등록하기</Link>
         </Button>
       </ButtonsContainer>
