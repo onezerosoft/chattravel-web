@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
-import Badge from "../components/Badge";
+import Badge from "../components/common/Badge";
 import styled from "styled-components";
-import Button from "../components/Button";
+import Button from "../components/common/Button";
 import { getTourPhotos } from "../utils/get";
 import { TourApiResponse } from "../types";
 import Slider from "react-slick";
@@ -60,7 +60,7 @@ function Home() {
         <Button>
           <Link to={"/chat"}>채팅 시작하기</Link>
         </Button>
-        <Button type="secondary">
+        <Button design="secondary">
           <Link to={"/style"}>스타일 등록하기</Link>
         </Button>
       </ButtonsContainer>
@@ -85,6 +85,7 @@ const GalleryItem = styled.div`
     text-align: left;
     height: 16px;
     margin-left: 20px;
+    font-weight: 600;
   }
   & > img {
     border-radius: 30px;
@@ -103,7 +104,7 @@ const Wrapper = styled.div`
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  padding: 90px 10px 0 10px;
+  padding: 140px 10px 0 10px;
   align-items: center;
   text-align: center;
 

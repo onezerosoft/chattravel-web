@@ -46,10 +46,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 /*
 다크모드 개발 예정 아직 없으므로 주석처리
