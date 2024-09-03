@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Badge from "../components/common/Badge";
 import styled from "styled-components";
 import ChatGroup from "../components/chat/ChatGroup";
 import type { Chat, ChatWho, Region } from "../types";
 import { useEffect, useRef, useState } from "react";
 import { isRegion } from "../utils";
 import { DISTRICT_MAP, REGION_MAP } from "../constants";
+import PageTemplate from "../components/common/PageTemplate";
 
 export const Route = createFileRoute("/chat")({
   // loader: fetchPosts,
@@ -46,7 +46,7 @@ function Chat() {
         case: 0,
         text: "안녕! 나는 너만을 위한 여행 가이드, 체트라고 해.\n이번 여행은 어디로 떠나? 지도에 영역을 클릭해줘!",
       },
-      { case: 1, handler: clickRegion },
+      { case: 1 },
     ],
   };
   const [chats, setChats] = useState<Chat[]>([firstOnboardingChat]);
@@ -97,11 +97,7 @@ function Chat() {
   }, [chats]);
 
   return (
-    <Wrapper>
-      <PageName>
-        <Badge text="Chat with Chet!" />
-        <h1>Chat</h1>
-      </PageName>
+    <PageTemplate pageName="Chat" badgeText="Chat with Chet!">
       <ChatList ref={ChatListRef}>
         {chats.map((chat) => (
           <ChatGroup
@@ -115,31 +111,9 @@ function Chat() {
           />
         ))}
       </ChatList>
-    </Wrapper>
+    </PageTemplate>
   );
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  position: relative;
-  box-sizing: border-box;
-  padding-top: 70px;
-`;
-
-const PageName = styled.div`
-  position: absolute;
-  top: 80px;
-  left: 80px;
-
-  & > h1 {
-    font-weight: 600;
-    margin-top: 10px;
-  }
-
-  @media screen and (width <= 500px) {
-    left: 30px;
-  }
-`;
 
 const ChatList = styled.ul`
   margin-left: auto;
