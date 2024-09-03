@@ -25,11 +25,9 @@ const StyleSlide = ({
         {[...Array(5)].map((_, index) => (
           <RadioGroup>
             <RadioButton
-              id="radioo"
-              name="radioo"
+              name="radio"
               type="radio"
               onChange={changeHandler(index + 1)}
-              // required
             />
             <RadioButtonLabel />
           </RadioGroup>
