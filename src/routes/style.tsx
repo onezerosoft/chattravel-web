@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import styled from "styled-components";
 import PageTemplate from "../components/common/PageTemplate";
 import StyleSlide from "../components/style/StyleSlide";
@@ -45,7 +45,11 @@ function Style() {
           ))}
         </Slider>
         <ButtonWrapper>
-          {isDone() && <Button>스타일 저장하기</Button>}
+          {isDone() && (
+            <Button>
+              <Link to={"/chat"}>스타일 저장하기</Link>
+            </Button>
+          )}
         </ButtonWrapper>
       </SliderWrapper>
     </PageTemplate>
