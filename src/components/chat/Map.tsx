@@ -3,7 +3,7 @@ import { PinSVG } from "../../assets";
 import { useEffect, useRef, useState } from "react";
 import { REGION_MAP } from "../../constants";
 import { Region } from "../../types";
-import { isRegion } from "../../utils";
+import { isRegionType } from "../../utils";
 
 interface MapProps {
   handleClick: (event: React.SyntheticEvent<SVGPathElement>) => void;
@@ -13,7 +13,7 @@ const Map = ({ handleClick }: MapProps) => {
   const [hoveredRegion, setHoveredRegion] = useState<Region | null>(null);
 
   const handleMouseOver = (event: React.SyntheticEvent<SVGPathElement>) => {
-    if (isRegion(event.currentTarget.id)) {
+    if (isRegionType(event.currentTarget.id)) {
       setHoveredRegion(event.currentTarget.id);
     }
   };
@@ -187,6 +187,7 @@ const PinWrapper = styled.div`
 
 const Wrapper = styled.div`
   padding: 10px;
+
   & > svg {
     width: 100%;
     cursor: pointer;

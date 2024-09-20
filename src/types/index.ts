@@ -12,7 +12,7 @@ export type ChatWho = "chet" | "user";
 
 export interface Chat {
   who: ChatWho;
-  kinds: ChatKind[];
+  kinds?: ChatKind[];
 }
 
 export interface ChatKind {
