@@ -58,6 +58,7 @@ const ChatBox = styled.div<{ who: "chet" | "user" }>`
   width: max-content;
   display: flex;
   gap: 10px;
+  max-width: 450px;
 `;
 
 const ChatBoxContainer = styled.div<{ who: "chet" | "user" }>`

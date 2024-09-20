@@ -54,5 +54,6 @@ export const useChatStore = create<ChatStore>((set) => ({
   },
   reset: () => {
     set({ step: 1 });
+    localStorage.setItem("step", JSON.stringify(1));
   },
 }));

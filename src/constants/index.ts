@@ -1,3 +1,5 @@
+export const DURATIONS = ["당일치기", "1박2일", "2박3일", "3박4일"];
+
 export const REGION_MAP = {
   "seoul-si": "서울",
   "gyeonggi-do": "경기도",

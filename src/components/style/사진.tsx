@@ -4,15 +4,17 @@ import Button from "../common/Button";
 import { FunnelProps } from "../common/Funnel";
 import StyleSlide from "./StyleSlide";
 import styled from "styled-components";
-import { useTravelStore, TravelStore } from "../../stores";
+import { useTravelStore, TravelStore, useChatStore } from "../../stores";
 
 const 사진 = ({ onNext, onPrev }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);
+  const [preference, setPreference] = useState(preferences[3]);
+
   const updatePreferences = useTravelStore(
     (state: TravelStore) => state.updatePreferences
   );
 
-  const [preference, setPreference] = useState(preferences[3]);
+  const nextChatStep = useChatStore((state) => state.next);
 
   const changePreference = (newPreference: number) => () => {
     setPreference(newPreference);
@@ -40,6 +42,7 @@ const 사진 = ({ onNext, onPrev }: FunnelProps) => {
           onClick={() => {
             savePreferences();
             onNext();
+            nextChatStep();
           }}
         >
           다음

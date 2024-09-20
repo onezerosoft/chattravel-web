@@ -8,11 +8,11 @@ import styled from "styled-components";
 
 const 자연도시 = ({ onNext }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);
+  const [preference, setPreference] = useState(preferences[0]);
+
   const updatePreferences = useTravelStore(
     (state: TravelStore) => state.updatePreferences
   );
-
-  const [preference, setPreference] = useState(preferences[0]);
 
   const changePreference = (newPreference: number) => () => {
     setPreference(newPreference);
@@ -21,7 +21,6 @@ const 자연도시 = ({ onNext }: FunnelProps) => {
   const savePreferences = () => {
     const newPreferences = [...preferences];
     newPreferences[0] = preference;
-
     updatePreferences(newPreferences);
   };
 
