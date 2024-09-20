@@ -1,12 +1,11 @@
-// import { useState } from "react";
 import styled from "styled-components";
 
-interface StyleSlideProps {
+export interface StyleSlideProps {
   title: string;
   preference: number;
   images: string[];
   descriptions: string[];
-  changeHandler: (newPreference: number) => () => void;
+  onChange: (data: number) => () => void;
 }
 
 const StyleSlide = ({
@@ -14,7 +13,7 @@ const StyleSlide = ({
   preference,
   images,
   descriptions,
-  changeHandler,
+  onChange,
 }: StyleSlideProps) => {
   return (
     <Wrapper>
@@ -31,7 +30,7 @@ const StyleSlide = ({
               name="radio"
               type="radio"
               checked={preference == 0 ? false : preference == index + 1}
-              onChange={changeHandler(index + 1)}
+              onChange={onChange(index + 1)}
             />
             <RadioButtonLabel />
           </RadioGroup>

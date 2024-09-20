@@ -1,34 +1,4 @@
-import {
-  NatureJPG,
-  CityJPG,
-  TourJPG,
-  ResortJPG,
-  ExpensiveJPG,
-  CheapJPG,
-  LikePhotoJPG,
-  HatePhotoJPG,
-} from "../assets";
-
-export const TITLES = [
-  "자연 vs 도시",
-  "관광 vs 휴식",
-  "편하지만 비싼 숙소 vs 불편하지만 저렴한 숙소",
-  "사진촬영 중요 vs 안 중요",
-];
-
-export const IMAGES = [
-  [NatureJPG, CityJPG],
-  [TourJPG, ResortJPG],
-  [ExpensiveJPG, CheapJPG],
-  [LikePhotoJPG, HatePhotoJPG],
-];
-
-export const DESCRIPTIONS = [
-  ["자연 속에서 힐링하고 싶어요", "시끌벅적한 도심 속이 좋아요"],
-  ["관광이 목적이에요", "휴식을 취하러 가요"],
-  ["숙소 값은 비싸도 상관없어요", "숙소 값은 쌀수록 좋아요"],
-  ["포토스팟을 원해요", "사진 찍는 것에 관심없어요"],
-];
+export const DURATIONS = ["당일치기", "1박2일", "2박3일", "3박4일"];
 
 export const REGION_MAP = {
   "seoul-si": "서울",

@@ -30,7 +30,7 @@ const Wrapper = styled.button<{ design: ButtonProps["design"] }>`
   line-height: 34px;
   border-radius: 30px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 550;
   &:hover {
     transform: scale(1.02);
   }
