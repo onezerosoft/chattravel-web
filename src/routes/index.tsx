@@ -2,7 +2,7 @@ import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
 import Badge from "../components/common/Badge";
 import styled from "styled-components";
 import Button from "../components/common/Button";
-import { getTourPhotos } from "../utils/get";
+import { getTourPhotos } from "../apis/get";
 import { TourApiResponse } from "../types";
 import Slider from "react-slick";
 
