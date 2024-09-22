@@ -13,10 +13,12 @@ const Districts = ({ region }: DistrictsProps) => {
   const [districtBooleans, setDistrictBooleans] = useState(
     Array(30).fill(false)
   );
+  const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
   const setDistricts = useTravelStore((state) => state.setDistricts);
 
   const clickDone = () => {
+    if (step !== 2) return;
     if (region == null) return;
     if (districtBooleans.every((x) => x == false)) return;
 

@@ -31,9 +31,11 @@ const Preferences = memo(() => {
 
   const navigate = useNavigate();
 
+  const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
 
   const resetStyle = () => {
+    if (step !== 4) return;
     localStorage.removeItem("preferences");
     updatePreferences([0, 0, 0, 0]);
     navigate({ to: "/style" });
@@ -61,7 +63,13 @@ const Preferences = memo(() => {
             <Button design="secondary" onClick={resetStyle}>
               새로 고르기
             </Button>
-            <Button design="secondary" onClick={() => next()}>
+            <Button
+              design="secondary"
+              onClick={() => {
+                if (step !== 4) return;
+                next();
+              }}
+            >
               그대로
             </Button>
           </>
@@ -78,6 +86,7 @@ const Preferences = memo(() => {
         <Button
           design="secondary"
           onClick={() => {
+            if (step !== 4) return;
             navigate({ to: "/style" });
             localStorage.setItem("isFirst", "true");
           }}

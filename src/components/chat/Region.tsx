@@ -5,10 +5,12 @@ import { useChatStore, useTravelStore } from "../../stores";
 import Map from "./Map";
 
 const Region = () => {
+  const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
   const setRegion = useTravelStore((state) => state.setRegion);
 
   const clickRegion = (event: React.SyntheticEvent<SVGPathElement>) => {
+    if (step !== 1) return;
     if (isRegionType(event.currentTarget.id)) setRegion(event.currentTarget.id);
     next();
   };

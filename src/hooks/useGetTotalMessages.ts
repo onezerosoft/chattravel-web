@@ -1,25 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTotalMessages } from "../apis/get";
 import { useChatStore } from "../stores";
+import { ApiStatusCode } from "../types/api";
+import { Course } from "../types/domain";
 
 interface TotalMessagesResponse {
   isSuccess: boolean;
-  code: "CHAT201_1";
+  code: ApiStatusCode;
   message: string;
   result: {
-    chatId: "10";
-    chatname: "겨울 경주여행";
-    totalMessageCount: 32;
-    createdAt: "YYYY-MM-DD hh:mm:ss.000000";
+    chatId: number;
+    chatname: string;
+    totalMessageCount: number;
+    createdAt: string;
     messages: [
       {
-        messageId: 0;
-        type: "C-TEXT";
+        messageId: number;
+        type: "C-TEXT" | "C-COURSE" | "U-TEXT";
         content: {
-          message: "";
-          courses: [];
+          message: string;
+          courses: Course[];
         };
-        createdAt: "YYYY-MM-DD hh:mm:ss.000000";
+        createdAt: string;
       },
     ];
   };
@@ -31,10 +33,11 @@ const useGetTotalMessages = () => {
   const { data, status } = useQuery({
     queryKey: ["totalMessages", chatId],
     enabled: chatId !== null,
-    queryFn: async () => {
-      const res = await getTotalMessages({ params: { chatId } });
+    queryFn: async (): Promise<TotalMessagesResponse> => {
+      const res = await getTotalMessages({ params: { chatId: chatId! } });
       return res;
     },
+    select: (data) => data.result.messages,
   });
 
   return { data, status };

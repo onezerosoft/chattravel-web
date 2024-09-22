@@ -1,32 +1,12 @@
-import { http, HttpResponse } from "msw";
+import { delay, http, HttpResponse } from "msw";
 import { BASE_URL } from "../apis/api";
+import { mockTotalMessage } from "./data";
 
 export const handlers = [
-  http.get(`${BASE_URL}/chat/:chatId`, ({ params }) => {
+  http.get(`${BASE_URL}/chat/:chatId`, async ({ params }) => {
     console.log("params", params.chatId);
-
-    return HttpResponse.json({
-      isSuccess: true,
-      code: "CHAT201_1",
-      message: "조회 성공",
-      result: {
-        chatId: "10",
-        chatname: "겨울 경주여행",
-        totalMessageCount: 32,
-        createdAt: "YYYY-MM-DD hh:mm:ss.000000",
-        messages: [
-          {
-            messageId: 0,
-            type: "C-TEXT",
-            content: {
-              message: "",
-              courses: [],
-            },
-            createdAt: "YYYY-MM-DD hh:mm:ss.000000",
-          },
-        ],
-      },
-    });
+    await delay(5000);
+    return HttpResponse.json(mockTotalMessage);
   }),
 
   http.post(`${BASE_URL}/chat/create`, () => {

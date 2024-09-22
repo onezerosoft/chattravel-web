@@ -6,9 +6,12 @@ import { DURATIONS } from "../../constants";
 const Duration = () => {
   const districts = useTravelStore((state) => state.districts);
   const setDuration = useTravelStore((state) => state.setDuration);
+
+  const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
 
   const clickDuration = (duration: number) => () => {
+    if (step !== 3) return;
     setDuration(duration);
     next();
   };
