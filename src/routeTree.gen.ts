@@ -12,7 +12,6 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as StyleImport } from './routes/style'
-import { Route as InfoImport } from './routes/info'
 import { Route as ChatImport } from './routes/chat'
 import { Route as IndexImport } from './routes/index'
 
@@ -20,11 +19,6 @@ import { Route as IndexImport } from './routes/index'
 
 const StyleRoute = StyleImport.update({
   path: '/style',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const InfoRoute = InfoImport.update({
-  path: '/info',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -56,13 +50,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChatImport
       parentRoute: typeof rootRoute
     }
-    '/info': {
-      id: '/info'
-      path: '/info'
-      fullPath: '/info'
-      preLoaderRoute: typeof InfoImport
-      parentRoute: typeof rootRoute
-    }
     '/style': {
       id: '/style'
       path: '/style'
@@ -78,7 +65,6 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   ChatRoute,
-  InfoRoute,
   StyleRoute,
 })
 
@@ -92,7 +78,6 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/chat",
-        "/info",
         "/style"
       ]
     },
@@ -101,9 +86,6 @@ export const routeTree = rootRoute.addChildren({
     },
     "/chat": {
       "filePath": "chat.tsx"
-    },
-    "/info": {
-      "filePath": "info.tsx"
     },
     "/style": {
       "filePath": "style.tsx"

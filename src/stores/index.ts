@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Region } from "../types";
+import { Region } from "../types/domain";
 
 export interface TravelStore {
   region: Region | null;
@@ -38,12 +38,15 @@ export const useTravelStore = create<TravelStore>((set) => ({
 }));
 
 export interface ChatStore {
+  id: null | number;
   step: number;
   next: () => void;
   reset: () => void;
+  createChat: (chatId: number) => void;
 }
 
 export const useChatStore = create<ChatStore>((set) => ({
+  id: null,
   step: JSON.parse(localStorage.getItem("step") || "1"),
   next: () => {
     set((state) => {
@@ -55,5 +58,8 @@ export const useChatStore = create<ChatStore>((set) => ({
   reset: () => {
     set({ step: 1 });
     localStorage.setItem("step", JSON.stringify(1));
+  },
+  createChat: (chatId: number) => {
+    set({ id: chatId });
   },
 }));

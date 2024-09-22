@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import styled from "styled-components";
-import ChatGroup from "../components/chat/ChatGroup";
-import type { Chat } from "../types";
+import type { Chat } from "../types/domain";
 import { useEffect, useRef } from "react";
-import { DURATIONS, REGION_MAP } from "../constants";
 import PageTemplate from "../components/common/PageTemplate";
 import Button from "../components/common/Button";
 import { useChatStore, useTravelStore } from "../stores";
@@ -11,21 +9,26 @@ import Region from "../components/chat/Region";
 import Districts from "../components/chat/Districts";
 import Duration from "../components/chat/Duration";
 import Preferences from "../components/chat/Preferences";
+import usePostTravelInfo from "../hooks/usePostTravelInfo";
+import Messages from "../components/chat/Messages";
+import Input from "../components/chat/Input";
 
 export const Route = createFileRoute("/chat")({
-  // loader: fetchChats,
   component: Chat,
 });
 
 function Chat() {
   const ChatListRef = useRef<HTMLUListElement>(null);
-  // const [chats, setChats] = useState<Chat[]>([]);
 
   const step = useChatStore((state) => state.step);
-  const region = useTravelStore((state) => state.region);
-  const duration = useTravelStore((state) => state.duration);
-
   const reset = useChatStore((state) => state.reset);
+
+  const region = useTravelStore((state) => state.region);
+  const districts = useTravelStore((state) => state.districts);
+  const duration = useTravelStore((state) => state.duration);
+  const preferences = useTravelStore((state) => state.preferences);
+
+  const { mutate } = usePostTravelInfo();
 
   const resetCourse = () => {
     reset();
@@ -33,6 +36,18 @@ function Chat() {
     localStorage.removeItem("duration");
     localStorage.removeItem("districts");
     localStorage.removeItem("isFirst");
+  };
+
+  const getFirstCourse = () => {
+    if (!region) return;
+
+    mutate({
+      body: {
+        region: { SIDO: region, SI: districts },
+        days: duration,
+        styleList: preferences,
+      },
+    });
   };
 
   useEffect(() => {
@@ -49,6 +64,7 @@ function Chat() {
         ChatListRef.current.scrollTo({
           top: ChatListRef.current.scrollHeight,
         });
+        getFirstCourse();
         return;
       }
 
@@ -71,27 +87,8 @@ function Chat() {
         {step >= 2 && region && <Districts region={region} />}
         {step >= 3 && <Duration />}
         {step >= 4 && <Preferences />}
-        {step >= 5 && region && (
-          <>
-            <ChatGroup who="chet">
-              <p>
-                너만을 위한 {REGION_MAP[region]} {DURATIONS[duration - 1]}{" "}
-                여행코스를 생성 중이야! <br /> 잠시만 기다려줘~
-              </p>
-            </ChatGroup>
-          </>
-        )}
-        {/* {chats.map((chat) => (
-          <ChatGroup
-            who={chat.who}
-            kinds={chat.kinds}
-            region={region!}
-            districtBooleans={districtBooleans}
-            setDistrictBooleans={setDistrictBooleans}
-            mapHandler={clickRegion}
-            firstButtonHandler={clickDone}
-          />
-        ))} */}
+        {step >= 5 && region && <Messages />}
+        {step >= 5 && <Input />}
       </ChatList>
     </PageTemplate>
   );
@@ -108,7 +105,7 @@ const ChatList = styled.ul`
   flex-direction: column;
   list-style-type: none;
   box-sizing: border-box;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
 
   @media screen and (width <= 500px) {
     padding-top: 100px;

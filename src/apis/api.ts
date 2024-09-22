@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "https://api.chattravel.com/";
-const TOUR_URL = `http://apis.data.go.kr/B551011/PhotoGalleryService1`;
+export const BASE_URL = "http://chattravel.pro";
+
+export const TOUR_URL = `http://apis.data.go.kr/B551011/PhotoGalleryService1`;
 
 export const api = axios.create({
   baseURL: BASE_URL,

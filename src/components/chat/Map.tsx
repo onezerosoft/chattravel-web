@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { PinSVG } from "../../assets";
 import { useEffect, useRef, useState } from "react";
 import { REGION_MAP } from "../../constants";
-import { Region } from "../../types";
+import { Region } from "../../types/domain";
 import { isRegionType } from "../../utils";
 
 interface MapProps {

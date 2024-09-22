@@ -79,7 +79,6 @@ export const DISTRICT_MAP = {
     "남해군",
     "하동군",
     "산청군",
-    "김해시",
     "거창군",
     "합천군",
     "부산광역시",
@@ -151,7 +150,6 @@ export const DISTRICT_MAP = {
     "태안군",
     "서천군",
     "청양군",
-    "보령시",
     "대전광역시",
   ],
   "chungcheongbuk-do": [
