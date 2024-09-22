@@ -39,8 +39,8 @@ const Wrapper = styled.header`
   margin: 10px 0;
   box-shadow: 4px 4px 8px 1px rgb(0 0 0 / 12%);
   position: fixed;
-  left: 50%; /* 부모 요소의 50% 위치 */
-  transform: translateX(-50%); /* 요소의 폭의 반만큼 왼쪽으로 이동 */
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1;
 `;
 

@@ -11,6 +11,7 @@ import Duration from "../components/chat/Duration";
 import Preferences from "../components/chat/Preferences";
 import usePostTravelInfo from "../hooks/usePostTravelInfo";
 import Messages from "../components/chat/Messages";
+import Input from "../components/chat/Input";
 
 export const Route = createFileRoute("/chat")({
   component: Chat,
@@ -87,6 +88,7 @@ function Chat() {
         {step >= 3 && <Duration />}
         {step >= 4 && <Preferences />}
         {step >= 5 && region && <Messages />}
+        {step >= 5 && <Input />}
       </ChatList>
     </PageTemplate>
   );
@@ -103,7 +105,7 @@ const ChatList = styled.ul`
   flex-direction: column;
   list-style-type: none;
   box-sizing: border-box;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
 
   @media screen and (width <= 500px) {
     padding-top: 100px;
