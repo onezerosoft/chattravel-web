@@ -2,14 +2,41 @@ import { http, HttpResponse } from "msw";
 import { BASE_URL } from "../apis/api";
 
 export const handlers = [
-  http.post(`${BASE_URL}chat/create`, ({ request }) => {
-    console.log("^^");
-    console.log(request);
+  http.get(`${BASE_URL}/chat/:chatId`, ({ params }) => {
+    console.log("params", params.chatId);
 
     return HttpResponse.json({
-      id: "c7b3d8e0-5e0b-4b0f-8b3a-3b9f4b3d3b3d",
-      firstName: "John",
-      lastName: "Maverick",
+      isSuccess: true,
+      code: "CHAT201_1",
+      message: "조회 성공",
+      result: {
+        chatId: "10",
+        chatname: "겨울 경주여행",
+        totalMessageCount: 32,
+        createdAt: "YYYY-MM-DD hh:mm:ss.000000",
+        messages: [
+          {
+            messageId: 0,
+            type: "C-TEXT",
+            content: {
+              message: "",
+              courses: [],
+            },
+            createdAt: "YYYY-MM-DD hh:mm:ss.000000",
+          },
+        ],
+      },
+    });
+  }),
+
+  http.post(`${BASE_URL}/chat/create`, () => {
+    return HttpResponse.json({
+      isSuccess: true,
+      code: "COMMON201_1",
+      message: "저장 성공",
+      result: {
+        chatId: 1,
+      },
     });
   }),
 ];

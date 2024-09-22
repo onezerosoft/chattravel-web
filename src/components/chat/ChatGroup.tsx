@@ -1,28 +1,38 @@
 import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { ChetSVG } from "../../assets";
-import type { Chat } from "../../types";
+import type { Chat } from "../../types/domain";
 
-interface ChatGroupProps extends Chat {}
+interface ChatGroupProps extends Chat {
+  groupKey: string;
+}
 
-function ChatGroup({ who, children }: ChatGroupProps & PropsWithChildren) {
+function ChatGroup({
+  who,
+  children,
+  groupKey,
+}: ChatGroupProps & PropsWithChildren) {
   if (who == "user")
     return (
-      <UserWrapper>
-        <ChatBoxContainer who={who}>
-          {React.Children.toArray(children).map((child) => (
-            <ChatBox who={who}>{child}</ChatBox>
+      <UserWrapper key={JSON.stringify(who + groupKey)}>
+        <ChatBoxContainer $who={who}>
+          {React.Children.toArray(children).map((child, index) => (
+            <ChatBox key={groupKey + index} $who={who}>
+              {child}
+            </ChatBox>
           ))}
         </ChatBoxContainer>
       </UserWrapper>
     );
 
   return (
-    <ChetWrapper>
+    <ChetWrapper key={JSON.stringify(who + groupKey)}>
       <ChetSVG height={100} />
-      <ChatBoxContainer who={who}>
-        {React.Children.toArray(children).map((child) => (
-          <ChatBox who={who}>{child}</ChatBox>
+      <ChatBoxContainer $who={who}>
+        {React.Children.toArray(children).map((child, index) => (
+          <ChatBox key={groupKey + index} $who={who}>
+            {child}
+          </ChatBox>
         ))}
       </ChatBoxContainer>
     </ChetWrapper>
@@ -48,9 +58,9 @@ const UserWrapper = styled.li`
   margin-right: 30px;
 `;
 
-const ChatBox = styled.div<{ who: "chet" | "user" }>`
-  background-color: ${({ who }) => (who == "chet" ? "#f5f5f5" : "#3B3B3B")};
-  color: ${({ who }) => (who == "chet" ? "black" : "white")};
+const ChatBox = styled.div<{ $who: "chet" | "user" }>`
+  background-color: ${({ $who }) => ($who == "chet" ? "#f5f5f5" : "#3B3B3B")};
+  color: ${({ $who }) => ($who == "chet" ? "black" : "white")};
   border-radius: 20px;
   padding: 10px 15px;
   font-weight: 500;
@@ -61,10 +71,10 @@ const ChatBox = styled.div<{ who: "chet" | "user" }>`
   max-width: 450px;
 `;
 
-const ChatBoxContainer = styled.div<{ who: "chet" | "user" }>`
+const ChatBoxContainer = styled.div<{ $who: "chet" | "user" }>`
   display: flex;
   flex-direction: column;
-  align-items: ${({ who }) => (who == "chet" ? "start" : "flex-end")};
-  margin: ${({ who }) => (who == "chet" ? "25px 0" : "0")};
+  align-items: ${({ $who }) => ($who == "chet" ? "start" : "flex-end")};
+  margin: ${({ $who }) => ($who == "chet" ? "25px 0" : "0")};
   gap: 10px;
 `;

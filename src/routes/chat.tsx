@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import styled from "styled-components";
 import ChatGroup from "../components/chat/ChatGroup";
-import type { Chat } from "../types";
+import type { Chat } from "../types/domain";
 import { useEffect, useRef } from "react";
 import { DURATIONS, REGION_MAP } from "../constants";
 import PageTemplate from "../components/common/PageTemplate";
@@ -11,21 +11,26 @@ import Region from "../components/chat/Region";
 import Districts from "../components/chat/Districts";
 import Duration from "../components/chat/Duration";
 import Preferences from "../components/chat/Preferences";
+import usePostTravelInfo from "../hooks/usePostTravelInfo";
+import useGetTotalMessages from "../hooks/useGetTotalMessages";
 
 export const Route = createFileRoute("/chat")({
-  // loader: fetchChats,
   component: Chat,
 });
 
 function Chat() {
   const ChatListRef = useRef<HTMLUListElement>(null);
-  // const [chats, setChats] = useState<Chat[]>([]);
 
   const step = useChatStore((state) => state.step);
-  const region = useTravelStore((state) => state.region);
-  const duration = useTravelStore((state) => state.duration);
-
   const reset = useChatStore((state) => state.reset);
+
+  const region = useTravelStore((state) => state.region);
+  const districts = useTravelStore((state) => state.districts);
+  const duration = useTravelStore((state) => state.duration);
+  const preferences = useTravelStore((state) => state.preferences);
+
+  const { mutate } = usePostTravelInfo();
+  const { totalMessages, status } = useGetTotalMessages();
 
   const resetCourse = () => {
     reset();
@@ -33,6 +38,18 @@ function Chat() {
     localStorage.removeItem("duration");
     localStorage.removeItem("districts");
     localStorage.removeItem("isFirst");
+  };
+
+  const getFirstCourse = () => {
+    if (!region) return;
+
+    mutate({
+      body: {
+        region: { SIDO: region, SI: districts },
+        days: duration,
+        styleList: preferences,
+      },
+    });
   };
 
   useEffect(() => {
@@ -49,6 +66,7 @@ function Chat() {
         ChatListRef.current.scrollTo({
           top: ChatListRef.current.scrollHeight,
         });
+        getFirstCourse();
         return;
       }
 
@@ -73,7 +91,7 @@ function Chat() {
         {step >= 4 && <Preferences />}
         {step >= 5 && region && (
           <>
-            <ChatGroup who="chet">
+            <ChatGroup groupKey={"course"} who="chet">
               <p>
                 너만을 위한 {REGION_MAP[region]} {DURATIONS[duration - 1]}{" "}
                 여행코스를 생성 중이야! <br /> 잠시만 기다려줘~

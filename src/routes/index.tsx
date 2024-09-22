@@ -3,7 +3,7 @@ import Badge from "../components/common/Badge";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { getTourPhotos } from "../apis/get";
-import { TourApiResponse } from "../types";
+import { TourApiResponse } from "../types/domain";
 import Slider from "react-slick";
 
 export const Route = createFileRoute("/")({

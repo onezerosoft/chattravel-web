@@ -151,7 +151,6 @@ export const DISTRICT_MAP = {
     "태안군",
     "서천군",
     "청양군",
-    "보령시",
     "대전광역시",
   ],
   "chungcheongbuk-do": [

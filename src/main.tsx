@@ -7,21 +7,15 @@ import "slick-carousel/slick/slick-theme.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 if (import.meta.env.DEV) {
-  const { worker } = await import("../src/mocks/browser");
-  worker.start();
+  enableMocking().then(start);
+} else {
+  start();
 }
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      // suspense: false,
-    },
-  },
-});
-
-const router = createRouter({
-  routeTree,
-});
+async function enableMocking() {
+  const { worker } = await import("../src/mocks/browser");
+  await worker.start();
+}
 
 declare module "@tanstack/react-router" {
   interface Register {
@@ -29,13 +23,27 @@ declare module "@tanstack/react-router" {
   }
 }
 
-const rootElement = document.getElementById("root")!;
+const router = createRouter({
+  routeTree,
+});
 
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
+function start() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        // suspense: false,
+      },
+    },
+  });
+
+  const rootElement = document.getElementById("root")!;
+
+  if (!rootElement.innerHTML) {
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    );
+  }
 }

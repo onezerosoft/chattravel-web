@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Region } from "../../types";
+import { Region } from "../../types/domain";
 import { DISTRICT_MAP } from "../../constants";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
@@ -40,6 +40,7 @@ const DistrictGrid = ({
       </District>
       {DISTRICT_MAP[region].map((district, index) => (
         <District
+          key={district}
           $isSelected={districtBooleans[index]}
           onClick={clickDistrict(index)}
         >

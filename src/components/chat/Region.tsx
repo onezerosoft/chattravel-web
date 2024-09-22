@@ -14,7 +14,7 @@ const Region = () => {
   };
 
   return (
-    <ChatGroup who={"chet"}>
+    <ChatGroup who={"chet"} groupKey={"region"}>
       <p>
         안녕! 나는 너만을 위한 여행 가이드, 체트라고 해.
         <br />

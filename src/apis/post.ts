@@ -1,9 +1,5 @@
+import { ApiRequestBody } from "../types/api";
 import { api } from "./api";
-
-export interface ApiRequest<T> {
-  params?: string;
-  body: T;
-}
 
 export interface TravelInfoBody {
   region: {
@@ -14,6 +10,8 @@ export interface TravelInfoBody {
   styleList: number[];
 }
 
-export const postTravelInfo = async ({ body }: ApiRequest<TravelInfoBody>) => {
+export const postTravelInfo = async ({
+  body,
+}: ApiRequestBody<TravelInfoBody>) => {
   return await api.post("/chat/create", body);
 };

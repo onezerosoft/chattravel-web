@@ -11,7 +11,7 @@ const Button = ({
   ...props
 }: ButtonProps & PropsWithChildren) => {
   return (
-    <Wrapper {...props} design={design}>
+    <Wrapper {...props} $design={design}>
       {children}
     </Wrapper>
   );
@@ -19,13 +19,13 @@ const Button = ({
 
 export default Button;
 
-const Wrapper = styled.button<{ design: ButtonProps["design"] }>`
+const Wrapper = styled.button<{ $design: ButtonProps["design"] }>`
   padding: 0 15px;
   height: 36px;
-  background-color: ${({ design }) =>
-    design == "primary" ? "#232323" : "white"};
-  color: ${({ design }) => (design == "primary" ? "white" : "#232323")};
-  border: ${({ design }) => design == "secondary" && "1px solid #232323"};
+  background-color: ${({ $design }) =>
+    $design == "primary" ? "#232323" : "white"};
+  color: ${({ $design }) => ($design == "primary" ? "white" : "#232323")};
+  border: ${({ $design }) => $design == "secondary" && "1px solid #232323"};
   text-align: center;
   line-height: 34px;
   border-radius: 30px;
@@ -36,11 +36,11 @@ const Wrapper = styled.button<{ design: ButtonProps["design"] }>`
   }
 
   & > a {
-    color: ${({ design }) => (design == "primary" ? "white" : "#232323")};
+    color: ${({ $design }) => ($design == "primary" ? "white" : "#232323")};
 
     &:hover {
-      color: ${({ design }) =>
-        design == "primary" ? "#ededed" : "#525252"} !important;
+      color: ${({ $design }) =>
+        $design == "primary" ? "#ededed" : "#525252"} !important;
     }
   }
 `;
