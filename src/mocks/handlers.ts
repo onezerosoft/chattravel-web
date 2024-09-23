@@ -3,8 +3,7 @@ import { BASE_URL } from "../apis/api";
 import { mockTotalMessage } from "./data";
 
 export const handlers = [
-  http.get(`${BASE_URL}/chat/:chatId`, async ({ params }) => {
-    console.log("params", params.chatId);
+  http.get(`${BASE_URL}/chat/:chatId`, async () => {
     await delay(2000);
     return HttpResponse.json(mockTotalMessage);
   }),
