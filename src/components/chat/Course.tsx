@@ -8,7 +8,7 @@ interface CourseProps {
 
 const Course = ({ messageId, courses }: CourseProps) => {
   return (
-    <div key={messageId}>
+    <Wrapper key={messageId}>
       {courses.map((course) => (
         <>
           <CourseName key={course.courseId}>
@@ -23,15 +23,29 @@ const Course = ({ messageId, courses }: CourseProps) => {
               </>
             </div>
           ))}
-          <br />
         </>
       ))}
-    </div>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.div`
+  background-color: #f5f5f5;
+  border-radius: 20px;
+
+  padding: 10px 15px;
+  font-weight: 500;
+  text-align: start;
+  width: max-content;
+  margin-left: 115px;
+  margin-top: -15px;
+
+  gap: 10px;
+  max-width: 450px;
+`;
+
 const CourseName = styled.h3`
-  margin: 0;
+  margin: 5px 0;
 `;
 
 export default Course;

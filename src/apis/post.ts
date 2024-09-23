@@ -11,7 +11,7 @@ export interface TravelInfoBody {
 }
 
 export interface UserMessageBody {
-  message: string;
+  userMessage: string;
 }
 
 export interface UserMessageParams {

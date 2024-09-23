@@ -29,9 +29,10 @@ interface TotalMessagesResponse {
 
 const useGetTotalMessages = () => {
   const chatId = useChatStore((state) => state.id);
+  const messageTimeStamp = useChatStore((state) => state.messageTimeStamp);
 
   const { data, status } = useQuery({
-    queryKey: ["totalMessages", chatId],
+    queryKey: ["totalMessages", chatId, messageTimeStamp],
     enabled: chatId !== null,
     queryFn: async (): Promise<TotalMessagesResponse> => {
       const res = await getTotalMessages({ params: { chatId: chatId! } });

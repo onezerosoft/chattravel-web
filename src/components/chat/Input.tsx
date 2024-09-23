@@ -9,6 +9,7 @@ const Input = () => {
   const inputRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState("");
+  const trigger = useChatStore((state) => state.trigger);
 
   const { mutate } = usePostUserMessage();
 
@@ -16,13 +17,14 @@ const Input = () => {
     event.preventDefault();
     mutate({
       body: {
-        message: value,
+        userMessage: value,
       },
       params: {
         chatId: chatId!,
       },
     });
     setValue("");
+    trigger();
   };
 
   return (
