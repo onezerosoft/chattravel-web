@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import styled from "styled-components";
 import { ChetSVG } from "../../assets";
 import type { Chat } from "../../types/domain";
@@ -12,7 +12,24 @@ function ChatGroup({
   children,
   groupKey,
 }: ChatGroupProps & PropsWithChildren) {
-  if (who == "user")
+  const [displayedText, setDisplayedText] = useState("");
+  const fullText = React.Children.toArray(children).join("");
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < fullText.length) {
+        setDisplayedText((prev) => prev + fullText[index]);
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100); // 글자 간격 (밀리초)
+
+    return () => clearInterval(interval);
+  }, [fullText]);
+
+  if (who === "user") {
     return (
       <UserWrapper key={JSON.stringify(who + groupKey)}>
         <ChatBoxContainer $who={who}>
@@ -24,6 +41,7 @@ function ChatGroup({
         </ChatBoxContainer>
       </UserWrapper>
     );
+  }
 
   return (
     <ChetWrapper key={JSON.stringify(who + groupKey)}>
@@ -59,8 +77,8 @@ const UserWrapper = styled.li`
 `;
 
 const ChatBox = styled.div<{ $who: "chet" | "user" }>`
-  background-color: ${({ $who }) => ($who == "chet" ? "#f5f5f5" : "#3B3B3B")};
-  color: ${({ $who }) => ($who == "chet" ? "black" : "white")};
+  background-color: ${({ $who }) => ($who === "chet" ? "#f5f5f5" : "#3B3B3B")};
+  color: ${({ $who }) => ($who === "chet" ? "black" : "white")};
   border-radius: 20px;
   padding: 10px 15px;
   font-weight: 500;
@@ -74,7 +92,7 @@ const ChatBox = styled.div<{ $who: "chet" | "user" }>`
 const ChatBoxContainer = styled.div<{ $who: "chet" | "user" }>`
   display: flex;
   flex-direction: column;
-  align-items: ${({ $who }) => ($who == "chet" ? "start" : "flex-end")};
-  margin: ${({ $who }) => ($who == "chet" ? "25px 0" : "0")};
+  align-items: ${({ $who }) => ($who === "chet" ? "start" : "flex-end")};
+  margin: ${({ $who }) => ($who === "chet" ? "25px 0" : "0")};
   gap: 10px;
 `;

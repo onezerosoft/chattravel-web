@@ -178,7 +178,16 @@ const PinWrapper = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+
+  padding: 10px 15px;
+  font-weight: 500;
+  width: max-content;
+  margin-left: 115px;
+  margin-top: -15px;
+
+  max-width: 450px;
 
   & > svg {
     width: 100%;

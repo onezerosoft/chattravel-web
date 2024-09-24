@@ -45,16 +45,12 @@ function Home() {
     <Wrapper>
       <Badge text="Welcome to Chattravel!" />
       <h1>
-        국내여행을 떠나는 당신만을 위한 <br />
-        맞춤형 여행코스를 받아보세요.
+        당신만을 위한 국내여행코스를 <br />단 10초만에 받아보세요
       </h1>
       <p>
-        국내여행 코스 추천 챗봇 서비스 AI를 기반으로 당신의 성별, 연령대,
-        여행스타일에 맞는 최적의 맞춤 여행코스를 짜요.
-        <br /> AI를 기반으로 당신의 성별, 연령대, 여행스타일에 맞는 최적의 맞춤
-        여행코스를 짜요.
-        <br /> 기반으로 당신의 성별, 연령대, 여행스타일에 맞는 최적의 맞춤
-        여행코스를 짜요.
+        AI로 개인의 여행스타일에 맞는 최적의 맞춤 여행코스를 짜요.
+        <br /> 지역, 기간, 여행 스타일만 입력하고 챗봇과 함께 대화하며 간편하게
+        여행코스를 완성시키세요.
       </p>
       <ButtonsContainer>
         <Button>
@@ -75,7 +71,7 @@ function Home() {
           ))}
         </Slider>
       </SliderWrapper>
-      <footer>기업: 공일즈</footer>
+      <footer></footer>
     </Wrapper>
   );
 }
@@ -126,6 +122,7 @@ const Wrapper = styled.div`
     font-size: 14px;
     color: #717171;
     margin-bottom: 40px;
+    margin-top: 10px;
   }
 `;
 
