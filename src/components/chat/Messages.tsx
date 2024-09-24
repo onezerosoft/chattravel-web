@@ -1,12 +1,16 @@
 import { REGION_MAP, DURATIONS } from "../../constants";
-import useGetTotalMessages from "../../hooks/useGetTotalMessages";
 import { useTravelStore } from "../../stores";
+import type { Message } from "../../types/domain";
 import LoadingDots from "../common/LoadingDots";
 import ChatGroup from "./ChatGroup";
 import Course from "./Course";
 
-const Messages = () => {
-  const { data: messages, status } = useGetTotalMessages();
+interface MessagesProps {
+  messages: Message[];
+  status: "pending" | "error" | "success";
+}
+
+const Messages = ({ messages, status }: MessagesProps) => {
   const region = useTravelStore((state) => state.region!);
   const duration = useTravelStore((state) => state.duration);
 

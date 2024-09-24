@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import type { Course } from "../../types/domain";
+import React from "react";
 
 interface CourseProps {
   messageId: number;
   courses: Course[];
 }
 
-const Course = ({ messageId, courses }: CourseProps) => {
+const Course = React.memo(({ messageId, courses }: CourseProps) => {
   return (
     <Wrapper key={messageId}>
       {courses.map((course) => (
@@ -27,7 +28,7 @@ const Course = ({ messageId, courses }: CourseProps) => {
       ))}
     </Wrapper>
   );
-};
+});
 
 const Wrapper = styled.div`
   background-color: #f5f5f5;

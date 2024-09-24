@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getTotalMessages } from "../apis/get";
 import { useChatStore } from "../stores";
 import { ApiStatusCode } from "../types/api";
-import { Course } from "../types/domain";
+import { Message } from "../types/domain";
 
 interface TotalMessagesResponse {
   isSuccess: boolean;
@@ -13,17 +13,7 @@ interface TotalMessagesResponse {
     chatname: string;
     totalMessageCount: number;
     createdAt: string;
-    messages: [
-      {
-        messageId: number;
-        type: "C-TEXT" | "C-COURSE" | "U-TEXT";
-        content: {
-          message: string;
-          courses: Course[];
-        };
-        createdAt: string;
-      },
-    ];
+    messages: Message[];
   };
 }
 
