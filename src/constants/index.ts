@@ -47,7 +47,8 @@ export const DISTRICT_MAP = {
     "의정부시",
     "안성시",
     "세종특별시",
-    "인천특별시",
+    "인천광역시",
+    "연천군",
   ],
   gyeongsangnam: [
     "창원시",
@@ -81,6 +82,7 @@ export const DISTRICT_MAP = {
     "청송군",
     "영양군",
     "봉화군",
+    "영덕군",
     "울진군",
     "울릉군",
     "울산광역시",
@@ -104,6 +106,8 @@ export const DISTRICT_MAP = {
     "영암군",
     "순천시",
     "광주광역시",
+    "장흥군",
+    "보성군",
   ],
   jeollabuk: [
     "전주시",
@@ -166,6 +170,7 @@ export const DISTRICT_MAP = {
     "인제군",
     "고성군",
     "양구군",
+    "화천군",
   ],
   jeju: ["제주시", "서귀포시"],
 };

@@ -3,8 +3,8 @@ import Badge from "../components/common/Badge";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { getTourPhotos } from "../apis/get";
-import { TourApiResponse } from "../types/domain";
 import Slider from "react-slick";
+import { TourApiResponse } from "../types/api";
 
 export const Route = createFileRoute("/")({
   loader: getTourPhotos,
@@ -27,7 +27,7 @@ function Home() {
   const sliderSettings = {
     infinite: true,
     speed: 400,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2200,
@@ -65,6 +65,7 @@ function Home() {
         </Button>
       </ButtonsContainer>
       <SliderWrapper>
+        <h3>국내에 숨은 여행지를 발굴해보세요</h3>
         <Slider {...sliderSettings}>
           {galleryItems.map((item) => (
             <GalleryItem>
@@ -80,24 +81,33 @@ function Home() {
 }
 
 const GalleryItem = styled.div`
+  margin-left: 20px;
   & > p {
     width: 100%;
     text-align: left;
     height: 16px;
-    margin-left: 20px;
+    margin-left: 15px;
+    margin-bottom: 10px;
     font-weight: 600;
   }
+
   & > img {
     border-radius: 30px;
-    width: 100%;
-    height: 100%;
+    width: 370px;
+    height: 300px;
+    object-fit: cover;
   }
 `;
 
 const SliderWrapper = styled.div`
-  margin: 50px;
+  margin: 100px 0;
   width: 80%;
   height: 50%;
+
+  & > h3 {
+    font-size: 32px;
+    margin: 40px 5px;
+  }
 `;
 
 const Wrapper = styled.div`
