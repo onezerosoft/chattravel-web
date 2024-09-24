@@ -87,15 +87,15 @@ const MapSVG = ({
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      id="gyeonggi-do"
+      id="capital"
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
       d="M68.0386 39.045L47.1654 35.4249V57.7917L44.4399 81.1929L59.4633 110.864L100.146 116.101L130.658 93.7338L142.424 69.7509L130.658 47.3841L107.591 14.0924L85.6546 25.0172L68.0386 39.045Z"
-      fill="#5affa2"
+      fill="#ff6060"
     />
     <path
-      id="gangwon-do"
+      id="gangwon"
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
@@ -103,7 +103,7 @@ const MapSVG = ({
       fill="#f8ca49"
     />
     <path
-      id="gyeongsangbuk-do"
+      id="gyeongsangbuk"
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
@@ -111,7 +111,7 @@ const MapSVG = ({
       fill="#f89a52"
     />
     <path
-      id="gyeongsangnam-do"
+      id="gyeongsangnam"
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
@@ -119,7 +119,7 @@ const MapSVG = ({
       fill="#f35e5e"
     />
     <path
-      id="chungcheongbuk-do"
+      id="chungcheongbuk"
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
@@ -127,7 +127,7 @@ const MapSVG = ({
       fill="#92f55c"
     />
     <path
-      id="chungcheongnam-do"
+      id="chungcheongnam"
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
@@ -135,7 +135,7 @@ const MapSVG = ({
       fill="#ff67ca"
     />
     <path
-      id="jeollabuk-do"
+      id="jeollabuk"
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
@@ -143,7 +143,7 @@ const MapSVG = ({
       fill="#58edfa"
     />
     <path
-      id="jeollanam-do"
+      id="jeollanam"
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
@@ -151,20 +151,12 @@ const MapSVG = ({
       fill="#da61fc"
     />
     <path
-      id="jeju-do"
+      id="jeju"
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
       d="M4.48802 367.823L0.0341797 392L33.7371 404.088L58.2 392L50.6883 367.823H4.48802Z"
       fill="#5688f5"
-    />
-    <path
-      id="seoul-si"
-      onClick={handleClick}
-      onMouseOver={handleMouseOver}
-      onMouseLeave={handleMouseLeave}
-      d="M67 76.5L71 65L88.5 57L101 72L82.5 85.5L67 76.5Z"
-      fill="#fe7474"
     />
   </svg>
 );
