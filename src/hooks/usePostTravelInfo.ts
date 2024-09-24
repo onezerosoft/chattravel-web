@@ -8,8 +8,8 @@ const usePostTravelInfo = () => {
   const { mutate } = useMutation({
     mutationFn: postTravelInfo,
     onSuccess: (data) => {
-      console.log(data.data.result.chatId);
       createChat(data.data.result.chatId);
+      localStorage.setItem("chatId", data.data.result.chatId);
     },
   });
 

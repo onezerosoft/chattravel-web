@@ -27,3 +27,13 @@ export interface Place {
   placeName: string;
   comment: string;
 }
+
+export interface Message {
+  messageId: number;
+  type: "C-TEXT" | "C-COURSE" | "U-TEXT";
+  content: {
+    message: string;
+    courses: Course[];
+  };
+  createdAt: string;
+}

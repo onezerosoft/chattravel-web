@@ -12,6 +12,7 @@ import Preferences from "../components/chat/Preferences";
 import usePostTravelInfo from "../hooks/usePostTravelInfo";
 import Messages from "../components/chat/Messages";
 import Input from "../components/chat/Input";
+import useGetTotalMessages from "../hooks/useGetTotalMessages";
 
 export const Route = createFileRoute("/chat")({
   component: Chat,
@@ -21,6 +22,7 @@ function Chat() {
   const ChatListRef = useRef<HTMLUListElement>(null);
 
   const step = useChatStore((state) => state.step);
+  const messageTimeStamp = useChatStore((state) => state.messageTimeStamp);
   const reset = useChatStore((state) => state.reset);
 
   const region = useTravelStore((state) => state.region);
@@ -29,6 +31,7 @@ function Chat() {
   const preferences = useTravelStore((state) => state.preferences);
 
   const { mutate } = usePostTravelInfo();
+  const { data: messages, status } = useGetTotalMessages();
 
   const resetCourse = () => {
     reset();
@@ -52,6 +55,7 @@ function Chat() {
 
   useEffect(() => {
     if (ChatListRef.current) {
+      console.log(messageTimeStamp, ChatListRef.current.scrollHeight);
       if (step == 1) {
         ChatListRef.current.scrollTo({
           top: 0,
@@ -61,19 +65,17 @@ function Chat() {
       }
 
       if (step == 5) {
-        ChatListRef.current.scrollTo({
-          top: ChatListRef.current.scrollHeight,
-        });
         getFirstCourse();
-        return;
       }
+      // console.log("^^");
 
       ChatListRef.current.scrollTo({
         top: ChatListRef.current.scrollHeight,
         behavior: "smooth",
       });
+      console.log("^^");
     }
-  }, [step]);
+  }, [step, messageTimeStamp]);
 
   return (
     <PageTemplate pageName="Chat" badgeText="Chat with Chet!">
@@ -87,7 +89,9 @@ function Chat() {
         {step >= 2 && region && <Districts region={region} />}
         {step >= 3 && <Duration />}
         {step >= 4 && <Preferences />}
-        {step >= 5 && region && <Messages />}
+        {step >= 5 && region && (
+          <Messages messages={messages!} status={status} />
+        )}
         {step >= 5 && <Input />}
       </ChatList>
     </PageTemplate>

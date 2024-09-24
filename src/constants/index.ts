@@ -13,6 +13,17 @@ export const REGION_MAP = {
   "jeju-do": "제주도",
 };
 
+export const POPULAR_DISTRICTS = [
+  "강남구",
+  "송파구",
+  "중구",
+  "수원시",
+  "용인시",
+  "인천특별시",
+  "부산광역시",
+  "대구광역시",
+];
+
 export const DISTRICT_MAP = {
   "seoul-si": [
     "강남구",
@@ -63,6 +74,7 @@ export const DISTRICT_MAP = {
     "의정부시",
     "안성시",
     "세종특별시",
+    "인천특별시",
   ],
   "gyeongsangnam-do": [
     "창원시",

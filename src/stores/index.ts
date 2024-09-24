@@ -40,14 +40,23 @@ export const useTravelStore = create<TravelStore>((set) => ({
 export interface ChatStore {
   id: null | number;
   step: number;
+  messageTimeStamp: number;
+  trigger: () => void;
   next: () => void;
   reset: () => void;
   createChat: (chatId: number) => void;
 }
 
 export const useChatStore = create<ChatStore>((set) => ({
-  id: null,
+  id: JSON.parse(localStorage.getItem("chatId") || "1"),
   step: JSON.parse(localStorage.getItem("step") || "1"),
+  messageTimeStamp: JSON.parse(
+    localStorage.getItem("timestamp") || Date.now().toString()
+  ),
+  trigger: () => {
+    set({ messageTimeStamp: Date.now() });
+    localStorage.setItem("timestamp", JSON.stringify(Date.now()));
+  },
   next: () => {
     set((state) => {
       const newStep = state.step + 1;
