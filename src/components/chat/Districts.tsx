@@ -5,6 +5,7 @@ import { Region } from "../../types/domain";
 import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
 import DistrictGrid from "./DistrictGrid";
+import styled from "styled-components";
 
 interface DistrictsProps {
   region: Region;
@@ -37,17 +38,21 @@ const Districts = ({ region }: DistrictsProps) => {
       <ChatGroup who={"user"} groupKey={"districts1"}>
         <p>{REGION_MAP[region]}로 떠나.</p>
       </ChatGroup>
-      <ChatGroup who={"chet"} groupKey={"districts2"}>
-        <p>
-          {REGION_MAP[region]}에서 특별히 여행하고 싶은 지역이 있다면 선택해줘!
-        </p>
+      <ChatGroup
+        who={"chet"}
+        groupKey={"districts2"}
+        texts={[
+          `${REGION_MAP[region]}에서 특별히 여행하고 싶은 지역이 있다면 선택해줘!`,
+        ]}
+      />
+      <DistrictGridWrapper>
         <DistrictGrid
           key={"districtGrid"}
           region={region}
           districtBooleans={districtBooleans}
           setDistrictBooleans={setDistrictBooleans}
         />
-      </ChatGroup>
+      </DistrictGridWrapper>
       <ChatGroup who="user" groupKey={"districts3"}>
         <Button design="secondary" onClick={clickDone}>
           다 골랐어요
@@ -58,3 +63,18 @@ const Districts = ({ region }: DistrictsProps) => {
 };
 
 export default Districts;
+
+const DistrictGridWrapper = styled.div`
+  background-color: #f5f5f5;
+  border-radius: 20px;
+
+  padding: 10px 15px;
+  font-weight: 500;
+  text-align: start;
+  width: max-content;
+  margin-left: 115px;
+  margin-top: -15px;
+
+  gap: 10px;
+  max-width: 450px;
+`;

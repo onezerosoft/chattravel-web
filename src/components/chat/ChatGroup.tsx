@@ -5,31 +5,18 @@ import type { Chat } from "../../types/domain";
 
 interface ChatGroupProps extends Chat {
   groupKey: string;
+  texts?: string[];
 }
 
 function ChatGroup({
   who,
   children,
   groupKey,
+  texts,
 }: ChatGroupProps & PropsWithChildren) {
   const [displayedText, setDisplayedText] = useState("");
-  const fullText = React.Children.toArray(children).join("");
 
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < fullText.length) {
-        setDisplayedText((prev) => prev + fullText[index]);
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 100); // 글자 간격 (밀리초)
-
-    return () => clearInterval(interval);
-  }, [fullText]);
-
-  if (who === "user") {
+  if (who === "user" || !texts) {
     return (
       <UserWrapper key={JSON.stringify(who + groupKey)}>
         <ChatBoxContainer $who={who}>
@@ -43,13 +30,30 @@ function ChatGroup({
     );
   }
 
+  const fullText = texts[0];
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    let index = 0;
+    console.log(fullText);
+    const interval = setInterval(() => {
+      if (index < fullText.length) {
+        setDisplayedText((prev) => prev + fullText[index]);
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [fullText]);
+
   return (
     <ChetWrapper key={JSON.stringify(who + groupKey)}>
       <ChetSVG height={100} />
       <ChatBoxContainer $who={who}>
-        {React.Children.toArray(children).map((child, index) => (
+        {texts.map((text, index) => (
           <ChatBox key={groupKey + index} $who={who}>
-            {child}
+            {displayedText}
           </ChatBox>
         ))}
       </ChatBoxContainer>

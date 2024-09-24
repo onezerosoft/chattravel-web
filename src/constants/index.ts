@@ -21,7 +21,7 @@ export const POPULAR_DISTRICTS = [
   "대구광역시",
 ];
 
-export const DISTRICT_MAP = {
+export const DISTRICT_MAP: Record<string, string[]> = {
   capital: [
     "서울시",
     "수원시",

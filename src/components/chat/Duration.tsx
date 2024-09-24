@@ -18,9 +18,13 @@ const Duration = () => {
 
   return (
     <>
-      <ChatGroup who="chet" groupKey="duration1">
-        <p>{districts.join(", ")}로 떠나는 구나! 여행 기간은 어떻게 돼?</p>
-      </ChatGroup>
+      <ChatGroup
+        who="chet"
+        groupKey="duration1"
+        texts={[
+          `${districts.join(", ")}로 떠나는 구나! 여행 기간은 어떻게 돼?`,
+        ]}
+      />
       <ChatGroup who="user" groupKey="duration2">
         <>
           {DURATIONS.map((duration, index) => (
