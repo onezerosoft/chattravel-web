@@ -14,7 +14,9 @@ function ChatGroup({
   groupKey,
   texts,
 }: ChatGroupProps & PropsWithChildren) {
-  const [displayedText, setDisplayedText] = useState("");
+  const [displayedTexts, setDisplayedTexts] = useState<string[]>([]);
+  const [textIndex, setTextIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
 
   if (who === "user" || !texts) {
     return (
@@ -30,32 +32,43 @@ function ChatGroup({
     );
   }
 
-  const fullText = texts[0];
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    let index = 0;
-    console.log(fullText);
-    const interval = setInterval(() => {
-      if (index < fullText.length) {
-        setDisplayedText((prev) => prev + fullText[index]);
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 50);
+    if (textIndex < texts.length) {
+      const fullText = texts[textIndex];
 
-    return () => clearInterval(interval);
-  }, [fullText]);
+      const interval = setInterval(() => {
+        if (charIndex < fullText.length) {
+          setDisplayedTexts((prev) => {
+            const newTexts = [...prev];
+            newTexts[textIndex] =
+              (newTexts[textIndex] || "") + fullText[charIndex];
+            return newTexts;
+          });
+          setCharIndex((prev) => prev + 1);
+        } else {
+          clearInterval(interval);
+          setTextIndex((prev) => prev + 1);
+          setCharIndex(0);
+        }
+      }, 50);
+
+      return () => clearInterval(interval);
+    }
+  }, [textIndex, charIndex, texts]);
 
   return (
     <ChetWrapper key={JSON.stringify(who + groupKey)}>
       <ChetSVG height={100} />
       <ChatBoxContainer $who={who}>
-        {texts.map((text, index) => (
-          <ChatBox key={groupKey + index} $who={who}>
-            {displayedText}
-          </ChatBox>
-        ))}
+        {texts.map(
+          (_, index) =>
+            index <= textIndex && (
+              <ChatBox key={groupKey + index} $who={who}>
+                {displayedTexts[index]}
+              </ChatBox>
+            )
+        )}
       </ChatBoxContainer>
     </ChetWrapper>
   );
