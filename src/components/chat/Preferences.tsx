@@ -83,9 +83,11 @@ const Preferences = memo(() => {
 
   return (
     <>
-      <ChatGroup who="chet" groupKey="preferences3">
-        <p>그렇구나! 이번 여행의 스타일을 알려줘!</p>
-      </ChatGroup>
+      <ChatGroup
+        who="chet"
+        groupKey="preferences3"
+        texts={["그렇구나! 이번 여행의 스타일을 알려줘!"]}
+      />
       <ChatGroup who="user" groupKey="preferences4">
         <Button
           design="secondary"

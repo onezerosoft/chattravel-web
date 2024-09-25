@@ -8,9 +8,10 @@ import Course from "./Course";
 interface MessagesProps {
   messages: Message[];
   status: "pending" | "error" | "success";
+  scrollDown: () => void;
 }
 
-const Messages = ({ messages, status }: MessagesProps) => {
+const Messages = ({ scrollDown, messages, status }: MessagesProps) => {
   const region = useTravelStore((state) => state.region!);
   const duration = useTravelStore((state) => state.duration);
 
@@ -44,16 +45,19 @@ const Messages = ({ messages, status }: MessagesProps) => {
           case "C-COURSE":
             return (
               <Course
-                key={message.messageId}
+                scrollDown={scrollDown}
+                key={message.messageId + "first"}
                 messageId={message.messageId}
                 courses={message.content.courses}
               />
             );
           case "C-TEXT":
             return (
-              <ChatGroup groupKey={message.messageId.toString()} who="chet">
-                {message.content.message}
-              </ChatGroup>
+              <ChatGroup
+                groupKey={message.messageId.toString()}
+                who="chet"
+                texts={[message.content.message]}
+              />
             );
           case "U-TEXT":
             return (

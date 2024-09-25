@@ -19,10 +19,9 @@ export const Route = createFileRoute("/chat")({
 });
 
 function Chat() {
-  const ChatListRef = useRef<HTMLUListElement>(null);
+  const chatListRef = useRef<HTMLUListElement>(null);
 
   const step = useChatStore((state) => state.step);
-  const messageTimeStamp = useChatStore((state) => state.messageTimeStamp);
   const reset = useChatStore((state) => state.reset);
 
   const region = useTravelStore((state) => state.region);
@@ -53,29 +52,36 @@ function Chat() {
     });
   };
 
-  useEffect(() => {
-    if (ChatListRef.current) {
-      console.log(messageTimeStamp, ChatListRef.current.scrollHeight);
-      if (step == 1) {
-        ChatListRef.current.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-        return;
-      }
-
-      if (step == 5) {
-        getFirstCourse();
-      }
-      // console.log("^^");
-
-      ChatListRef.current.scrollTo({
-        top: ChatListRef.current.scrollHeight,
+  const scrollDown = () => {
+    if (chatListRef.current) {
+      chatListRef.current.scrollTo({
+        top: chatListRef.current.scrollHeight,
         behavior: "smooth",
       });
-      console.log("^^");
     }
-  }, [step, messageTimeStamp]);
+  };
+
+  const scrollUp = () => {
+    if (chatListRef.current) {
+      chatListRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (step == 1) {
+      scrollUp();
+      return;
+    }
+
+    if (step == 5) {
+      getFirstCourse();
+    }
+
+    scrollDown();
+  }, [step]);
 
   return (
     <PageTemplate pageName="Chat" badgeText="Chat with Chet!">
@@ -84,13 +90,17 @@ function Chat() {
           + 새 여행코스
         </Button>
       </ResetButtonWrapper>
-      <ChatList ref={ChatListRef}>
+      <ChatList ref={chatListRef}>
         {step >= 1 && <Region />}
         {step >= 2 && region && <Districts region={region} />}
         {step >= 3 && <Duration />}
         {step >= 4 && <Preferences />}
         {step >= 5 && region && (
-          <Messages messages={messages!} status={status} />
+          <Messages
+            messages={messages!}
+            status={status}
+            scrollDown={scrollDown}
+          />
         )}
         {step >= 5 && <Input />}
       </ChatList>

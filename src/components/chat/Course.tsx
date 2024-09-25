@@ -5,9 +5,10 @@ import React, { useEffect, useState } from "react";
 interface CourseProps {
   messageId: number;
   courses: Course[];
+  scrollDown: () => void;
 }
 
-const Course = React.memo(({ messageId, courses }: CourseProps) => {
+const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
   const [displayedTexts, setDisplayedTexts] = useState<string[]>([]);
   const [courseIndex, setCourseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -36,12 +37,13 @@ const Course = React.memo(({ messageId, courses }: CourseProps) => {
             return newTexts;
           });
           setCharIndex((prev) => prev + 1);
+          scrollDown();
         } else {
           clearInterval(interval);
           setCourseIndex((prev) => prev + 1);
           setCharIndex(0);
         }
-      }, 50);
+      }, 30);
 
       return () => clearInterval(interval);
     }
