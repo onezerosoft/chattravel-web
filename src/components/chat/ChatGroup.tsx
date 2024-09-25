@@ -104,6 +104,8 @@ const ChatBox = styled.div<{ $who: "chet" | "user" }>`
   display: flex;
   gap: 10px;
   max-width: 450px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 `;
 
 const ChatBoxContainer = styled.div<{ $who: "chet" | "user" }>`

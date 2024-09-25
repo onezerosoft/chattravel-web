@@ -36,8 +36,7 @@ const Messages = ({ messages, status }: MessagesProps) => {
         groupKey={"course"}
         who="chet"
         texts={[
-          `너만을 위한 ${REGION_MAP[region]} ${DURATIONS[duration - 1]} 여행코스를
-          생성 중이야! \n 잠시만 기다려줘~`,
+          `너만을 위한 ${REGION_MAP[region]} ${DURATIONS[duration - 1]} 여행코스를 생성 중이야! \n 잠시만 기다려줘~`,
         ]}
       />
       {messages.map((message) => {
