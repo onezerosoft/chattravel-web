@@ -1,3 +1,4 @@
+import { REGION_MAP } from "../constants";
 import {
   ApiRequestParams,
   TotalMessagesParams,
@@ -12,8 +13,15 @@ export const getTourPhotos = async () => {
   return res.data;
 };
 
-export const getRegionPhotos = async () => {
-  const res = await tourApi.get("/galleryList1");
+export const getRegionThumbnail = async () => {
+  const region = localStorage.getItem("region");
+  console.log(region);
+
+  if (!region) throw new Error("region is null");
+
+  const res = await tourApi.get(
+    `/gallerySearchList1?keyword=${REGION_MAP[JSON.parse(region)]}`
+  );
 
   if (!res) throw new Error("Failed to fetch tour photos");
   return res.data;

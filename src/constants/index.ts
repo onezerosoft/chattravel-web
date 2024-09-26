@@ -21,6 +21,18 @@ export const POPULAR_DISTRICTS = [
   "대구광역시",
 ];
 
+export const REGION_THUMBNAIL_MAP = {
+  capital: "수도권",
+  gangwon: "강원도",
+  gyeongsangbuk: "경상북도",
+  gyeongsangnam: "경상남도",
+  chungcheongbuk: "충청북도",
+  chungcheongnam: "충청남도",
+  jeollabuk: "전라북도",
+  jeollanam: "전라남도",
+  jeju: "nfS9Oa",
+};
+
 export const DISTRICT_MAP: Record<string, string[]> = {
   capital: [
     "서울시",

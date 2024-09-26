@@ -5,23 +5,13 @@ import Button from "../components/common/Button";
 import { getTourPhotos } from "../apis/get";
 import Slider from "react-slick";
 import { TourApiResponse } from "../types/api";
+import { GalleryItems } from "../types/domain";
 
 export const Route = createFileRoute("/")({
   loader: getTourPhotos,
   shouldReload: false,
   component: Home,
 });
-
-interface ItemType {
-  galTitle: string;
-  galWebImageUrl: string;
-}
-
-interface GalleryItemsType {
-  items: {
-    item: ItemType[];
-  };
-}
 
 function Home() {
   const sliderSettings = {
@@ -37,7 +27,7 @@ function Home() {
   const galleryItems = useLoaderData({
     from: "/",
     // FIXME
-    select: (data: TourApiResponse<GalleryItemsType>) =>
+    select: (data: TourApiResponse<GalleryItems>) =>
       data.response.body.items.item,
   });
 

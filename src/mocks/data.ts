@@ -324,20 +324,19 @@ export const mockTravelCourse = {
     days: 2,
     courses: [
       {
-        courseName: "중문을 여행하다.",
         day: 1,
+        courseName: "중문을 여행하다",
         places: [
           {
             placeId: 1,
             type: "숙소",
-            placename: "숙소이름",
+            placeName: "신라호텔",
             comment: "",
-            addressLink: "",
           },
           {
             placeId: 2,
             type: "식당",
-            placename: "식당이름",
+            placeName: "중문식당",
             comment: "",
           },
           {
@@ -373,18 +372,19 @@ export const mockTravelCourse = {
         ],
       },
       {
+        courseName: "서귀포에서의 하루",
         day: 2,
         places: [
           {
             placeId: 1,
             type: "여행지",
-            placename: "여행지이름",
+            placeName: "여행지이름",
             comment: "",
           },
           {
             placeId: 2,
             type: "식당",
-            placename: "식당이름",
+            placeName: "식당이름",
             comment: "",
           },
           {
