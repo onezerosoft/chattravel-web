@@ -1,22 +1,12 @@
-import { ApiRequestBody, ApiRequestParams } from "../types/api";
+import {
+  ApiRequestBody,
+  ApiRequestParams,
+  SaveTravelBody,
+  TravelInfoBody,
+  UserMessageBody,
+  UserMessageParams,
+} from "../types/api";
 import { api } from "./api";
-
-export interface TravelInfoBody {
-  region: {
-    SIDO: string;
-    SI: string[];
-  };
-  days: number;
-  styleList: number[];
-}
-
-export interface UserMessageBody {
-  userMessage: string;
-}
-
-export interface UserMessageParams {
-  chatId: number;
-}
 
 export const postTravelInfo = async ({
   body,
@@ -29,4 +19,11 @@ export const postUserMessage = async ({
   params,
 }: ApiRequestBody<UserMessageBody> & ApiRequestParams<UserMessageParams>) => {
   return await api.post(`/chat/${params.chatId}/send`, body);
+};
+
+export const postSaveTravel = async ({
+  body,
+  params,
+}: ApiRequestBody<SaveTravelBody> & ApiRequestParams<UserMessageParams>) => {
+  return await api.post(`/chat/${params.chatId}/save-travel`, body);
 };

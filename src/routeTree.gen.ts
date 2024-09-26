@@ -11,11 +11,17 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TravelImport } from './routes/travel'
 import { Route as StyleImport } from './routes/style'
 import { Route as ChatImport } from './routes/chat'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const TravelRoute = TravelImport.update({
+  path: '/travel',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const StyleRoute = StyleImport.update({
   path: '/style',
@@ -57,6 +63,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StyleImport
       parentRoute: typeof rootRoute
     }
+    '/travel': {
+      id: '/travel'
+      path: '/travel'
+      fullPath: '/travel'
+      preLoaderRoute: typeof TravelImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -66,6 +79,7 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   ChatRoute,
   StyleRoute,
+  TravelRoute,
 })
 
 /* prettier-ignore-end */
@@ -78,7 +92,8 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/chat",
-        "/style"
+        "/style",
+        "/travel"
       ]
     },
     "/": {
@@ -89,6 +104,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/style": {
       "filePath": "style.tsx"
+    },
+    "/travel": {
+      "filePath": "travel.tsx"
     }
   }
 }

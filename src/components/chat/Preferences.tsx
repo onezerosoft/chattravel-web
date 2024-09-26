@@ -54,10 +54,14 @@ const Preferences = memo(() => {
   if (localStorage.getItem("preferences") && !localStorage.getItem("isFirst"))
     return (
       <>
-        <ChatGroup who="chet" groupKey="preferences1">
-          <p>여행 스타일은 그대로 할거야?</p>
-          <p>현재 스타일: {getStyleDescriptions()}</p>
-        </ChatGroup>
+        <ChatGroup
+          who="chet"
+          groupKey="preferences1"
+          texts={[
+            `여행 스타일은 그대로 할거야?`,
+            `현재 스타일: ${getStyleDescriptions()}`,
+          ]}
+        />
         <ChatGroup who="user" groupKey="preferences2">
           <>
             <Button design="secondary" onClick={resetStyle}>
@@ -79,9 +83,11 @@ const Preferences = memo(() => {
 
   return (
     <>
-      <ChatGroup who="chet" groupKey="preferences3">
-        <p>그렇구나! 이번 여행의 스타일을 알려줘!</p>
-      </ChatGroup>
+      <ChatGroup
+        who="chet"
+        groupKey="preferences3"
+        texts={["그렇구나! 이번 여행의 스타일을 알려줘!"]}
+      />
       <ChatGroup who="user" groupKey="preferences4">
         <Button
           design="secondary"

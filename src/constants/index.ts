@@ -1,22 +1,19 @@
 export const DURATIONS = ["당일치기", "1박2일", "2박3일", "3박4일"];
 
-export const REGION_MAP = {
-  "seoul-si": "서울",
-  "gyeonggi-do": "경기도",
-  "gangwon-do": "강원도",
-  "gyeongsangbuk-do": "경상북도",
-  "gyeongsangnam-do": "경상남도",
-  "chungcheongbuk-do": "충청북도",
-  "chungcheongnam-do": "충청남도",
-  "jeollabuk-do": "전라북도",
-  "jeollanam-do": "전라남도",
-  "jeju-do": "제주도",
+export const REGION_MAP: Record<string, string> = {
+  capital: "수도권",
+  gangwon: "강원도",
+  gyeongsangbuk: "경상북도",
+  gyeongsangnam: "경상남도",
+  chungcheongbuk: "충청북도",
+  chungcheongnam: "충청남도",
+  jeollabuk: "전라북도",
+  jeollanam: "전라남도",
+  jeju: "제주도",
 };
 
 export const POPULAR_DISTRICTS = [
-  "강남구",
-  "송파구",
-  "중구",
+  "서울시",
   "수원시",
   "용인시",
   "인천특별시",
@@ -24,33 +21,21 @@ export const POPULAR_DISTRICTS = [
   "대구광역시",
 ];
 
-export const DISTRICT_MAP = {
-  "seoul-si": [
-    "강남구",
-    "강북구",
-    "강서구",
-    "관악구",
-    "구로구",
-    "금천구",
-    "노원구",
-    "도봉구",
-    "동대문구",
-    "동작구",
-    "마포구",
-    "서대문구",
-    "서초구",
-    "성동구",
-    "성북구",
-    "송파구",
-    "양천구",
-    "영등포구",
-    "용산구",
-    "은평구",
-    "종로구",
-    "중구",
-    "중랑구",
-  ],
-  "gyeonggi-do": [
+export const REGION_THUMBNAIL_MAP = {
+  capital: "수도권",
+  gangwon: "강원도",
+  gyeongsangbuk: "경상북도",
+  gyeongsangnam: "경상남도",
+  chungcheongbuk: "충청북도",
+  chungcheongnam: "충청남도",
+  jeollabuk: "전라북도",
+  jeollanam: "전라남도",
+  jeju: "nfS9Oa",
+};
+
+export const DISTRICT_MAP: Record<string, string[]> = {
+  capital: [
+    "서울시",
     "수원시",
     "성남시",
     "고양시",
@@ -74,9 +59,10 @@ export const DISTRICT_MAP = {
     "의정부시",
     "안성시",
     "세종특별시",
-    "인천특별시",
+    "인천광역시",
+    "연천군",
   ],
-  "gyeongsangnam-do": [
+  gyeongsangnam: [
     "창원시",
     "진주시",
     "통영시",
@@ -95,7 +81,7 @@ export const DISTRICT_MAP = {
     "합천군",
     "부산광역시",
   ],
-  "gyeongsangbuk-do": [
+  gyeongsangbuk: [
     "포항시",
     "경주시",
     "김천시",
@@ -108,12 +94,13 @@ export const DISTRICT_MAP = {
     "청송군",
     "영양군",
     "봉화군",
+    "영덕군",
     "울진군",
     "울릉군",
     "울산광역시",
     "대구광역시",
   ],
-  "jeollanam-do": [
+  jeollanam: [
     "목포시",
     "여수시",
     "순천시",
@@ -131,8 +118,10 @@ export const DISTRICT_MAP = {
     "영암군",
     "순천시",
     "광주광역시",
+    "장흥군",
+    "보성군",
   ],
-  "jeollabuk-do": [
+  jeollabuk: [
     "전주시",
     "익산시",
     "군산시",
@@ -148,7 +137,7 @@ export const DISTRICT_MAP = {
     "고창군",
     "부안군",
   ],
-  "chungcheongnam-do": [
+  chungcheongnam: [
     "천안시",
     "공주시",
     "보령시",
@@ -164,7 +153,7 @@ export const DISTRICT_MAP = {
     "청양군",
     "대전광역시",
   ],
-  "chungcheongbuk-do": [
+  chungcheongbuk: [
     "청주시",
     "충주시",
     "제천시",
@@ -175,7 +164,7 @@ export const DISTRICT_MAP = {
     "증평군",
     "성과군",
   ],
-  "gangwon-do": [
+  gangwon: [
     "춘천시",
     "원주시",
     "강릉시",
@@ -193,6 +182,7 @@ export const DISTRICT_MAP = {
     "인제군",
     "고성군",
     "양구군",
+    "화천군",
   ],
-  "jeju-do": ["제주시", "서귀포시"],
+  jeju: ["제주시", "서귀포시"],
 };

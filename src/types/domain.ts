@@ -1,5 +1,16 @@
 import { REGION_MAP } from "../constants";
 
+export interface GalleryItem {
+  galTitle: string;
+  galWebImageUrl: string;
+}
+
+export interface GalleryItems {
+  items: {
+    item: GalleryItem[];
+  };
+}
+
 export type Region = keyof typeof REGION_MAP;
 
 export type ChatWho = "chet" | "user";
@@ -15,9 +26,8 @@ export interface ChatKind {
 }
 
 export interface Course {
-  courseId: number;
-  courseName: string;
   day: number;
+  courseName: string;
   places: Place[];
 }
 

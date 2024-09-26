@@ -3,8 +3,9 @@ import Badge from "../components/common/Badge";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { getTourPhotos } from "../apis/get";
-import { TourApiResponse } from "../types/domain";
 import Slider from "react-slick";
+import { TourApiResponse } from "../types/api";
+import { GalleryItems } from "../types/domain";
 
 export const Route = createFileRoute("/")({
   loader: getTourPhotos,
@@ -12,22 +13,11 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-interface ItemType {
-  galTitle: string;
-  galWebImageUrl: string;
-}
-
-interface GalleryItemsType {
-  items: {
-    item: ItemType[];
-  };
-}
-
 function Home() {
   const sliderSettings = {
     infinite: true,
     speed: 400,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2200,
@@ -37,7 +27,7 @@ function Home() {
   const galleryItems = useLoaderData({
     from: "/",
     // FIXME
-    select: (data: TourApiResponse<GalleryItemsType>) =>
+    select: (data: TourApiResponse<GalleryItems>) =>
       data.response.body.items.item,
   });
 
@@ -45,16 +35,12 @@ function Home() {
     <Wrapper>
       <Badge text="Welcome to Chattravel!" />
       <h1>
-        국내여행을 떠나는 당신만을 위한 <br />
-        맞춤형 여행코스를 받아보세요.
+        당신만을 위한 국내여행코스를 <br />단 10초만에 받아보세요
       </h1>
       <p>
-        국내여행 코스 추천 챗봇 서비스 AI를 기반으로 당신의 성별, 연령대,
-        여행스타일에 맞는 최적의 맞춤 여행코스를 짜요.
-        <br /> AI를 기반으로 당신의 성별, 연령대, 여행스타일에 맞는 최적의 맞춤
-        여행코스를 짜요.
-        <br /> 기반으로 당신의 성별, 연령대, 여행스타일에 맞는 최적의 맞춤
-        여행코스를 짜요.
+        AI로 개인의 여행스타일에 맞는 최적의 맞춤 여행코스를 짜요.
+        <br /> 지역, 기간, 여행 스타일만 입력하고 챗봇과 함께 대화하며 간편하게
+        여행코스를 완성시키세요.
       </p>
       <ButtonsContainer>
         <Button>
@@ -65,6 +51,7 @@ function Home() {
         </Button>
       </ButtonsContainer>
       <SliderWrapper>
+        <h3>국내에 숨은 여행지를 발굴해보세요</h3>
         <Slider {...sliderSettings}>
           {galleryItems.map((item) => (
             <GalleryItem>
@@ -74,30 +61,39 @@ function Home() {
           ))}
         </Slider>
       </SliderWrapper>
-      <footer>기업: 공일즈</footer>
+      <footer></footer>
     </Wrapper>
   );
 }
 
 const GalleryItem = styled.div`
+  margin-left: 20px;
   & > p {
     width: 100%;
     text-align: left;
     height: 16px;
-    margin-left: 20px;
+    margin-left: 15px;
+    margin-bottom: 10px;
     font-weight: 600;
   }
+
   & > img {
     border-radius: 30px;
-    width: 100%;
-    height: 100%;
+    width: 370px;
+    height: 300px;
+    object-fit: cover;
   }
 `;
 
 const SliderWrapper = styled.div`
-  margin: 50px;
+  margin: 100px 0;
   width: 80%;
   height: 50%;
+
+  & > h3 {
+    font-size: 32px;
+    margin: 40px 5px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -116,6 +112,7 @@ const Wrapper = styled.div`
     font-size: 14px;
     color: #717171;
     margin-bottom: 40px;
+    margin-top: 10px;
   }
 `;
 

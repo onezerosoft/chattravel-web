@@ -8,47 +8,55 @@ import Course from "./Course";
 interface MessagesProps {
   messages: Message[];
   status: "pending" | "error" | "success";
+  scrollDown: () => void;
 }
 
-const Messages = ({ messages, status }: MessagesProps) => {
+const Messages = ({ scrollDown, messages, status }: MessagesProps) => {
   const region = useTravelStore((state) => state.region!);
   const duration = useTravelStore((state) => state.duration);
 
   if (status == "pending" || !messages) {
     return (
-      <ChatGroup groupKey={"course"} who="chet">
-        <p>
-          너만을 위한 {REGION_MAP[region]} {DURATIONS[duration - 1]} 여행코스를
-          생성 중이야! <br /> 잠시만 기다려줘~
-        </p>
+      <>
+        <ChatGroup
+          groupKey={"course"}
+          who="chet"
+          texts={[
+            `너만을 위한 ${REGION_MAP[region]} ${DURATIONS[duration - 1]} 여행코스를 생성 중이야!\n잠시만 기다려줘~`,
+          ]}
+        />
         <LoadingDots />
-      </ChatGroup>
+      </>
     );
   }
 
   return (
     <>
-      <ChatGroup groupKey={"coursechet"} who="chet">
-        <p>
-          너만을 위한 {REGION_MAP[region]} {DURATIONS[duration - 1]} 여행코스를
-          생성 중이야! <br /> 잠시만 기다려줘~
-        </p>
-      </ChatGroup>
+      <ChatGroup
+        groupKey={"course"}
+        who="chet"
+        texts={[
+          `너만을 위한 ${REGION_MAP[region]} ${DURATIONS[duration - 1]} 여행코스를 생성 중이야! \n 잠시만 기다려줘~`,
+        ]}
+      />
       {messages.map((message) => {
         switch (message.type) {
           case "C-COURSE":
             return (
               <Course
-                key={message.messageId}
+                scrollDown={scrollDown}
+                key={message.messageId + "first"}
                 messageId={message.messageId}
                 courses={message.content.courses}
               />
             );
           case "C-TEXT":
             return (
-              <ChatGroup groupKey={message.messageId.toString()} who="chet">
-                {message.content.message}
-              </ChatGroup>
+              <ChatGroup
+                groupKey={message.messageId.toString()}
+                who="chet"
+                texts={[message.content.message]}
+              />
             );
           case "U-TEXT":
             return (
