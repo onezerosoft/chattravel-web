@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import type { Course } from "../../types/domain";
 import React, { useEffect, useState } from "react";
+import Button from "../common/Button";
+import usePostSaveTravel from "../../hooks/usePostSaveTravel";
+import { useChatStore } from "../../stores";
+import { useNavigate } from "@tanstack/react-router";
 
 interface CourseProps {
   messageId: number;
@@ -9,9 +13,26 @@ interface CourseProps {
 }
 
 const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
+  const navigate = useNavigate();
   const [displayedTexts, setDisplayedTexts] = useState<string[]>([]);
   const [courseIndex, setCourseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+  const chatId = useChatStore((state) => state.id);
+
+  const { mutateAsync } = usePostSaveTravel();
+
+  const saveTravel = async () => {
+    const res = await mutateAsync({
+      body: {
+        request: "Y",
+      },
+      params: {
+        chatId: chatId!,
+      },
+    });
+
+    navigate({ to: "/travel", params: { travelId: res.data.result.travelId } });
+  };
 
   useEffect(() => {
     if (courseIndex < courses.length) {
@@ -55,12 +76,15 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
         (course, index) =>
           index <= courseIndex && (
             <CourseContent>
-              <h3 key={course.courseId}>
+              <h3 key={course.courseName}>
                 🗓 Day {course.day} | {course.courseName}
               </h3>
               <p>{displayedTexts[index]}</p>
             </CourseContent>
           )
+      )}
+      {courseIndex == courses.length && (
+        <Button onClick={saveTravel}>코스 내보내기</Button>
       )}
     </Wrapper>
   );
@@ -79,6 +103,10 @@ const Wrapper = styled.div`
 
   gap: 10px;
   max-width: 450px;
+
+  & > button {
+    margin: 20px 0 10px 10px;
+  }
 `;
 
 const CourseContent = styled.article`

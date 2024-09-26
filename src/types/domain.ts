@@ -15,9 +15,8 @@ export interface ChatKind {
 }
 
 export interface Course {
-  courseId: number;
-  courseName: string;
   day: number;
+  courseName: string;
   places: Place[];
 }
 
