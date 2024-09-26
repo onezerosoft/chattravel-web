@@ -17,7 +17,8 @@ function Travel() {
   const { data: travelCourse, status } = useGetTravelCourse();
   const regionThumbnailUrl = useLoaderData({
     from: "/travel",
-    // FIXME
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     select: (data: TourApiResponse<GalleryItems>) =>
       data.response.body.items.item[31].galWebImageUrl,
   });

@@ -26,7 +26,8 @@ function Home() {
 
   const galleryItems = useLoaderData({
     from: "/",
-    // FIXME
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     select: (data: TourApiResponse<GalleryItems>) =>
       data.response.body.items.item,
   });
