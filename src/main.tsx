@@ -37,7 +37,8 @@ function start() {
   }
 }
 
-if (import.meta.env.DEV) {
+// TODO: 백엔드개발 완료되면 DEV로 변경
+if (import.meta.env.PRO) {
   enableMocking().then(start);
 } else {
   start();
