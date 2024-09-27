@@ -15,7 +15,6 @@ export const getTourPhotos = async () => {
 
 export const getRegionThumbnail = async () => {
   const region = localStorage.getItem("region");
-  console.log(region);
 
   if (!region) throw new Error("region is null");
 

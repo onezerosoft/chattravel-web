@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const BASE_URL = "http://chattravel.pro";
+export const BASE_URL = import.meta.env.VITE_CHATTRAVEL_API_URL;
 
-export const TOUR_URL = `https://apis.data.go.kr/B551011/PhotoGalleryService1`;
+export const TOUR_URL = import.meta.env.VITE_TOUR_API_URL;
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -14,7 +14,7 @@ export const tourApi = axios.create({
   withCredentials: true,
   params: {
     serviceKey: import.meta.env.VITE_TOUR_SERVICE_KEY,
-    numOfRows: 100,
+    numOfRows: 10,
     pageNo: 1,
     _type: "json",
     MobileOS: "IOS",
