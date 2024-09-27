@@ -6,12 +6,13 @@ export const TOUR_URL = import.meta.env.VITE_TOUR_API_URL;
 
 export const api = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true,
 });
 
 export const tourApi = axios.create({
   baseURL: TOUR_URL,
-  withCredentials: true,
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
   params: {
     serviceKey: import.meta.env.VITE_TOUR_SERVICE_KEY,
     numOfRows: 10,

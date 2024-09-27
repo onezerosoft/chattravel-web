@@ -36,6 +36,7 @@ export const REGION_THUMBNAIL_MAP = {
 export const DISTRICT_MAP: Record<string, string[]> = {
   capital: [
     "서울시",
+    "가평군",
     "수원시",
     "성남시",
     "고양시",
