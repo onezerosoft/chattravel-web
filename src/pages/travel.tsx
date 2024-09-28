@@ -1,27 +1,18 @@
-import { createFileRoute, useLoaderData } from "@tanstack/react-router";
-import PageTemplate from "../components/common/PageTemplate";
-import useGetTravelCourse from "../hooks/useGetTravelCourse";
 import styled from "styled-components";
-import { getRegionThumbnail } from "../apis/get";
-import { TourApiResponse } from "../types/api";
-import { GalleryItems } from "../types/domain";
-import { DownloadIconSVG, ShareIconSVG } from "../assets";
+import { ShareIconSVG, DownloadIconSVG } from "../assets";
+import PageTemplate from "../components/common/PageTemplate";
 import TravelCourse from "../components/travel/TravelCourse";
+import useGetTravelCourse from "../hooks/useGetTravelCourse";
 
-export const Route = createFileRoute("/travel")({
-  loader: getRegionThumbnail,
-  component: Travel,
-});
-
-function Travel() {
+const Travel = () => {
   const { data: travelCourse, status } = useGetTravelCourse();
-  const regionThumbnailUrl = useLoaderData({
-    from: "/travel",
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    select: (data: TourApiResponse<GalleryItems>) =>
-      data.response.body.items.item[31].galWebImageUrl,
-  });
+  // const regionThumbnailUrl = useLoaderData({
+  //   from: "/travel/[travelId]",
+  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //   // @ts-expect-error
+  //   select: (data: TourApiResponse<GalleryItems>) =>
+  //     data.response.body.items.item[2].galWebImageUrl,
+  // });
 
   if (status == "pending" || !travelCourse)
     return (
@@ -42,15 +33,18 @@ function Travel() {
         </TravelTitle>
         <TravelCourse courses={travelCourse.courses} />
       </TravelWrapper>
-      <RegionThumbnail src={regionThumbnailUrl} />
+      {/* <RegionThumbnail src={regionThumbnailUrl} /> */}
     </PageTemplate>
   );
-}
+};
+
+export default Travel;
 
 const TravelTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   & > h2 {
     font-size: 28px;
   }

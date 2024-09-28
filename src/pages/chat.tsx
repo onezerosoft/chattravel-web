@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import styled from "styled-components";
 import type { Chat } from "../types/domain";
 import { useEffect, useRef } from "react";
@@ -14,11 +13,7 @@ import Messages from "../components/chat/Messages";
 import Input from "../components/chat/Input";
 import useGetTotalMessages from "../hooks/useGetTotalMessages";
 
-export const Route = createFileRoute("/chat")({
-  component: Chat,
-});
-
-function Chat() {
+const Chat = () => {
   const chatListRef = useRef<HTMLUListElement>(null);
 
   const step = useChatStore((state) => state.step);
@@ -106,7 +101,7 @@ function Chat() {
       </ChatList>
     </PageTemplate>
   );
-}
+};
 
 const ChatList = styled.ul`
   margin-left: auto;

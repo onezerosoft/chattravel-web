@@ -1,8 +1,8 @@
-import { useNavigate } from "@tanstack/react-router";
 import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
 import { useChatStore, useTravelStore } from "../../stores";
 import { memo } from "react";
+import { useNavigate } from "react-router";
 
 const STYLES = [
   ["자연", "자연", "자연/도시", "도시", "도시"],
@@ -38,7 +38,7 @@ const Preferences = memo(() => {
     if (step !== 4) return;
     localStorage.removeItem("preferences");
     updatePreferences([0, 0, 0, 0]);
-    navigate({ to: "/style" });
+    navigate("/style");
   };
 
   const getStyleDescriptions = () => {
@@ -93,7 +93,7 @@ const Preferences = memo(() => {
           design="secondary"
           onClick={() => {
             if (step !== 4) return;
-            navigate({ to: "/style" });
+            navigate("/style");
             localStorage.setItem("isFirst", "true");
           }}
         >

@@ -1,4 +1,3 @@
-import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
 import Badge from "../components/common/Badge";
 import styled from "styled-components";
 import Button from "../components/common/Button";
@@ -6,14 +5,9 @@ import { getTourPhotos } from "../apis/get";
 import Slider from "react-slick";
 import { TourApiResponse } from "../types/api";
 import { GalleryItems } from "../types/domain";
+import { Link } from "react-router-dom";
 
-export const Route = createFileRoute("/")({
-  loader: getTourPhotos,
-  shouldReload: false,
-  component: Home,
-});
-
-function Home() {
+const Home = () => {
   const sliderSettings = {
     infinite: true,
     speed: 400,
@@ -24,13 +18,13 @@ function Home() {
     cssEase: "linear",
   };
 
-  const galleryItems = useLoaderData({
-    from: "/",
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    select: (data: TourApiResponse<GalleryItems>) =>
-      data.response.body.items.item,
-  });
+  // const galleryItems = useLoaderData({
+  //   from: "/",
+  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //   // @ts-expect-error
+  //   select: (data: TourApiResponse<GalleryItems>) =>
+  //     data.response.body.items.item,
+  // });
 
   return (
     <Wrapper>
@@ -51,21 +45,21 @@ function Home() {
           <Link to={"/style"}>스타일 등록하기</Link>
         </Button>
       </ButtonsContainer>
-      <SliderWrapper>
+      {/* <SliderWrapper>
         <h3>국내에 숨은 여행지를 발굴해보세요</h3>
         <Slider {...sliderSettings}>
           {galleryItems.map((item) => (
-            <GalleryItem>
+            <GalleryItem key={item.galContentId}>
               <p>#{item.galTitle}</p>
               <img src={item.galWebImageUrl} />
             </GalleryItem>
           ))}
         </Slider>
-      </SliderWrapper>
+      </SliderWrapper> */}
       <footer></footer>
     </Wrapper>
   );
-}
+};
 
 const GalleryItem = styled.div`
   margin-left: 20px;
@@ -87,7 +81,7 @@ const GalleryItem = styled.div`
 `;
 
 const SliderWrapper = styled.div`
-  margin: 100px 0;
+  margin: 50px 0;
   width: 80%;
   height: 50%;
 

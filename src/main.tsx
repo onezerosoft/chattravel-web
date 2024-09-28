@@ -1,50 +1,28 @@
 import ReactDOM from "react-dom/client";
-import { createRouter, RouterProvider } from "@tanstack/react-router";
-import { routeTree } from "./routeTree.gen";
-import "./index.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
-}
-
-const router = createRouter({
-  routeTree,
-});
+import React from "react";
+import App from "./App";
 
 function start() {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        // suspense: false,
-      },
-    },
-  });
-
   const rootElement = document.getElementById("root")!;
 
   if (!rootElement.innerHTML) {
     const root = ReactDOM.createRoot(rootElement);
     root.render(
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
     );
   }
 }
 
+async function enableMocking() {
+  const { worker } = await import("./mocks/browser");
+  await worker.start();
+}
+
 // TODO: 백엔드개발 완료되면 DEV로 변경
-if (import.meta.env.PRO) {
+if (import.meta.env.DEV) {
   enableMocking().then(start);
 } else {
   start();
-}
-
-async function enableMocking() {
-  const { worker } = await import("../src/mocks/browser");
-  await worker.start();
 }

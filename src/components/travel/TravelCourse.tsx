@@ -8,9 +8,7 @@ interface TravelCourse {
 const TravelCourse = ({ courses }: TravelCourse) => {
   return courses.map((course) => (
     <Wrapper>
-      <CourseName>
-        Day {course.day} | {course.courseName}
-      </CourseName>
+      <CourseName>Day{course.day}</CourseName>
       <PlacesContainer>
         <Place>
           <PlaceName>
@@ -72,6 +70,7 @@ const Place = styled.li`
 
 const Wrapper = styled.div`
   display: flex;
+  padding: 0 20px;
 
   & > h3 {
     color: #494949;
@@ -81,7 +80,7 @@ const Wrapper = styled.div`
 `;
 
 const CourseName = styled.h3`
-  width: 200px;
+  width: 60px;
 `;
 
 const PlacesContainer = styled.ol`
@@ -89,8 +88,8 @@ const PlacesContainer = styled.ol`
   border-top: 3px solid #838383;
   position: relative;
   list-style-type: none;
-  padding: 0 20px 0 0;
-  gap: 20px;
+
+  gap: 40px;
   margin-left: 20px;
   margin-top: 23px;
 `;
@@ -141,9 +140,11 @@ const RestaurantAndCafe = styled.li`
 
 const RestaurantAndCafeImage = styled.div`
   display: flex;
-  & > img:nth-of-type(1) {
-    margin-top: 20px;
 
+  & > img:nth-of-type(1) {
+    transform: rotate(35deg);
+    transform-origin: right center;
+    margin-top: 20px;
     width: 100px;
     height: 200px;
     border-radius: 100px 0 0 100px;
@@ -151,6 +152,9 @@ const RestaurantAndCafeImage = styled.div`
   }
 
   & > img:nth-of-type(2) {
+    transform: rotate(35deg);
+    transform-origin: left center;
+
     margin-top: 20px;
 
     width: 100px;

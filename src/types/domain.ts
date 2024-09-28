@@ -1,6 +1,7 @@
 import { REGION_MAP } from "../constants";
 
 export interface GalleryItem {
+  galContentId: number;
   galTitle: string;
   galWebImageUrl: string;
 }
@@ -27,7 +28,7 @@ export interface ChatKind {
 
 export interface Course {
   day: number;
-  courseName: string;
+  // courseName: string;
   places: Place[];
 }
 
