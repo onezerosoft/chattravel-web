@@ -6,7 +6,7 @@ import {
 } from "../types/api";
 import { api, tourApi } from "./api";
 
-export const getTourPhotos = async () => {
+export const getGalleryItems = async () => {
   const res = await tourApi.get("/galleryList1");
 
   if (!res) throw new Error("Failed to fetch tour photos");

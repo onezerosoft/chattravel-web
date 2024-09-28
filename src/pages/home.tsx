@@ -1,30 +1,45 @@
 import Badge from "../components/common/Badge";
 import styled from "styled-components";
 import Button from "../components/common/Button";
-import { getTourPhotos } from "../apis/get";
 import Slider from "react-slick";
-import { TourApiResponse } from "../types/api";
-import { GalleryItems } from "../types/domain";
 import { Link } from "react-router-dom";
+import useGetGalleryItems from "../hooks/useGetGalleryItems";
+
+const sliderSettings = {
+  infinite: true,
+  speed: 400,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2200,
+  cssEase: "linear",
+};
 
 const Home = () => {
-  const sliderSettings = {
-    infinite: true,
-    speed: 400,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2200,
-    cssEase: "linear",
-  };
+  const { data: galleryItems, status } = useGetGalleryItems();
 
-  // const galleryItems = useLoaderData({
-  //   from: "/",
-  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //   // @ts-expect-error
-  //   select: (data: TourApiResponse<GalleryItems>) =>
-  //     data.response.body.items.item,
-  // });
+  if (status == "pending" || !galleryItems)
+    return (
+      <Wrapper>
+        <Badge text="Welcome to Chattravel!" />
+        <h1>
+          당신만을 위한 국내여행코스를 <br />단 10초만에 받아보세요
+        </h1>
+        <p>
+          AI로 개인의 여행스타일에 맞는 최적의 맞춤 여행코스를 짜요.
+          <br /> 지역, 기간, 여행 스타일만 입력하고 챗봇과 함께 대화하며
+          간편하게 여행코스를 완성시키세요.
+        </p>
+        <ButtonsContainer>
+          <Button>
+            <Link to={"/chat"}>채팅 시작하기</Link>
+          </Button>
+          <Button design="secondary">
+            <Link to={"/style"}>스타일 등록하기</Link>
+          </Button>
+        </ButtonsContainer>
+      </Wrapper>
+    );
 
   return (
     <Wrapper>
@@ -45,7 +60,7 @@ const Home = () => {
           <Link to={"/style"}>스타일 등록하기</Link>
         </Button>
       </ButtonsContainer>
-      {/* <SliderWrapper>
+      <SliderWrapper>
         <h3>국내에 숨은 여행지를 발굴해보세요</h3>
         <Slider {...sliderSettings}>
           {galleryItems.map((item) => (
@@ -55,7 +70,7 @@ const Home = () => {
             </GalleryItem>
           ))}
         </Slider>
-      </SliderWrapper> */}
+      </SliderWrapper>
       <footer></footer>
     </Wrapper>
   );

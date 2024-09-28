@@ -3,18 +3,20 @@ import { ShareIconSVG, DownloadIconSVG } from "../assets";
 import PageTemplate from "../components/common/PageTemplate";
 import TravelCourse from "../components/travel/TravelCourse";
 import useGetTravelCourse from "../hooks/useGetTravelCourse";
+import useGetRegionThumbnail from "../hooks/useGetRegionThumbnail";
 
 const Travel = () => {
-  const { data: travelCourse, status } = useGetTravelCourse();
-  // const regionThumbnailUrl = useLoaderData({
-  //   from: "/travel/[travelId]",
-  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //   // @ts-expect-error
-  //   select: (data: TourApiResponse<GalleryItems>) =>
-  //     data.response.body.items.item[2].galWebImageUrl,
-  // });
+  const { data: travelCourse, status: travelCourseStatus } =
+    useGetTravelCourse();
+  const { data: regionThumbnail, status: regionThumbnailStatus } =
+    useGetRegionThumbnail();
 
-  if (status == "pending" || !travelCourse)
+  if (
+    travelCourseStatus == "pending" ||
+    regionThumbnailStatus == "pending" ||
+    !travelCourse ||
+    !regionThumbnail
+  )
     return (
       <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
         로딩 중
@@ -33,7 +35,7 @@ const Travel = () => {
         </TravelTitle>
         <TravelCourse courses={travelCourse.courses} />
       </TravelWrapper>
-      {/* <RegionThumbnail src={regionThumbnailUrl} /> */}
+      <RegionThumbnail src={regionThumbnail} />
     </PageTemplate>
   );
 };
