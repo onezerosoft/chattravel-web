@@ -11,6 +11,15 @@ const Travel = () => {
   const { data: regionThumbnail, status: regionThumbnailStatus } =
     useGetRegionThumbnail();
 
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      alert("URL이 복사되었습니다!");
+    } catch (err) {
+      console.error("복사 실패:", err);
+    }
+  };
+
   if (
     travelCourseStatus == "pending" ||
     regionThumbnailStatus == "pending" ||
@@ -29,7 +38,7 @@ const Travel = () => {
         <TravelTitle>
           <h2>{travelCourse.travelTitle}</h2>
           <Icons>
-            <ShareIconSVG width={24} />
+            <ShareIconSVG width={24} onClick={handleCopy} />
             <DownloadIconSVG width={34} />
           </Icons>
         </TravelTitle>
