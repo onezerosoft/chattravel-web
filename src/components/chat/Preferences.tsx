@@ -3,33 +3,13 @@ import ChatGroup from "./ChatGroup";
 import { useChatStore, useTravelStore } from "../../stores";
 import { memo } from "react";
 import { useNavigate } from "react-router";
-
-const STYLES = [
-  ["자연", "자연", "자연/도시", "도시", "도시"],
-  ["관광", "관광", "관광/휴식", "휴식", "휴식"],
-  ["럭셔리숙소", "럭셔리숙소", "숙박종류", "가성비숙소", "가성비숙소"],
-  [
-    "사진촬영 매우 중요",
-    "사진촬영 중요",
-    "사진촬영 상관없음",
-    "사진촬영을 딱히 중요하지 않음",
-    "사진촬영 매우 중요하지 않음",
-  ],
-];
-
-const STYLE_DESCRIPTIONS: Record<number, string> = {
-  1: "매우 선호",
-  2: "선호",
-  3: "상관없음",
-  4: "선호",
-  5: "매우 선호",
-};
+import { PREFERENCE_DESCRIPTIONS_MAP, STYLE_CATEGORIES } from "../../constants";
 
 const Preferences = memo(() => {
+  const navigate = useNavigate();
+
   const preferences = useTravelStore((store) => store.preferences);
   const updatePreferences = useTravelStore((store) => store.updatePreferences);
-
-  const navigate = useNavigate();
 
   const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
@@ -45,8 +25,10 @@ const Preferences = memo(() => {
     return preferences
       .map((preference, index) => {
         return index <= 2
-          ? STYLES[index][preference - 1] + " " + STYLE_DESCRIPTIONS[preference]
-          : STYLES[index][preference - 1];
+          ? STYLE_CATEGORIES[index][preference - 1] +
+              " " +
+              PREFERENCE_DESCRIPTIONS_MAP[preference]
+          : STYLE_CATEGORIES[index][preference - 1];
       })
       .join(", ");
   };

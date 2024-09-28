@@ -50,10 +50,10 @@ const 자연도시 = ({ onNext }: FunnelProps) => {
   );
 };
 
+export default 자연도시;
+
 const ButtonWrapper = styled.div`
   position: fixed;
   bottom: 10%;
   right: 30%;
 `;
-
-export default 자연도시;

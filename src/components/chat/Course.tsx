@@ -14,9 +14,11 @@ interface CourseProps {
 
 const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
   const navigate = useNavigate();
+
   const [displayedTexts, setDisplayedTexts] = useState<string[]>([]);
   const [courseIndex, setCourseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+
   const chatId = useChatStore((state) => state.id);
 
   const { mutateAsync } = usePostSaveTravel();
@@ -31,10 +33,7 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
       },
     });
 
-    navigate({
-      to: `/travel/[travelId]`,
-      params: { travelId: res.data.result.travelId },
-    });
+    navigate(`/travel/travelId=${res.data.result.travelId}`);
   };
 
   useEffect(() => {
@@ -91,6 +90,8 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
   );
 });
 
+export default Course;
+
 const Wrapper = styled.div`
   background-color: #f5f5f5;
   border-radius: 20px;
@@ -119,5 +120,3 @@ const CourseContent = styled.article`
     word-wrap: break-word;
   }
 `;
-
-export default Course;

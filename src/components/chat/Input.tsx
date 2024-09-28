@@ -5,10 +5,12 @@ import usePostUserMessage from "../../hooks/usePostUserMessage";
 import { useChatStore } from "../../stores";
 
 const Input = () => {
-  const chatId = useChatStore((state) => state.id);
   const inputRef = useRef(null);
+
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState("");
+
+  const chatId = useChatStore((state) => state.id);
   const trigger = useChatStore((state) => state.trigger);
 
   const { mutate } = usePostUserMessage();

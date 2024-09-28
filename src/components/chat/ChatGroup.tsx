@@ -8,12 +8,12 @@ interface ChatGroupProps extends Chat {
   texts?: string[];
 }
 
-function ChatGroup({
+const ChatGroup = ({
   who,
   children,
   groupKey,
   texts,
-}: ChatGroupProps & PropsWithChildren) {
+}: ChatGroupProps & PropsWithChildren) => {
   const [displayedTexts, setDisplayedTexts] = useState<string[]>([]);
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -72,7 +72,7 @@ function ChatGroup({
       </ChatBoxContainer>
     </ChetWrapper>
   );
-}
+};
 
 export default ChatGroup;
 
