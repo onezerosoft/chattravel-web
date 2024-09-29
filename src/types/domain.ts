@@ -28,7 +28,6 @@ export interface ChatKind {
 
 export interface Course {
   day: number;
-  // courseName: string;
   places: Place[];
 }
 
@@ -37,6 +36,7 @@ export interface Place {
   type: "숙소" | "식당" | "카페" | "여행지";
   placeName: string;
   comment: string;
+  address: string;
 }
 
 export interface Message {

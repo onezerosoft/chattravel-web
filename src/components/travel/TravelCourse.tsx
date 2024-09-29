@@ -30,6 +30,7 @@ const TravelCourse = ({ courses }: TravelCourse) => {
           <Accomodation
             accomodation={course.places[0]}
             urls={placeThumbnails[course.places[0].placeName]}
+            check={index == 0 ? "Check-in" : "Check-out"}
           />
         ) : (
           <TravelPlace
