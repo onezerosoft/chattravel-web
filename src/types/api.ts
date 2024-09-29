@@ -33,6 +33,7 @@ export interface UserMessageParams {
 
 export interface SaveTravelBody {
   request: "Y";
+  messageId: number;
 }
 
 export interface SaveTravelParams {

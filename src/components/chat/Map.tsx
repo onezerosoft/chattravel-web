@@ -186,6 +186,7 @@ const Wrapper = styled.div`
   width: max-content;
   margin-left: 115px;
   margin-top: -15px;
+  margin-bottom: 20px;
 
   max-width: 450px;
 

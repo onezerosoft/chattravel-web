@@ -4,6 +4,7 @@ import Button from "../components/common/Button";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import useGetGalleryItems from "../hooks/useGetGalleryItems";
+import { ChatPageWebp, TravelPageWebp } from "../assets";
 
 const sliderSettings = {
   infinite: true,
@@ -38,6 +39,12 @@ const Home = () => {
             <Link to={"/style"}>스타일 등록하기</Link>
           </Button>
         </ButtonsContainer>
+        <ServiceIntroductions>
+          <img src={ChatPageWebp} />
+          <h2>채팅으로 간편하게</h2>
+          <h2>완성된 코스는 친구에게 공유해보세요</h2>
+          <img src={TravelPageWebp} />
+        </ServiceIntroductions>
       </Wrapper>
     );
 
@@ -60,6 +67,20 @@ const Home = () => {
           <Link to={"/style"}>스타일 등록하기</Link>
         </Button>
       </ButtonsContainer>
+      <ServiceIntroductions>
+        <div>
+          <img src={ChatPageWebp} />
+          <h2>
+            체트에게 물어봐! <p>간편하게 여행을 떠나요</p>
+          </h2>
+        </div>
+        <div>
+          <h2>
+            나만의 여행 계획 뚝딱 <p>링크로 친구에게 공유해보세요</p>
+          </h2>
+          <img src={TravelPageWebp} />
+        </div>
+      </ServiceIntroductions>
       <SliderWrapper>
         <h3>국내에 숨은 여행지를 발굴해보세요</h3>
         <Slider {...sliderSettings}>
@@ -71,10 +92,65 @@ const Home = () => {
           ))}
         </Slider>
       </SliderWrapper>
-      <footer></footer>
+      <Footer>
+        <span>CONTACT 📨 kym6050@hanyang.ac.kr</span>
+        <span>COPYRIGHT © 2024 ONEZEROSOFT ALL RIGHTS RESERVED</span>
+      </Footer>
     </Wrapper>
   );
 };
+
+const Footer = styled.footer`
+  height: 150px;
+  width: 100vw;
+  background-color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: end;
+  padding: 10px 40px;
+  box-sizing: border-box;
+  color: #888;
+  margin-top: 40px;
+  & > span {
+    font-size: 12px;
+    font-weight: 500;
+  }
+`;
+
+const ServiceIntroductions = styled.article`
+  display: flex;
+  flex-direction: column;
+
+  width: 65vw;
+  padding: 20px 50px;
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 5%;
+    margin-top: 12%;
+  }
+
+  & > div > img {
+    width: 600px;
+    box-shadow: 4px 4px 8px 1px rgb(0 0 0 / 12%);
+    border-radius: 10px;
+  }
+
+  & > div > h2 {
+    align-self: center;
+    font-size: 32px;
+    width: 100%;
+
+    & > p {
+      font-size: 18px;
+      font-weight: 500;
+      color: #474747;
+      margin-top: 10px;
+    }
+  }
+`;
 
 const GalleryItem = styled.div`
   margin-left: 20px;

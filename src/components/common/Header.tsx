@@ -13,7 +13,7 @@ const Header = () => {
         <Logo />
       </Link>
       <NavigationsContainer>
-        <Link to={"/style"}>Login</Link>
+        {/* <Link to={"/style"}>Login</Link> */}
         {location.pathname != "/chat" && (
           <Button design="primary">
             <Link to={"/chat"}>채팅 시작하기</Link>

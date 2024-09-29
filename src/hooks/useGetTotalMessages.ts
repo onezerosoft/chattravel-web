@@ -26,9 +26,14 @@ const useGetTotalMessages = () => {
     enabled: chatId !== null,
     queryFn: async (): Promise<TotalMessagesResponse> => {
       const res = await getTotalMessages({ params: { chatId: chatId! } });
+      localStorage.setItem(
+        "lastMessageId",
+        res.result.messages.at(-1)!.messageId.toString()
+      );
       return res;
     },
     select: (data) => data.result.messages,
+    retryOnMount: false,
   });
 
   return { data, status };
