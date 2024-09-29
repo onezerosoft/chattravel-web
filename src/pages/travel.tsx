@@ -1,29 +1,31 @@
-import { createFileRoute, useLoaderData } from "@tanstack/react-router";
-import PageTemplate from "../components/common/PageTemplate";
-import useGetTravelCourse from "../hooks/useGetTravelCourse";
 import styled from "styled-components";
-import { getRegionThumbnail } from "../apis/get";
-import { TourApiResponse } from "../types/api";
-import { GalleryItems } from "../types/domain";
-import { DownloadIconSVG, ShareIconSVG } from "../assets";
+import { ShareIconSVG, DownloadIconSVG } from "../assets";
+import PageTemplate from "../components/common/PageTemplate";
 import TravelCourse from "../components/travel/TravelCourse";
+import useGetTravelCourse from "../hooks/useGetTravelCourse";
+import useGetRegionThumbnail from "../hooks/useGetRegionThumbnail";
 
-export const Route = createFileRoute("/travel")({
-  loader: getRegionThumbnail,
-  component: Travel,
-});
+const Travel = () => {
+  const { data: travelCourse, status: travelCourseStatus } =
+    useGetTravelCourse();
+  const { data: regionThumbnail, status: regionThumbnailStatus } =
+    useGetRegionThumbnail();
 
-function Travel() {
-  const { data: travelCourse, status } = useGetTravelCourse();
-  const regionThumbnailUrl = useLoaderData({
-    from: "/travel",
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    select: (data: TourApiResponse<GalleryItems>) =>
-      data.response.body.items.item[31].galWebImageUrl,
-  });
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      alert("URL이 복사되었습니다!");
+    } catch (err) {
+      console.error("복사 실패:", err);
+    }
+  };
 
-  if (status == "pending" || !travelCourse)
+  if (
+    travelCourseStatus == "pending" ||
+    regionThumbnailStatus == "pending" ||
+    !travelCourse ||
+    !regionThumbnail
+  )
     return (
       <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
         로딩 중
@@ -36,21 +38,24 @@ function Travel() {
         <TravelTitle>
           <h2>{travelCourse.travelTitle}</h2>
           <Icons>
-            <ShareIconSVG width={24} />
+            <ShareIconSVG width={24} onClick={handleCopy} />
             <DownloadIconSVG width={34} />
           </Icons>
         </TravelTitle>
         <TravelCourse courses={travelCourse.courses} />
       </TravelWrapper>
-      <RegionThumbnail src={regionThumbnailUrl} />
+      <RegionThumbnail src={regionThumbnail} />
     </PageTemplate>
   );
-}
+};
+
+export default Travel;
 
 const TravelTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   & > h2 {
     font-size: 28px;
   }

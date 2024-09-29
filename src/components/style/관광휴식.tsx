@@ -49,6 +49,8 @@ const 관광휴식 = ({ onNext, onPrev }: FunnelProps) => {
   );
 };
 
+export default 관광휴식;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -57,5 +59,3 @@ const ButtonWrapper = styled.div`
   width: 40%;
   right: 30%;
 `;
-
-export default 관광휴식;

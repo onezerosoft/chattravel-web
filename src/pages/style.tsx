@@ -1,4 +1,3 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import styled from "styled-components";
 import PageTemplate from "../components/common/PageTemplate";
 import { useState } from "react";
@@ -7,12 +6,9 @@ import 관광휴식 from "../components/style/관광휴식";
 import 숙박 from "../components/style/숙박";
 import 사진 from "../components/style/사진";
 import { useChatStore, useTravelStore } from "../stores";
+import { useNavigate } from "react-router";
 
-export const Route = createFileRoute("/style")({
-  component: Style,
-});
-
-function Style() {
+const Style = () => {
   const navigate = useNavigate();
   const chatStep = useChatStore((state) => state.step);
   const nextChatStep = useChatStore((state) => state.next);
@@ -29,7 +25,7 @@ function Style() {
       nextChatStep();
     }
 
-    navigate({ to: "/chat", replace: true });
+    navigate("/chat");
   };
 
   return (
@@ -54,7 +50,7 @@ function Style() {
       </SliderWrapper>
     </PageTemplate>
   );
-}
+};
 
 export default Style;
 

@@ -12,6 +12,7 @@ const Duration = () => {
 
   const clickDuration = (duration: number) => () => {
     if (step !== 3) return;
+
     setDuration(duration);
     next();
   };

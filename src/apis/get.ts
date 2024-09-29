@@ -4,9 +4,9 @@ import {
   TotalMessagesParams,
   TravelCourseParams,
 } from "../types/api";
-import { api, tourApi } from "./api";
+import { api, kakaoSearchApi, tourApi } from "./api";
 
-export const getTourPhotos = async () => {
+export const getGalleryItems = async () => {
   const res = await tourApi.get("/galleryList1");
 
   if (!res) throw new Error("Failed to fetch tour photos");
@@ -39,6 +39,23 @@ export const getTravelCourse = async ({
   params,
 }: ApiRequestParams<TravelCourseParams>) => {
   const res = await api.get(`/travel/${params.travelId}`);
+
+  if (!res) throw new Error("Failed to fetch total messages");
+  return res.data;
+};
+
+interface PlaceThumbnailParams {
+  query: string;
+  sort?: string;
+  page?: number;
+  size?: number;
+}
+export const getPlaceThumbnail = async ({
+  params,
+}: ApiRequestParams<PlaceThumbnailParams>) => {
+  const res = await kakaoSearchApi.get(
+    `/v2/search/image?query=${encodeURIComponent(params.query)}`
+  );
 
   if (!res) throw new Error("Failed to fetch total messages");
   return res.data;

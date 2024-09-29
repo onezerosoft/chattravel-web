@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { Link, useLocation } from "@tanstack/react-router";
 import Logo from "./Logo";
 import Button from "./Button";
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();

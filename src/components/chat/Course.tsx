@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Button from "../common/Button";
 import usePostSaveTravel from "../../hooks/usePostSaveTravel";
 import { useChatStore } from "../../stores";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router";
 
 interface CourseProps {
   messageId: number;
@@ -14,9 +14,11 @@ interface CourseProps {
 
 const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
   const navigate = useNavigate();
+
   const [displayedTexts, setDisplayedTexts] = useState<string[]>([]);
   const [courseIndex, setCourseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+
   const chatId = useChatStore((state) => state.id);
 
   const { mutateAsync } = usePostSaveTravel();
@@ -31,7 +33,7 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
       },
     });
 
-    navigate({ to: "/travel", params: { travelId: res.data.result.travelId } });
+    navigate(`/travel/travelId=${res.data.result.travelId}`);
   };
 
   useEffect(() => {
@@ -68,7 +70,7 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
 
       return () => clearInterval(interval);
     }
-  }, [courseIndex, charIndex, courses]);
+  }, [courseIndex, charIndex, courses, scrollDown]);
 
   return (
     <Wrapper key={messageId}>
@@ -76,9 +78,7 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
         (course, index) =>
           index <= courseIndex && (
             <CourseContent>
-              <h3 key={course.courseName}>
-                🗓 Day {course.day} | {course.courseName}
-              </h3>
+              <h3 key={course.day}>🗓 Day {course.day}</h3>
               <p>{displayedTexts[index]}</p>
             </CourseContent>
           )
@@ -89,6 +89,8 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
     </Wrapper>
   );
 });
+
+export default Course;
 
 const Wrapper = styled.div`
   background-color: #f5f5f5;
@@ -118,5 +120,3 @@ const CourseContent = styled.article`
     word-wrap: break-word;
   }
 `;
-
-export default Course;

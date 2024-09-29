@@ -49,6 +49,8 @@ const 숙박 = ({ onNext, onPrev }: FunnelProps) => {
   );
 };
 
+export default 숙박;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -57,5 +59,3 @@ const ButtonWrapper = styled.div`
   width: 40%;
   right: 30%;
 `;
-
-export default 숙박;

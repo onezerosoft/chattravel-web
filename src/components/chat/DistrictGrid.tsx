@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Region } from "../../types/domain";
 import { DISTRICT_MAP } from "../../constants";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 interface DistrictGridProps {
   region: Region;
@@ -16,8 +16,7 @@ const DistrictGrid = ({
 }: DistrictGridProps) => {
   const falseBooleans = Array(30).fill(false);
   const trueBooleans = Array(30).fill(true);
-
-  const getIsAll = () => districtBooleans.every((x) => x == true);
+  const getIsAll = districtBooleans.every((x) => x == true);
 
   const clickDistrict = (index: number) => () => {
     districtBooleans[index] = !districtBooleans[index];
@@ -25,17 +24,13 @@ const DistrictGrid = ({
   };
 
   const clickAll = () => {
-    if (getIsAll()) setDistrictBooleans([...falseBooleans]);
+    if (getIsAll) setDistrictBooleans([...falseBooleans]);
     else setDistrictBooleans([...trueBooleans]);
   };
 
-  useEffect(() => {
-    setDistrictBooleans([...falseBooleans]);
-  }, []);
-
   return (
     <Wrapper>
-      <District onClick={clickAll} $isSelected={getIsAll()}>
+      <District onClick={clickAll} $isSelected={getIsAll}>
         전체
       </District>
       {DISTRICT_MAP[region].map((district, index) => (

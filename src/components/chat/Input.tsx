@@ -5,10 +5,12 @@ import usePostUserMessage from "../../hooks/usePostUserMessage";
 import { useChatStore } from "../../stores";
 
 const Input = () => {
-  const chatId = useChatStore((state) => state.id);
   const inputRef = useRef(null);
+
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState("");
+
+  const chatId = useChatStore((state) => state.id);
   const trigger = useChatStore((state) => state.trigger);
 
   const { mutate } = usePostUserMessage();
@@ -34,7 +36,7 @@ const Input = () => {
           id="userMessage"
           value={value}
           ref={inputRef}
-          placeholder="ex) 첫째날 다른 숙소 추천해주고, 둘째날 오전 여행지 다른 여행지로 바꿔줘."
+          placeholder="ex) 첫째날 오후 여행지 다른 여행지로 바꿔줘."
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onChange={(event: ChangeEvent<HTMLInputElement>) =>

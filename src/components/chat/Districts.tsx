@@ -14,8 +14,10 @@ const Districts = ({ region }: DistrictsProps) => {
   const [districtBooleans, setDistrictBooleans] = useState(
     Array(30).fill(false)
   );
+
   const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
+
   const setDistricts = useTravelStore((state) => state.setDistricts);
 
   const clickDone = () => {
@@ -29,6 +31,7 @@ const Districts = ({ region }: DistrictsProps) => {
     const newDistricts = districtBooleans.every((x) => x == true)
       ? ["전체"]
       : selectedDistricts;
+
     setDistricts(newDistricts);
     next();
   };

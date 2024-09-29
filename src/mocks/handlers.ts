@@ -37,7 +37,7 @@ export const handlers = [
       code: "COMMON201_1",
       message: "생성 성공",
       result: {
-        travelId: 0,
+        travelId: 1,
         travelTitle: "울릉도에서의 3박4일",
         createdAt: "2024-07-16",
       },

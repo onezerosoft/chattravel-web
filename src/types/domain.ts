@@ -1,6 +1,7 @@
 import { REGION_MAP } from "../constants";
 
 export interface GalleryItem {
+  galContentId: number;
   galTitle: string;
   galWebImageUrl: string;
 }
@@ -27,7 +28,6 @@ export interface ChatKind {
 
 export interface Course {
   day: number;
-  courseName: string;
   places: Place[];
 }
 
@@ -36,6 +36,7 @@ export interface Place {
   type: "숙소" | "식당" | "카페" | "여행지";
   placeName: string;
   comment: string;
+  address: string;
 }
 
 export interface Message {
@@ -46,4 +47,10 @@ export interface Message {
     courses: Course[];
   };
   createdAt: string;
+}
+
+export interface Document {
+  doc_url: string;
+  image_url: string;
+  thumbnail_url: string;
 }
