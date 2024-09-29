@@ -37,6 +37,11 @@ const ChatGroup = ({
     if (textIndex < texts.length) {
       const fullText = texts[textIndex];
 
+      if (localStorage.getItem("lastMessageId") != groupKey) {
+        setDisplayedTexts([fullText]);
+        return;
+      }
+
       const interval = setInterval(() => {
         if (charIndex < fullText.length) {
           setDisplayedTexts((prev) => {
@@ -91,7 +96,6 @@ const UserWrapper = styled.li`
   align-self: flex-end;
   margin-left: 20px;
   margin-right: 30px;
-  margin-top: 20px;
 `;
 
 const ChatBox = styled.div<{ $who: "chet" | "user" }>`

@@ -23,6 +23,8 @@ const 사진 = ({ onNext, onPrev }: FunnelProps) => {
     newPreferences[3] = preference;
 
     updatePreferences(newPreferences);
+    onNext();
+    localStorage.setItem("lastMessageId", "course");
   };
 
   return (
@@ -36,14 +38,7 @@ const 사진 = ({ onNext, onPrev }: FunnelProps) => {
       />
       <ButtonWrapper>
         <Button onClick={onPrev}>이전</Button>
-        <Button
-          onClick={() => {
-            savePreferences();
-            onNext();
-          }}
-        >
-          다음
-        </Button>
+        <Button onClick={savePreferences}>다음</Button>
       </ButtonWrapper>
     </>
   );

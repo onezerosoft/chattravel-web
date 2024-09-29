@@ -27,6 +27,7 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
     const res = await mutateAsync({
       body: {
         request: "Y",
+        messageId,
       },
       params: {
         chatId: chatId!,
@@ -50,6 +51,12 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
             place.comment
         )
         .join("\n");
+
+      if (localStorage.getItem("lastMessageId") != messageId.toString()) {
+        setDisplayedTexts([fullText]);
+        setCourseIndex(courseIndex);
+        return;
+      }
 
       const interval = setInterval(() => {
         if (charIndex < fullText.length) {
@@ -102,6 +109,7 @@ const Wrapper = styled.div`
   width: max-content;
   margin-left: 115px;
   margin-top: -15px;
+  margin-bottom: 15px;
 
   gap: 10px;
   max-width: 450px;

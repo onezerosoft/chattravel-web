@@ -67,6 +67,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (step == 1) {
+      localStorage.setItem("lastMessageId", "region");
       scrollUp();
       return;
     }
@@ -108,7 +109,7 @@ const ChatList = styled.ul`
   margin-right: auto;
 
   width: 50vw;
-  height: 90vh;
+  height: 75vh;
   overflow: scroll;
   display: flex;
   flex-direction: column;

@@ -15,6 +15,8 @@ const Messages = ({ scrollDown, messages, status }: MessagesProps) => {
   const region = useTravelStore((state) => state.region!);
   const duration = useTravelStore((state) => state.duration);
 
+  localStorage.setItem("lastMessageId", "course");
+
   if (status == "pending" || !messages) {
     return (
       <>
@@ -30,13 +32,15 @@ const Messages = ({ scrollDown, messages, status }: MessagesProps) => {
     );
   }
 
+  localStorage.setItem("lastMessageId", messages.at(-1)!.messageId.toString());
+
   return (
     <>
       <ChatGroup
         groupKey={"course"}
         who="chet"
         texts={[
-          `너만을 위한 ${REGION_MAP[region]} ${DURATIONS[duration - 1]} 여행코스를 생성 중이야! \n 잠시만 기다려줘~`,
+          `너만을 위한 ${REGION_MAP[region]} ${DURATIONS[duration - 1]} 여행코스를 생성 중이야!\n잠시만 기다려줘~`,
         ]}
       />
       {messages.map((message) => {

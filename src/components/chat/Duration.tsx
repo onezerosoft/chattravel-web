@@ -15,6 +15,7 @@ const Duration = () => {
 
     setDuration(duration);
     next();
+    localStorage.setItem("lastMessageId", "preferences");
   };
 
   return (
