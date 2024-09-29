@@ -8,6 +8,8 @@ import { PREFERENCE_DESCRIPTIONS_MAP, STYLE_CATEGORIES } from "../../constants";
 const Preferences = memo(() => {
   const navigate = useNavigate();
 
+  const likeTracking = useTravelStore((store) => store.likeTracking);
+
   const preferences = useTravelStore((store) => store.preferences);
   const updatePreferences = useTravelStore((store) => store.updatePreferences);
 
@@ -16,32 +18,36 @@ const Preferences = memo(() => {
 
   const resetStyle = () => {
     if (step !== 4) return;
+
     localStorage.removeItem("preferences");
     updatePreferences([0, 0, 0, 0]);
     navigate("/style");
   };
 
   const getStyleDescriptions = () => {
-    return preferences
-      .map((preference, index) => {
-        return index <= 2
-          ? STYLE_CATEGORIES[index][preference - 1] +
-              " " +
-              PREFERENCE_DESCRIPTIONS_MAP[preference]
-          : STYLE_CATEGORIES[index][preference - 1];
-      })
-      .join(", ");
+    const tracking =
+      likeTracking == "Y" ? ", 트래킹 선호" : ", 트래킹 선호하지 않음";
+    return (
+      preferences
+        .map((preference, index) => {
+          return index <= 2
+            ? STYLE_CATEGORIES[index][preference - 1] +
+                " " +
+                PREFERENCE_DESCRIPTIONS_MAP[preference]
+            : STYLE_CATEGORIES[index][preference - 1];
+        })
+        .join(", ") + tracking
+    );
   };
 
-  if (localStorage.getItem("preferences") && !localStorage.getItem("isFirst"))
+  if (localStorage.getItem("preferences"))
     return (
       <>
         <ChatGroup
           who="chet"
           groupKey="preferences"
           texts={[
-            `여행 스타일은 그대로 할거야?`,
-            `현재 스타일: ${getStyleDescriptions()}`,
+            `여행 스타일은 그대로 할거야? \n현재: ${getStyleDescriptions()}`,
           ]}
         />
         <ChatGroup who="user" groupKey="preferences2">

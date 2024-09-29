@@ -101,10 +101,14 @@ const InputsContainer = styled.div`
   display: flex;
   gap: 20px;
   margin-top: 40px;
+  align-items: center;
 
   & > p {
     font-weight: 500;
     margin: 0 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    text-align: center;
   }
 `;
 

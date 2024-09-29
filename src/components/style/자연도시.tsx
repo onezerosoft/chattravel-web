@@ -54,6 +54,6 @@ export default 자연도시;
 
 const ButtonWrapper = styled.div`
   position: fixed;
-  bottom: 10%;
+  bottom: 7%;
   right: 30%;
 `;
