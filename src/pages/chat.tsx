@@ -108,7 +108,7 @@ const ChatList = styled.ul`
   margin-right: auto;
 
   width: 50vw;
-  height: 600px;
+  height: 90vh;
   overflow: scroll;
   display: flex;
   flex-direction: column;
@@ -125,7 +125,7 @@ const ChatList = styled.ul`
 
 const ResetButtonWrapper = styled.div`
   position: absolute;
-  top: 28%;
+  top: 200px;
   left: 5%;
 `;
 

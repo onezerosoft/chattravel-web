@@ -91,6 +91,7 @@ const UserWrapper = styled.li`
   align-self: flex-end;
   margin-left: 20px;
   margin-right: 30px;
+  margin-top: 20px;
 `;
 
 const ChatBox = styled.div<{ $who: "chet" | "user" }>`
