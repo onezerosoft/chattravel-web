@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ShareIconSVG, DownloadIconSVG } from "../assets";
+import { ShareIconSVG } from "../assets";
 import PageTemplate from "../components/common/PageTemplate";
 import TravelCourse from "../components/travel/TravelCourse";
 import useGetTravelCourse from "../hooks/useGetTravelCourse";

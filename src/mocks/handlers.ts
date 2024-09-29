@@ -1,4 +1,4 @@
-import { delay, http, HttpResponse } from "msw";
+import { http, HttpResponse } from "msw";
 import { BASE_URL } from "../apis/api";
 import { mockTotalMessage, mockTotalMessage2, mockTravelCourse } from "./data";
 
