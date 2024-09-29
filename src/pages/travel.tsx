@@ -39,7 +39,7 @@ const Travel = () => {
           <h2>{travelCourse.travelTitle}</h2>
           <Icons>
             <ShareIconSVG width={24} onClick={handleCopy} />
-            <DownloadIconSVG width={34} />
+            {/* <DownloadIconSVG width={34} /> */}
           </Icons>
         </TravelTitle>
         <TravelCourse courses={travelCourse.courses} />
