@@ -55,7 +55,7 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   position: fixed;
-  bottom: 10%;
+  bottom: 7%;
   width: 40%;
   right: 30%;
 `;

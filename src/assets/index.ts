@@ -13,6 +13,8 @@ export { default as ExpensiveJPG } from "./expensive.jpg";
 export { default as CheapJPG } from "./cheap.jpg";
 export { default as LikePhotoJPG } from "./like_photo.jpg";
 export { default as HatePhotoJPG } from "./hate_photo.jpg";
+export { default as LikeTrackingJPG } from "./like_tracking.jpg";
+export { default as HateTrackingJPG } from "./hate_tracking.jpg";
 
 export { default as ChatPageWebp } from "./chat_page.webp";
 export { default as TravelPageWebp } from "./travel_page.webp";

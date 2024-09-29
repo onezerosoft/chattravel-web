@@ -21,7 +21,6 @@ const 숙박 = ({ onNext, onPrev }: FunnelProps) => {
   const savePreferences = () => {
     const newPreferences = [...preferences];
     newPreferences[2] = preference;
-
     updatePreferences(newPreferences);
   };
 
@@ -55,7 +54,7 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   position: fixed;
-  bottom: 10%;
+  bottom: 7%;
   width: 40%;
   right: 30%;
 `;

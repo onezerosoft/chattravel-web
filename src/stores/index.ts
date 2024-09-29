@@ -11,7 +11,11 @@ export interface TravelStore {
   setDuration: (duration: number) => void;
   districts: string[];
   setDistricts: (districts: string[]) => void;
+  likeTracking: LikeTrackingType;
+  setLikeTracking: (likeTracking: LikeTrackingType) => void;
 }
+
+type LikeTrackingType = "Y" | "N";
 
 export const useTravelStore = create<TravelStore>((set) => ({
   id: JSON.parse(localStorage.getItem("travelId") || "1"),
@@ -21,6 +25,8 @@ export const useTravelStore = create<TravelStore>((set) => ({
   ),
   duration: JSON.parse(localStorage.getItem("duration") || "0"),
   districts: JSON.parse(localStorage.getItem("districts") || "[]"),
+  likeTracking:
+    (localStorage.getItem("likeTraking") as LikeTrackingType) || "Y",
   setRegion: (region: Region) => {
     set({ region });
     localStorage.setItem("region", JSON.stringify(region));
@@ -36,6 +42,10 @@ export const useTravelStore = create<TravelStore>((set) => ({
   setDistricts: (districts: string[]) => {
     set({ districts });
     localStorage.setItem("districts", JSON.stringify(districts));
+  },
+  setLikeTracking: (likeTracking: "Y" | "N") => {
+    set({ likeTracking });
+    localStorage.setItem("likeTracking", JSON.stringify(likeTracking));
   },
 }));
 

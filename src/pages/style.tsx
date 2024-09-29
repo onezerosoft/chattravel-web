@@ -5,27 +5,26 @@ import 자연도시 from "../components/style/자연도시";
 import 관광휴식 from "../components/style/관광휴식";
 import 숙박 from "../components/style/숙박";
 import 사진 from "../components/style/사진";
-import { useChatStore, useTravelStore } from "../stores";
+import 트래킹 from "../components/style/트래킹";
+import { useChatStore } from "../stores";
 import { useNavigate } from "react-router";
 
 const Style = () => {
+  const [step, setStep] = useState<
+    "자연도시" | "관광휴식" | "숙박" | "사진" | "트래킹"
+  >("자연도시");
+
   const navigate = useNavigate();
+
   const chatStep = useChatStore((state) => state.step);
   const nextChatStep = useChatStore((state) => state.next);
 
-  const [step, setStep] = useState<"자연도시" | "관광휴식" | "숙박" | "사진">(
-    "자연도시"
-  );
-  const preferences = useTravelStore((state) => state.preferences);
-
-  const savePreferences = () => {
-    if (!preferences.every((preference) => preference !== 0)) return;
+  const goBackToChat = () => {
+    navigate("/chat");
 
     if (chatStep != 1) {
       nextChatStep();
     }
-
-    navigate("/chat");
   };
 
   return (
@@ -45,7 +44,13 @@ const Style = () => {
           />
         )}
         {step == "사진" && (
-          <사진 onNext={savePreferences} onPrev={() => setStep("숙박")} />
+          <사진
+            onNext={() => setStep("트래킹")}
+            onPrev={() => setStep("숙박")}
+          />
+        )}
+        {step == "트래킹" && (
+          <트래킹 onNext={goBackToChat} onPrev={() => setStep("사진")} />
         )}
       </SliderWrapper>
     </PageTemplate>
