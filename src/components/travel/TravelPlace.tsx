@@ -63,7 +63,6 @@ const Wrapper = styled.li`
   position: relative;
   height: fit-content;
   border-radius: 20px;
-  z-index: 10;
 
   & > img {
     margin-top: 20px;
