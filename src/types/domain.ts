@@ -48,3 +48,9 @@ export interface Message {
   };
   createdAt: string;
 }
+
+export interface Document {
+  doc_url: string;
+  image_url: string;
+  thumbnail_url: string;
+}
