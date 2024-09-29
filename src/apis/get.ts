@@ -53,7 +53,6 @@ interface PlaceThumbnailParams {
 export const getPlaceThumbnail = async ({
   params,
 }: ApiRequestParams<PlaceThumbnailParams>) => {
-  console.log(params.query);
   const res = await kakaoSearchApi.get(
     `/v2/search/image?query=${encodeURIComponent(params.query)}`
   );
