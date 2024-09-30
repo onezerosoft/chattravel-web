@@ -60,7 +60,7 @@ export interface ChatStore {
 }
 
 export const useChatStore = create<ChatStore>((set) => ({
-  id: JSON.parse(localStorage.getItem("chatId") || "1"),
+  id: JSON.parse(localStorage.getItem("chatId") || "0"),
   step: JSON.parse(localStorage.getItem("step") || "1"),
   messageTimeStamp: JSON.parse(
     localStorage.getItem("timestamp") || Date.now().toString()
