@@ -40,7 +40,7 @@ const Chat = () => {
 
     mutate({
       body: {
-        region: { SIDO: region, SI: districts },
+        region: { sido: region, si: districts },
         days: duration,
         styleList: preferences,
       },
