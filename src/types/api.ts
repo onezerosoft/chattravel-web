@@ -16,8 +16,8 @@ export type ApiStatusCode = "CHAT201_1";
 
 export interface TravelInfoBody {
   region: {
-    SIDO: string;
-    SI: string[];
+    sido: string;
+    si: string[];
   };
   days: number;
   styleList: number[];
