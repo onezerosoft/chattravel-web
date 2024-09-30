@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Region } from "../../types/domain";
-import { DISTRICT_MAP } from "../../constants";
+import { DISTRICT_MAP, POPULAR_DISTRICTS } from "../../constants";
 import { Dispatch, SetStateAction } from "react";
 
 interface DistrictGridProps {
@@ -40,6 +40,9 @@ const DistrictGrid = ({
           onClick={clickDistrict(index)}
         >
           {district}
+          <PopularBadge $isPopular={POPULAR_DISTRICTS.includes(district)}>
+            HOT
+          </PopularBadge>
         </District>
       ))}
     </Wrapper>
@@ -64,8 +67,27 @@ const District = styled.button<{ $isSelected: boolean }>`
   border: ${({ $isSelected }) =>
     $isSelected ? "1.5px solid black" : "1.5px solid #e8e8e8"};
 
+  position: relative;
+
   &:hover {
     transform: scale(1.05);
     opacity: 80%;
   }
+`;
+
+const PopularBadge = styled.span<{ $isPopular: boolean }>`
+  visibility: ${({ $isPopular }) => ($isPopular ? "visible" : "hidden")};
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -2px;
+  right: 5px;
+  width: 24px;
+  height: 11px;
+  background-color: #f2ffd6;
+  border-radius: 0 0 2px 2px;
+  font-size: 8px;
+  font-weight: 500;
+  color: #212121;
 `;

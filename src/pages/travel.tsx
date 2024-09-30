@@ -103,6 +103,7 @@ const RegionThumbnail = styled.img`
   height: 100vh;
   z-index: -1;
   opacity: 20%;
+  object-fit: cover;
 `;
 
 const TravelWrapper = styled.div`

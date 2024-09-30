@@ -12,6 +12,7 @@ import usePostTravelInfo from "../hooks/usePostTravelInfo";
 import Messages from "../components/chat/Messages";
 import Input from "../components/chat/Input";
 import useGetTotalMessages from "../hooks/useGetTotalMessages";
+import { REGION_MAP } from "../constants";
 
 const Chat = () => {
   const chatListRef = useRef<HTMLUListElement>(null);
@@ -40,7 +41,7 @@ const Chat = () => {
 
     mutate({
       body: {
-        region: { sido: region, si: districts },
+        region: { sido: REGION_MAP[region], si: districts },
         days: duration,
         styleList: preferences,
       },
