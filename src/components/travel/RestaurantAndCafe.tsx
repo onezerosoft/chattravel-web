@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import type { Document, Place } from "../../types/domain";
+import { PlaceInfo } from "./TravelCourse";
 
 interface RestaurantAndCafeProps {
   restaurant: Place;
@@ -28,7 +29,8 @@ const RestaurantAndCafe = ({
         </RestaurantAndCafeImage>
         <PlaceInfo>
           <h5>
-            {restaurant.placeName}, {cafe.placeName}
+            {restaurant.placeName}, <br />
+            {cafe.placeName}
           </h5>
           <p>
             {restaurant.address
@@ -126,32 +128,5 @@ const RestaurantAndCafeImage = styled.div`
     border-radius: 0 20px 0 0;
     object-fit: cover;
     transition: opacity 0.3s;
-  }
-`;
-
-const PlaceInfo = styled.p`
-  background-color: white;
-  width: 200px;
-  padding: 10px;
-  box-sizing: border-box;
-  border-radius: 0 0 20px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 4px 4px 8px 1px rgb(0 0 0 / 12%);
-  transition: opacity 0.3s;
-
-  & > h5 {
-    font-size: 14px;
-    margin: 0;
-    margin-bottom: 5px;
-  }
-
-  & > p {
-    color: gray;
-    font-size: 10px;
-    text-align: end;
-    width: 150px;
-    align-self: end;
   }
 `;

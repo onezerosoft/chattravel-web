@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { Region } from "../types/domain";
 
 export interface TravelStore {
-  id: number;
   region: Region | null;
   setRegion: (region: Region) => void;
   preferences: number[];
@@ -18,7 +17,6 @@ export interface TravelStore {
 type LikeTrackingType = "Y" | "N";
 
 export const useTravelStore = create<TravelStore>((set) => ({
-  id: JSON.parse(localStorage.getItem("travelId") || "1"),
   region: JSON.parse(localStorage.getItem("region") || "null"),
   preferences: JSON.parse(
     localStorage.getItem("preferences") || "[0, 0, 0, 0]"

@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTravelCourse } from "../apis/get";
-import { useTravelStore } from "../stores";
 import { ApiStatusCode } from "../types/api";
 import { Course } from "../types/domain";
 
@@ -15,9 +14,7 @@ interface TravelCourseResponse {
   };
 }
 
-const useGetTravelCourse = () => {
-  const travelId = useTravelStore((state) => state.id);
-
+const useGetTravelCourse = (travelId: number) => {
   const { data, status } = useQuery({
     queryKey: ["TravelCourse", travelId],
     queryFn: async (): Promise<TravelCourseResponse> => {

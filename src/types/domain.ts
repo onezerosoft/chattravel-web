@@ -12,6 +12,31 @@ export interface GalleryItems {
   };
 }
 
+export interface TrackingCourse {
+  crsLevel: string;
+  crsCycle: string;
+  crsContents: string;
+  createdtime: string;
+  travelerinfo: string;
+  crsTourInfo: string;
+  crsSummary: string;
+  routeIdx: string;
+  crsIdx: string;
+  crsKorNm: string;
+  crsDstnc: string;
+  crsTotlRqrmHour: string;
+  modifiedtime: string;
+  sigun: string;
+  brdDiv: string;
+  gpxpath: string;
+}
+
+export interface TrackingCourses {
+  items: {
+    item: TrackingCourse[];
+  };
+}
+
 export type Region = keyof typeof REGION_MAP;
 
 export type ChatWho = "chet" | "user";
