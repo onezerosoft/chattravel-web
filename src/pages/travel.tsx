@@ -33,7 +33,22 @@ const Travel = () => {
     return (
       <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
         <TravelWrapper>불러오는 중..</TravelWrapper>
-        <RegionThumbnail src={regionThumbnail} />
+      </PageTemplate>
+    );
+
+  // FIXME: 관광공사api 운영 승인 되면 제거
+  if (!trackingCourses || !regionThumbnail)
+    return (
+      <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
+        <TravelWrapper>
+          <TravelTitle>
+            <h2>{travelCourse.travelTitle}</h2>
+            <Icons>
+              <ShareIconSVG width={24} onClick={handleCopy} />
+            </Icons>
+          </TravelTitle>
+          <TravelCourse courses={travelCourse.courses} />
+        </TravelWrapper>
       </PageTemplate>
     );
 
