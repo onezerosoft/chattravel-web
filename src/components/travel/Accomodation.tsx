@@ -51,8 +51,8 @@ const Wrapper = styled.li`
   & > img {
     margin-top: 20px;
     border-radius: 20px 20px 0 0;
-    width: 200px;
-    height: 200px;
+    width: 190px;
+    height: 190px;
     object-fit: cover;
     transition: opacity 0.3s;
   }

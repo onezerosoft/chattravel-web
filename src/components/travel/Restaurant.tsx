@@ -1,37 +1,26 @@
 import styled from "styled-components";
 import type { Document, Place } from "../../types/domain";
-import { PlaceInfo } from "./TravelCourse";
 
-interface RestaurantAndCafeProps {
+interface RestaurantProps {
   restaurant: Place;
-  cafe: Place;
   restaurantUrls: Document;
-  cafeUrls: Document;
   placeNumber: number;
 }
 
-const RestaurantAndCafe = ({
+const Restaurant = ({
   restaurant,
-  cafe,
   restaurantUrls,
-  cafeUrls,
   placeNumber,
-}: RestaurantAndCafeProps) => {
+}: RestaurantProps) => {
   return (
     <a href={restaurantUrls.doc_url} target="_blank">
       <Wrapper>
         <PlaceComment>{restaurant.comment}</PlaceComment>
-        <PlaceName>금강산도 식후경 🍱 ☕️</PlaceName>
+        <PlaceName>식당 🍱</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
-        <RestaurantAndCafeImage>
-          <img src={restaurantUrls.thumbnail_url} />
-          <img src={cafeUrls.thumbnail_url} />
-        </RestaurantAndCafeImage>
+        <img src={restaurantUrls.thumbnail_url} />
         <PlaceInfo>
-          <h5>
-            {restaurant.placeName}, <br />
-            {cafe.placeName}
-          </h5>
+          <h5>{restaurant.placeName}</h5>
           <p>
             {restaurant.address
               ? restaurant.address.split(" ").slice(0, 2).join(" ")
@@ -43,7 +32,7 @@ const RestaurantAndCafe = ({
   );
 };
 
-export default RestaurantAndCafe;
+export default Restaurant;
 
 const PlaceComment = styled.div`
   display: flex;
@@ -52,10 +41,10 @@ const PlaceComment = styled.div`
   top: 40px;
   left: 10px;
   visibility: hidden;
-  width: 160px;
+  width: 110px;
   font-size: 14px;
   font-weight: 600;
-  padding: 0 10px;
+  padding: 0 5px;
   transition: visibility 0.3s;
 `;
 
@@ -64,9 +53,20 @@ const Wrapper = styled.li`
   flex-direction: column;
   align-items: center;
   position: relative;
+  height: fit-content;
+  border-radius: 20px;
+
+  & > img {
+    margin-top: 20px;
+    border-radius: 20px 20px 0 0;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    transition: opacity 0.3s;
+  }
 
   &:hover {
-    & > div > img {
+    & > img {
       opacity: 0.2;
     }
 
@@ -109,24 +109,30 @@ const PlaceNumber = styled.span`
   background-color: #ff6f93;
 `;
 
-const RestaurantAndCafeImage = styled.div`
+const PlaceInfo = styled.p`
+  transition: opacity 0.3s;
+  background-color: white;
+  width: 140px;
+  height: 60px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border-radius: 0 0 20px 20px;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 4px 4px 8px 1px rgb(0 0 0 / 12%);
 
-  & > img:nth-of-type(1) {
-    margin-top: 20px;
-    width: 100px;
-    height: 200px;
-    border-radius: 20px 0 0 0;
-    object-fit: cover;
-    transition: opacity 0.3s;
+  & > h5 {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 5px;
   }
 
-  & > img:nth-of-type(2) {
-    margin-top: 20px;
-    width: 100px;
-    height: 200px;
-    border-radius: 0 20px 0 0;
-    object-fit: cover;
-    transition: opacity 0.3s;
+  & > p {
+    color: gray;
+    font-size: 10px;
+    text-align: end;
+    width: 140px;
+    align-self: end;
   }
 `;

@@ -9,24 +9,24 @@ interface PlaceProps {
 }
 
 const TravelPlace = ({ place, urls, placeNumber }: PlaceProps) => {
-  const getDayPart = () => {
-    switch (placeNumber) {
-      case 1:
-        return "오전";
-      case 3:
-        return "오후";
-      case 5:
-        return "저녁";
-      default:
-        return "";
-    }
-  };
+  // const getDayPart = () => {
+  //   switch (placeNumber) {
+  //     case 1:
+  //       return "오전";
+  //     case 3:
+  //       return "오후";
+  //     case 5:
+  //       return "저녁";
+  //     default:
+  //       return "";
+  //   }
+  // };
 
   return (
     <a href={urls.doc_url} target="_blank">
       <Wrapper>
         <PlaceComment>{place.comment}</PlaceComment>
-        <PlaceName>{getDayPart()} 여행지 📌</PlaceName>
+        <PlaceName> 여행지 📌</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
         <img src={urls.thumbnail_url} />
         <PlaceInfo>
@@ -68,8 +68,8 @@ const Wrapper = styled.li`
   & > img {
     margin-top: 20px;
     border-radius: 20px 20px 0 0;
-    width: 200px;
-    height: 200px;
+    width: 190px;
+    height: 190px;
     object-fit: cover;
     transition: opacity 0.3s;
   }

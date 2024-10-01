@@ -2,8 +2,10 @@ import styled from "styled-components";
 import type { Course } from "../../types/domain";
 import useGetPlaceThumbnails from "../../hooks/useGetPlaceThumbnails";
 import TravelPlace from "./TravelPlace";
-import RestaurantAndCafe from "./RestaurantAndCafe";
 import Accomodation from "./Accomodation";
+import React from "react";
+import Restaurant from "./Restaurant";
+import Cafe from "./Cafe";
 
 interface TravelCourse {
   courses: Course[];
@@ -16,53 +18,55 @@ const TravelCourse = ({ courses }: TravelCourse) => {
     .map((place) => place.placeName);
   const { placeThumbnails, isSuccess } = useGetPlaceThumbnails(places);
 
-  const isAccomodationNeeded = (index: number) => {
-    return courses.length > 1 && (index == 0 || index == courses.length - 1);
-  };
-
   if (!isSuccess) return <></>;
 
-  return courses.map((course, index) => (
+  const renderPlace = (place: any, index: number) => {
+    switch (place.type) {
+      case "숙소":
+        return (
+          <Accomodation
+            accomodation={place}
+            urls={placeThumbnails[place.placeName]}
+            check={index === 0 ? "Check-in" : "Check-out"}
+          />
+        );
+      case "식당":
+        return (
+          <Restaurant
+            restaurant={place}
+            restaurantUrls={placeThumbnails[place.placeName]}
+            placeNumber={index}
+          />
+        );
+      case "카페":
+        return (
+          <Cafe
+            cafe={place}
+            cafeUrls={placeThumbnails[place.placeName]}
+            placeNumber={index}
+          />
+        );
+      case "여행지":
+      default:
+        return (
+          <TravelPlace
+            place={place}
+            urls={placeThumbnails[place.placeName]}
+            placeNumber={index}
+          />
+        );
+    }
+  };
+
+  return courses.map((course, _) => (
     <Wrapper>
       <CourseName>Day{course.day}</CourseName>
       <PlacesContainer>
-        {isAccomodationNeeded(index) ? (
-          <Accomodation
-            accomodation={course.places[0]}
-            urls={placeThumbnails[course.places[0].placeName]}
-            check={index == 0 ? "Check-in" : "Check-out"}
-          />
-        ) : (
-          <TravelPlace
-            place={course.places[0]}
-            urls={placeThumbnails[course.places[0].placeName]}
-            placeNumber={1}
-          />
-        )}
-        <RestaurantAndCafe
-          restaurant={course.places[1]}
-          cafe={course.places[2]}
-          restaurantUrls={placeThumbnails[course.places[1].placeName]}
-          cafeUrls={placeThumbnails[course.places[2].placeName]}
-          placeNumber={2}
-        />
-        <TravelPlace
-          place={course.places[3]}
-          urls={placeThumbnails[course.places[3].placeName]}
-          placeNumber={3}
-        />
-        <RestaurantAndCafe
-          restaurant={course.places[4]}
-          cafe={course.places[5]}
-          restaurantUrls={placeThumbnails[course.places[4].placeName]}
-          cafeUrls={placeThumbnails[course.places[5].placeName]}
-          placeNumber={4}
-        />
-        <TravelPlace
-          place={course.places[6]}
-          urls={placeThumbnails[course.places[6].placeName]}
-          placeNumber={5}
-        />
+        {course.places.map((place, index) => (
+          <React.Fragment key={index}>
+            {renderPlace(place, index + 1)}
+          </React.Fragment>
+        ))}
       </PlacesContainer>
     </Wrapper>
   ));
@@ -82,7 +86,7 @@ const Wrapper = styled.div`
 `;
 
 const CourseName = styled.h3`
-  width: 60px;
+  width: 50px;
 `;
 
 const PlacesContainer = styled.ol`
@@ -91,16 +95,16 @@ const PlacesContainer = styled.ol`
   position: relative;
   list-style-type: none;
 
-  gap: 40px;
-  margin-left: 20px;
+  gap: 10px;
+  margin-left: 0;
   margin-top: 23px;
 `;
 
 export const PlaceInfo = styled.p`
   transition: opacity 0.3s;
   background-color: white;
-  width: 200px;
-  height: 75px;
+  width: 190px;
+  height: 60px;
   padding: 5px 10px;
   box-sizing: border-box;
   border-radius: 0 0 20px 20px;

@@ -3,9 +3,9 @@ import { ShareIconSVG } from "../assets";
 import PageTemplate from "../components/common/PageTemplate";
 import TravelCourse from "../components/travel/TravelCourse";
 import useGetTravelCourse from "../hooks/useGetTravelCourse";
-import useGetRegionThumbnail from "../hooks/useGetRegionThumbnail";
-import useGetTrackingCourses from "../hooks/useGetTrackingCourses";
-import TrackingCourse from "../components/travel/TrackingCourse";
+// import useGetRegionThumbnail from "../hooks/useGetRegionThumbnail";
+// import useGetTrackingCourses from "../hooks/useGetTrackingCourses";
+// import TrackingCourse from "../components/travel/TrackingCourse";
 import { useLocation } from "react-router";
 
 const Travel = () => {
@@ -17,8 +17,8 @@ const Travel = () => {
     Number(travelId)
   );
 
-  const { data: regionThumbnail } = useGetRegionThumbnail();
-  const { trackingCourses, isSuccess } = useGetTrackingCourses();
+  // const { data: regionThumbnail } = useGetRegionThumbnail();
+  // const { trackingCourses, isSuccess } = useGetTrackingCourses();
 
   const handleCopy = async () => {
     try {
@@ -37,36 +37,36 @@ const Travel = () => {
     );
 
   // FIXME: 관광공사api 운영 승인 되면 제거
-  if (!trackingCourses || !regionThumbnail)
-    return (
-      <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
-        <TravelWrapper>
-          <TravelTitle>
-            <h2>{travelCourse.travelTitle}</h2>
-            <Icons>
-              <ShareIconSVG width={24} onClick={handleCopy} />
-            </Icons>
-          </TravelTitle>
-          <TravelCourse courses={travelCourse.courses} />
-        </TravelWrapper>
-      </PageTemplate>
-    );
+  // if (!trackingCourses || !regionThumbnail)
+  //   return (
+  //     <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
+  //       <TravelWrapper>
+  //         <TravelTitle>
+  //           <h2>{travelCourse.travelTitle}</h2>
+  //           <Icons>
+  //             <ShareIconSVG width={24} onClick={handleCopy} />
+  //           </Icons>
+  //         </TravelTitle>
+  //         <TravelCourse courses={travelCourse.courses} />
+  //       </TravelWrapper>
+  //     </PageTemplate>
+  //   );
 
-  if (!isSuccess || !trackingCourses || !trackingCourses.length)
-    return (
-      <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
-        <TravelWrapper>
-          <TravelTitle>
-            <h2>{travelCourse.travelTitle}</h2>
-            <Icons>
-              <ShareIconSVG width={24} onClick={handleCopy} />
-            </Icons>
-          </TravelTitle>
-          <TravelCourse courses={travelCourse.courses} />
-        </TravelWrapper>
-        <RegionThumbnail src={regionThumbnail} />
-      </PageTemplate>
-    );
+  // if (!isSuccess || !trackingCourses || !trackingCourses.length)
+  //   return (
+  //     <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
+  //       <TravelWrapper>
+  //         <TravelTitle>
+  //           <h2>{travelCourse.travelTitle}</h2>
+  //           <Icons>
+  //             <ShareIconSVG width={24} onClick={handleCopy} />
+  //           </Icons>
+  //         </TravelTitle>
+  //         <TravelCourse courses={travelCourse.courses} />
+  //       </TravelWrapper>
+  //       <RegionThumbnail src={regionThumbnail} />
+  //     </PageTemplate>
+  //   );
 
   return (
     <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
@@ -78,15 +78,15 @@ const Travel = () => {
           </Icons>
         </TravelTitle>
         <TravelCourse courses={travelCourse.courses} />
-        <TravelTitle>
+        {/* <TravelTitle>
           <h2>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🚵🏻‍♀️ 트래킹을 선호하는 당신을 위해
             준비했어요
           </h2>
-        </TravelTitle>
-        <TrackingCourse courses={trackingCourses} />
+        </TravelTitle> */}
+        {/* <TrackingCourse courses={trackingCourses} /> */}
       </TravelWrapper>
-      <RegionThumbnail src={regionThumbnail} />
+      {/* <RegionThumbnail src={regionThumbnail} /> */}
     </PageTemplate>
   );
 };

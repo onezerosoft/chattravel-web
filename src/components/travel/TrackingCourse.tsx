@@ -29,8 +29,6 @@ const getEmojiFromCourseName = (courseName: string) => {
   return "🌄";
 };
 
-console.log(getEmojiFromCourseName("남파랑길"));
-
 const TrackingCourse = ({ courses }: TrackingCourseProps) => {
   return (
     <Wrapper>

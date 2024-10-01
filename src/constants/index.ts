@@ -126,7 +126,6 @@ export const DISTRICT_MAP: Record<string, string[]> = {
     "강진군",
     "해남군",
     "영암군",
-    "순천시",
     "장흥군",
     "보성군",
   ],
