@@ -1,17 +1,53 @@
 import styled from "styled-components";
 import type { TrackingCourse } from "../../types/domain";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 
 interface TrackingCourseProps {
   courses: TrackingCourse[];
 }
 
+const LEVEL_MAP: Record<number, string> = {
+  1: "하",
+  2: "중",
+  3: "상",
+};
+
+const IMOJI_MAP: Record<string, string> = {
+  해파랑길: "🌄",
+  남파랑길: "🌅",
+  서해랑길: "🏞",
+  DMZ: "🪖",
+};
+
+const getEmojiFromCourseName = (courseName: string) => {
+  for (const course in IMOJI_MAP) {
+    if (courseName.startsWith(course)) {
+      return IMOJI_MAP[course];
+    }
+  }
+  return "🌄";
+};
+
+console.log(getEmojiFromCourseName("남파랑길"));
+
 const TrackingCourse = ({ courses }: TrackingCourseProps) => {
   return (
     <Wrapper>
-      {courses.map((courses) => (
+      {courses.map((course) => (
         <CourseContainer>
-          <h3>{courses.crsKorNm}</h3>
-          <p>{courses.crsSummary}</p>
+          <CourseTitle>
+            <h3>
+              {course.crsKorNm} {getEmojiFromCourseName(course.crsKorNm)}
+            </h3>
+            <span>난이도 {LEVEL_MAP[Number(course.crsLevel)]}</span>
+          </CourseTitle>
+          <CourseContents>
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+              {course.crsSummary}
+            </ReactMarkdown>
+            <p>{course.sigun}</p>
+          </CourseContents>
         </CourseContainer>
       ))}
     </Wrapper>
@@ -20,31 +56,63 @@ const TrackingCourse = ({ courses }: TrackingCourseProps) => {
 
 export default TrackingCourse;
 
+const CourseTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & > h3 {
+    margin: 0;
+    padding: 0;
+  }
+
+  & > span {
+    font-size: 12px;
+    color: #4a4a4a;
+    margin-left: 10px;
+    font-weight: 500;
+  }
+`;
+
 const Wrapper = styled.ul`
   display: flex;
   overflow-x: scroll;
   max-width: 90vw;
-  height: 410px;
+  height: 400px;
   gap: 22px;
 `;
 
 const CourseContainer = styled.li`
   display: flex;
   flex-direction: column;
+
   min-width: 300px;
-  height: 350px;
-  background-color: #95c580;
+  height: 300px;
+  background-color: #ebebeb;
   border-radius: 20px;
   box-shadow: 4px 4px 8px 1px rgb(0 0 0 / 12%);
-
-  list-style-type: none;
   margin: 0;
-  padding: 20px;
+  padding: 15px 20px;
+`;
 
-  & > h3 {
-    margin: 0;
+const CourseContents = styled.div`
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & > * {
+    list-style-type: none;
+    padding: 15px 10px;
+    font-weight: 500;
   }
 
   & > p {
+    align-self: flex-end;
+    color: #4a4a4a;
+    font-size: 12px;
   }
 `;
