@@ -13,7 +13,7 @@ import Input from "../components/chat/Input";
 import useGetTotalMessages from "../hooks/useGetTotalMessages";
 import usePostUserMessage from "../hooks/usePostUserMessage";
 import ChatGroup from "../components/chat/ChatGroup";
-import { DURATIONS, REGION_MAP } from "../constants";
+import { DURATIONS } from "../constants";
 import { AxiosResponse } from "axios";
 import LoadingDots from "../components/common/LoadingDots";
 import LoadingChet from "../components/chat/LoadingChet";
@@ -31,7 +31,6 @@ const Chat = () => {
 
   const { data: totalMessages, status: totalMessagesStatus } =
     useGetTotalMessages();
-  console.log(totalMessages);
 
   const { mutateAsync, status: userMessageStatus } = usePostUserMessage();
 
@@ -55,7 +54,7 @@ const Chat = () => {
         userMessage,
       },
       params: {
-        chatId: chatId!,
+        chatId,
       },
     });
 

@@ -39,7 +39,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         messageId,
       },
       params: {
-        chatId: chatId!,
+        chatId: chatId,
       },
     });
 

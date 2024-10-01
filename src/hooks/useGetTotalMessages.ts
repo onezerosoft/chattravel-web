@@ -14,7 +14,7 @@ const useGetTotalMessages = () => {
     staleTime: Infinity,
     gcTime: 1000 * 60 * 60 * 24,
     queryFn: async (): Promise<TotalMessagesResponse> => {
-      const res = await getTotalMessages({ params: { chatId: chatId! } });
+      const res = await getTotalMessages({ params: { chatId } });
       localStorage.setItem(
         "lastMessageId",
         res.result.messages.at(-1)!.messageId.toString()
