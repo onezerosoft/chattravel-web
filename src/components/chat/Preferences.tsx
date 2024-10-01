@@ -26,6 +26,19 @@ const Preferences = memo(() => {
     navigate("/style");
   };
 
+  const createTravel = () => {
+    if (step !== 4) return;
+
+    next();
+    mutate();
+  };
+
+  const goStylePage = () => {
+    if (step !== 4) return;
+
+    navigate("/style");
+  };
+
   const getStyleDescriptions = () => {
     const tracking =
       likeTracking == "Y" ? ", 트래킹 선호" : ", 트래킹 선호하지 않음";
@@ -57,14 +70,7 @@ const Preferences = memo(() => {
             <Button design="secondary" onClick={resetStyle}>
               새로 고르기
             </Button>
-            <Button
-              design="secondary"
-              onClick={() => {
-                if (step !== 4) return;
-                next();
-                mutate();
-              }}
-            >
+            <Button design="secondary" onClick={createTravel}>
               그대로
             </Button>
           </>
@@ -80,14 +86,7 @@ const Preferences = memo(() => {
         texts={["그렇구나! 이번 여행의 스타일을 알려줘!"]}
       />
       <ChatGroup who="user" groupKey="preferences4">
-        <Button
-          design="secondary"
-          onClick={() => {
-            if (step !== 4) return;
-            navigate("/style");
-            localStorage.setItem("isFirst", "true");
-          }}
-        >
+        <Button design="secondary" onClick={goStylePage}>
           스타일 고르러 가기
         </Button>
       </ChatGroup>

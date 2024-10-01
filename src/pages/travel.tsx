@@ -16,6 +16,7 @@ const Travel = () => {
   const { data: travelCourse, status: travelCourseStatus } = useGetTravelCourse(
     Number(travelId)
   );
+
   const { data: regionThumbnail } = useGetRegionThumbnail();
   const { trackingCourses, isSuccess } = useGetTrackingCourses();
 

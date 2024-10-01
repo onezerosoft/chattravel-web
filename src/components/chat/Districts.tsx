@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { DISTRICT_MAP, REGION_MAP } from "../../constants";
 import { useChatStore, useTravelStore } from "../../stores";
-import { Region } from "../../types/domain";
+
 import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
 import DistrictGrid from "./DistrictGrid";
 import styled from "styled-components";
 
-interface DistrictsProps {
-  region: Region;
-}
-const Districts = ({ region }: DistrictsProps) => {
+const Districts = () => {
   const [districtBooleans, setDistrictBooleans] = useState(
     Array(30).fill(false)
   );
@@ -18,6 +15,7 @@ const Districts = ({ region }: DistrictsProps) => {
   const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
 
+  const region = useTravelStore((state) => state.region);
   const setDistricts = useTravelStore((state) => state.setDistricts);
 
   const clickDone = () => {
@@ -36,6 +34,8 @@ const Districts = ({ region }: DistrictsProps) => {
     next();
     localStorage.setItem("lastMessageId", "duration1");
   };
+
+  if (!region) return <></>;
 
   return (
     <>

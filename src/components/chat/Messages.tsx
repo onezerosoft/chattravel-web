@@ -1,7 +1,4 @@
-import { REGION_MAP, DURATIONS } from "../../constants";
-import { useTravelStore } from "../../stores";
 import type { Message } from "../../types/domain";
-import LoadingDots from "../common/LoadingDots";
 import ChatGroup from "./ChatGroup";
 import Course from "./Course";
 

@@ -1,4 +1,4 @@
-import { http, HttpResponse } from "msw";
+import { delay, http, HttpResponse } from "msw";
 import { BASE_URL } from "../apis/api";
 import { mockTotalMessage, mockTotalMessage2, mockTravelCourse } from "./data";
 
@@ -20,13 +20,28 @@ export const handlers = [
     });
   }),
 
-  http.post(`${BASE_URL}/chat/:chatId/send`, () => {
+  http.post(`${BASE_URL}/chat/:chatId/send`, async () => {
+    await delay(2000);
     return HttpResponse.json({
       isSuccess: true,
       code: "COMMON201_1",
       message: "응답 생성 성공",
       result: {
         chatId: 1,
+        chatname: "울릉도에서의",
+        totalMessageCount: 1,
+        createdAt: "",
+        messages: [
+          {
+            messageId: 100,
+            type: "C_TEXT",
+            content: {
+              message: "다시한번 말해줄래?",
+              courses: [],
+            },
+            createdAt: "",
+          },
+        ],
       },
     });
   }),
