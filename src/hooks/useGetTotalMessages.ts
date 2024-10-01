@@ -23,7 +23,7 @@ const useGetTotalMessages = () => {
 
   const { data, status } = useQuery({
     queryKey: ["totalMessages", chatId, messageTimeStamp],
-    enabled: chatId !== null,
+    enabled: chatId !== 0,
     queryFn: async (): Promise<TotalMessagesResponse> => {
       const res = await getTotalMessages({ params: { chatId: chatId! } });
       localStorage.setItem(

@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { Region } from "../types/domain";
 
 export interface TravelStore {
-  id: number;
   region: Region | null;
   setRegion: (region: Region) => void;
   preferences: number[];
@@ -18,7 +17,6 @@ export interface TravelStore {
 type LikeTrackingType = "Y" | "N";
 
 export const useTravelStore = create<TravelStore>((set) => ({
-  id: JSON.parse(localStorage.getItem("travelId") || "1"),
   region: JSON.parse(localStorage.getItem("region") || "null"),
   preferences: JSON.parse(
     localStorage.getItem("preferences") || "[0, 0, 0, 0]"
@@ -60,7 +58,7 @@ export interface ChatStore {
 }
 
 export const useChatStore = create<ChatStore>((set) => ({
-  id: JSON.parse(localStorage.getItem("chatId") || "1"),
+  id: JSON.parse(localStorage.getItem("chatId") || "0"),
   step: JSON.parse(localStorage.getItem("step") || "1"),
   messageTimeStamp: JSON.parse(
     localStorage.getItem("timestamp") || Date.now().toString()
@@ -77,8 +75,9 @@ export const useChatStore = create<ChatStore>((set) => ({
     });
   },
   reset: () => {
-    set({ step: 1 });
+    set({ step: 1, id: 0 });
     localStorage.setItem("step", JSON.stringify(1));
+    localStorage.setItem("chatId", JSON.stringify(0));
   },
   createChat: (chatId: number) => {
     set({ id: chatId });

@@ -7,7 +7,7 @@ import {
 import { api, kakaoSearchApi, tourApi } from "./api";
 
 export const getGalleryItems = async () => {
-  const res = await tourApi.get("/galleryList1");
+  const res = await tourApi.get("/B551011/PhotoGalleryService1/galleryList1");
 
   if (!res) throw new Error("Failed to fetch tour photos");
   return res.data;
@@ -19,7 +19,7 @@ export const getRegionThumbnail = async () => {
   if (!region) throw new Error("region is null");
 
   const res = await tourApi.get(
-    `/gallerySearchList1?keyword=${REGION_MAP[JSON.parse(region)]}`
+    `/B551011/PhotoGalleryService1/gallerySearchList1?keyword=${REGION_MAP[JSON.parse(region)]}`
   );
 
   if (!res) throw new Error("Failed to fetch tour photos");
@@ -58,5 +58,20 @@ export const getPlaceThumbnail = async ({
   );
 
   if (!res) throw new Error("Failed to fetch total messages");
+  return res.data;
+};
+
+interface TrackingCoursesParams {
+  crsKorNm: string;
+}
+
+export const getTrackingCourses = async ({
+  params,
+}: ApiRequestParams<TrackingCoursesParams>) => {
+  const res = await tourApi.get(
+    `/B551011/Durunubi/courseList?crsKorNm=${params.crsKorNm}`
+  );
+
+  if (!res) throw new Error("Failed to fetch tour photos");
   return res.data;
 };

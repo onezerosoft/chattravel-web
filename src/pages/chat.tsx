@@ -8,7 +8,6 @@ import Region from "../components/chat/Region";
 import Districts from "../components/chat/Districts";
 import Duration from "../components/chat/Duration";
 import Preferences from "../components/chat/Preferences";
-import usePostTravelInfo from "../hooks/usePostTravelInfo";
 import Messages from "../components/chat/Messages";
 import Input from "../components/chat/Input";
 import useGetTotalMessages from "../hooks/useGetTotalMessages";
@@ -20,11 +19,7 @@ const Chat = () => {
   const reset = useChatStore((state) => state.reset);
 
   const region = useTravelStore((state) => state.region);
-  const districts = useTravelStore((state) => state.districts);
-  const duration = useTravelStore((state) => state.duration);
-  const preferences = useTravelStore((state) => state.preferences);
 
-  const { mutate } = usePostTravelInfo();
   const { data: messages, status } = useGetTotalMessages();
 
   const resetCourse = () => {
@@ -33,18 +28,6 @@ const Chat = () => {
     localStorage.removeItem("duration");
     localStorage.removeItem("districts");
     localStorage.removeItem("isFirst");
-  };
-
-  const getFirstCourse = () => {
-    if (!region) return;
-
-    mutate({
-      body: {
-        region: { SIDO: region, SI: districts },
-        days: duration,
-        styleList: preferences,
-      },
-    });
   };
 
   const scrollDown = () => {
@@ -70,10 +53,6 @@ const Chat = () => {
       localStorage.setItem("lastMessageId", "region");
       scrollUp();
       return;
-    }
-
-    if (step == 5) {
-      getFirstCourse();
     }
 
     scrollDown();

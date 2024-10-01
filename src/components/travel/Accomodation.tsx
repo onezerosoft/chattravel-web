@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import type { Place, Document } from "../../types/domain";
+import { PlaceInfo } from "./TravelCourse";
 
 interface AccomodationProps {
   accomodation: Place;
@@ -97,31 +98,4 @@ const PlaceName = styled.h5`
 
   font-weight: 700;
   font-size: 16px;
-`;
-
-const PlaceInfo = styled.p`
-  transition: opacity 0.3s; /* 부드러운 흐림 효과 */
-  background-color: white;
-  width: 200px;
-  padding: 10px;
-  box-sizing: border-box;
-  border-radius: 0 0 20px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 4px 4px 8px 1px rgb(0 0 0 / 12%);
-
-  & > h5 {
-    font-size: 14px;
-    margin: 0;
-    margin-bottom: 5px;
-  }
-
-  & > p {
-    color: gray;
-    font-size: 10px;
-    text-align: end;
-    width: 150px;
-    align-self: end;
-  }
 `;

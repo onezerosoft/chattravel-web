@@ -1,5 +1,4 @@
 import ReactDOM from "react-dom/client";
-import React from "react";
 import App from "./App";
 
 function start() {
@@ -7,11 +6,7 @@ function start() {
 
   if (!rootElement.innerHTML) {
     const root = ReactDOM.createRoot(rootElement);
-    root.render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
+    root.render(<App />);
   }
 }
 
