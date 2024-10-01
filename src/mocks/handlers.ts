@@ -4,7 +4,6 @@ import { mockTotalMessage, mockTotalMessage2, mockTravelCourse } from "./data";
 
 export const handlers = [
   http.get(`${BASE_URL}/chat/:chatId`, async () => {
-    // await delay(2000);
     if (localStorage.getItem("timestamp"))
       return HttpResponse.json(mockTotalMessage2);
     return HttpResponse.json(mockTotalMessage);
@@ -46,7 +45,6 @@ export const handlers = [
   }),
 
   http.get(`${BASE_URL}/travel/:travelId`, async () => {
-    // await delay(2000);
     return HttpResponse.json(mockTravelCourse);
   }),
 ];

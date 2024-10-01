@@ -8,6 +8,7 @@ import 사진 from "../components/style/사진";
 import 트래킹 from "../components/style/트래킹";
 import { useChatStore } from "../stores";
 import { useNavigate } from "react-router";
+import usePostTravelInfo from "../hooks/usePostTravelInfo";
 
 const Style = () => {
   const [step, setStep] = useState<
@@ -19,12 +20,16 @@ const Style = () => {
   const chatStep = useChatStore((state) => state.step);
   const nextChatStep = useChatStore((state) => state.next);
 
+  const { mutate } = usePostTravelInfo();
+
   const goBackToChat = () => {
     navigate("/chat");
 
     if (chatStep != 1) {
       nextChatStep();
     }
+
+    mutate();
   };
 
   return (

@@ -4,17 +4,19 @@ import { useChatStore, useTravelStore } from "../../stores";
 import { memo } from "react";
 import { useNavigate } from "react-router";
 import { PREFERENCE_DESCRIPTIONS_MAP, STYLE_CATEGORIES } from "../../constants";
+import usePostTravelInfo from "../../hooks/usePostTravelInfo";
 
 const Preferences = memo(() => {
   const navigate = useNavigate();
 
   const likeTracking = useTravelStore((store) => store.likeTracking);
-
   const preferences = useTravelStore((store) => store.preferences);
   const updatePreferences = useTravelStore((store) => store.updatePreferences);
 
   const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
+
+  const { mutate } = usePostTravelInfo();
 
   const resetStyle = () => {
     if (step !== 4) return;
@@ -60,6 +62,7 @@ const Preferences = memo(() => {
               onClick={() => {
                 if (step !== 4) return;
                 next();
+                mutate();
               }}
             >
               그대로
