@@ -115,16 +115,16 @@ const Icons = styled.div`
   }
 `;
 
-const RegionThumbnail = styled.img`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  opacity: 20%;
-  object-fit: cover;
-`;
+// const RegionThumbnail = styled.img`
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   z-index: -1;
+//   opacity: 20%;
+//   object-fit: cover;
+// `;
 
 const TravelWrapper = styled.div`
   margin: 100px 85px;
