@@ -165,7 +165,7 @@ const CourseContent = styled.article`
   }
 
   & > p {
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 5px;
   }
 `;

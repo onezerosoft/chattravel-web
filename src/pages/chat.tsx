@@ -132,7 +132,8 @@ const Chat = () => {
           userMessages.map((userMessage, index) => (
             <>
               <Messages messages={[userMessage]} scrollDown={scrollDown} />
-              {userMessageStatus == "pending" ? (
+              {userMessageStatus == "pending" &&
+              index == userMessages.length - 1 ? (
                 <LoadingChet />
               ) : (
                 <Messages
