@@ -63,6 +63,8 @@ export interface Place {
   placeName: string;
   comment: string;
   address: string;
+  ratings: string;
+  url: string;
 }
 
 export interface Message {

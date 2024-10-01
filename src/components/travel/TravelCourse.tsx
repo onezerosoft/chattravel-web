@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import type { Course } from "../../types/domain";
+import type { Course, Place } from "../../types/domain";
 import useGetPlaceThumbnails from "../../hooks/useGetPlaceThumbnails";
 import TravelPlace from "./TravelPlace";
 import Accomodation from "./Accomodation";
@@ -20,7 +20,7 @@ const TravelCourse = ({ courses }: TravelCourse) => {
 
   if (!isSuccess) return <></>;
 
-  const renderPlace = (place: any, index: number) => {
+  const renderPlace = (place: Place, index: number) => {
     switch (place.type) {
       case "숙소":
         return (

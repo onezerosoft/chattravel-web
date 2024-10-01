@@ -51,7 +51,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
       const fullText = courses[courseIndex].places
         .map(
           (place) =>
-            `<h4> ${PLACETYPE_IMOGI_MAP[place.type]} ${place.placeName} <span>${place.type}</span></h4> 
+            `<h4> ${PLACETYPE_IMOGI_MAP[place.type]} ${place.placeName} <span>${place.type}<span> 추천 점수: ${place.ratings.split(".")[0]}점 ❤️</span></span> </h4> 
             <p>${place.comment}</p> `
         )
         .join("");
@@ -61,7 +61,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
           course.places
             .map(
               (place) =>
-                `<h4> ${PLACETYPE_IMOGI_MAP[place.type]} ${place.placeName} <span>${place.type}</span></h4> 
+                `<h4> ${PLACETYPE_IMOGI_MAP[place.type]} ${place.placeName} <span>${place.type}</span> ${place.ratings}%</h4> 
             <p>${place.comment}</p> `
             )
             .join("")
@@ -162,6 +162,8 @@ const CourseContent = styled.article`
     color: #8a8a8a;
     font-weight: 400;
     font-size: 12px;
+    & > span {
+    }
   }
 
   & > p {
