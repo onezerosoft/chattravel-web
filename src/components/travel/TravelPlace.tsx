@@ -26,7 +26,7 @@ const TravelPlace = ({ place, urls, placeNumber }: PlaceProps) => {
     <a href={urls.doc_url} target="_blank">
       <Wrapper>
         <PlaceComment>{place.comment}</PlaceComment>
-        <PlaceName>{getDayPart()} 여행지 📸</PlaceName>
+        <PlaceName>{getDayPart()} 여행지 📌</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
         <img src={urls.thumbnail_url} />
         <PlaceInfo>

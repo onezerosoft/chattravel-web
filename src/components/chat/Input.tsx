@@ -1,37 +1,26 @@
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import styled from "styled-components";
 import { ArrowRightSVG } from "../../assets";
-import usePostUserMessage from "../../hooks/usePostUserMessage";
-import { useChatStore } from "../../stores";
 
-const Input = () => {
+interface InputProps {
+  onSubmit: (value: string) => void;
+}
+
+const Input = ({ onSubmit }: InputProps) => {
   const inputRef = useRef(null);
-
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState("");
 
-  const chatId = useChatStore((state) => state.id);
-  const trigger = useChatStore((state) => state.trigger);
-
-  const { mutate } = usePostUserMessage();
-
-  const sendUserMessage = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    mutate({
-      body: {
-        userMessage: value,
-      },
-      params: {
-        chatId: chatId!,
-      },
-    });
-    setValue("");
-    trigger();
-  };
-
   return (
     <Wrapper $isFocused={isFocused}>
-      <form onSubmit={sendUserMessage}>
+      <form
+        onSubmit={(event: FormEvent) => {
+          event.preventDefault();
+
+          setValue("");
+          onSubmit(value);
+        }}
+      >
         <InputBase
           id="userMessage"
           value={value}

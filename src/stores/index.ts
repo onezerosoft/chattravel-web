@@ -48,7 +48,7 @@ export const useTravelStore = create<TravelStore>((set) => ({
 }));
 
 export interface ChatStore {
-  id: null | number;
+  id: number;
   step: number;
   messageTimeStamp: number;
   trigger: () => void;

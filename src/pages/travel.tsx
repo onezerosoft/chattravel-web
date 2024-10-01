@@ -16,6 +16,7 @@ const Travel = () => {
   const { data: travelCourse, status: travelCourseStatus } = useGetTravelCourse(
     Number(travelId)
   );
+
   const { data: regionThumbnail } = useGetRegionThumbnail();
   const { trackingCourses, isSuccess } = useGetTrackingCourses();
 
@@ -63,7 +64,10 @@ const Travel = () => {
         </TravelTitle>
         <TravelCourse courses={travelCourse.courses} />
         <TravelTitle>
-          <h2>트래킹을 선호하는 당신을 위해 준비했어요</h2>
+          <h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🚵🏻‍♀️ 트래킹을 선호하는 당신을 위해
+            준비했어요
+          </h2>
         </TravelTitle>
         <TrackingCourse courses={trackingCourses} />
       </TravelWrapper>
@@ -82,6 +86,7 @@ const TravelTitle = styled.div`
   & > h2 {
     font-size: 28px;
     margin: 20px 0;
+    padding-left: 10px;
   }
 `;
 

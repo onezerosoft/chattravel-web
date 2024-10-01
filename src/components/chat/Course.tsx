@@ -39,7 +39,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         messageId,
       },
       params: {
-        chatId: chatId!,
+        chatId: chatId,
       },
     });
 
@@ -56,7 +56,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         )
         .join("");
 
-      if (localStorage.getItem("lastMessageId") === messageId.toString()) {
+      if (localStorage.getItem("lastMessageId") !== messageId.toString()) {
         const fullTexts = courses.map((course) =>
           course.places
             .map(
@@ -90,8 +90,6 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
 
       return () => clearInterval(interval);
     }
-
-    localStorage.setItem("lastMessageId", messageId.toString());
     scrollDown();
   }, [courseIndex, charIndex, courses, scrollDown]);
 
@@ -123,7 +121,7 @@ const Wrapper = styled.div`
   background-color: #f5f5f5;
   border-radius: 20px;
   padding: 10px 15px;
-  margin: -15px 0 15px 115px;
+  margin: -15px 0 30px 115px;
   font-weight: 500;
   text-align: start;
 

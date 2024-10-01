@@ -10,7 +10,7 @@ export const mockTotalMessage = {
     messages: [
       {
         messageId: 1,
-        type: "C-COURSE",
+        type: "C_COURSE",
         content: {
           message: "",
           courses: [
@@ -131,7 +131,7 @@ export const mockTotalMessage2 = {
     messages: [
       {
         messageId: 1,
-        type: "C-COURSE",
+        type: "C_COURSE",
         content: {
           message: "",
           courses: [
@@ -254,7 +254,7 @@ export const mockTotalMessage2 = {
       },
       {
         messageId: 3,
-        type: "C-COURSE",
+        type: "C_COURSE",
         content: {
           message: "",
           courses: [
