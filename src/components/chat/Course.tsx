@@ -52,9 +52,9 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
         )
         .join("\n");
 
-      if (localStorage.getItem("lastMessageId") != messageId.toString()) {
-        setDisplayedTexts([fullText]);
-        setCourseIndex(courseIndex);
+      if (localStorage.getItem("lastMessageId") == messageId.toString()) {
+        setDisplayedTexts((prev) => [...prev, fullText]);
+        setCourseIndex((prev) => prev + 1);
         return;
       }
 
@@ -77,6 +77,9 @@ const Course = React.memo(({ scrollDown, messageId, courses }: CourseProps) => {
 
       return () => clearInterval(interval);
     }
+
+    localStorage.setItem("lastMessageId", messageId.toString());
+    scrollDown();
   }, [courseIndex, charIndex, courses, scrollDown]);
 
   return (

@@ -15,9 +15,8 @@ const Messages = ({ scrollDown, messages, status }: MessagesProps) => {
   const region = useTravelStore((state) => state.region!);
   const duration = useTravelStore((state) => state.duration);
 
-  localStorage.setItem("lastMessageId", "course");
-
   if (status == "pending" || !messages) {
+    localStorage.setItem("lastMessageId", "course");
     return (
       <>
         <ChatGroup
@@ -31,8 +30,6 @@ const Messages = ({ scrollDown, messages, status }: MessagesProps) => {
       </>
     );
   }
-
-  localStorage.setItem("lastMessageId", messages.at(-1)!.messageId.toString());
 
   return (
     <>
