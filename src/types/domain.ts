@@ -1,4 +1,5 @@
 import { REGION_MAP } from "../constants";
+import { ApiStatusCode } from "./api";
 
 export interface GalleryItem {
   galContentId: number;
@@ -78,4 +79,17 @@ export interface Document {
   doc_url: string;
   image_url: string;
   thumbnail_url: string;
+}
+
+export interface TotalMessagesResponse {
+  isSuccess: boolean;
+  code: ApiStatusCode;
+  message: string;
+  result: {
+    chatId: number;
+    chatname: string;
+    totalMessageCount: number;
+    createdAt: string;
+    messages: Message[];
+  };
 }

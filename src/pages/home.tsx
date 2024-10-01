@@ -71,7 +71,7 @@ const Home = () => {
         <div>
           <img src={ChatPageWebp} />
           <h2>
-            체트에게 물어봐! <p>간편하게 여행을 떠나요</p>
+            챗트에게 물어봐! <p>간편하게 여행을 떠나요</p>
           </h2>
         </div>
         <div>

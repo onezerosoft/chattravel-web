@@ -2,11 +2,11 @@ import { useMutation } from "@tanstack/react-query";
 import { postUserMessage } from "../apis/post";
 
 const usePostUserMessage = () => {
-  const { mutate } = useMutation({
+  const { mutateAsync } = useMutation({
     mutationFn: postUserMessage,
   });
 
-  return { mutate };
+  return { mutateAsync };
 };
 
 export default usePostUserMessage;

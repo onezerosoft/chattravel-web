@@ -25,7 +25,7 @@ const Region = () => {
         who={"chet"}
         groupKey={"region"}
         texts={[
-          "안녕! 나는 너만을 위한 여행 가이드, 체트라고 해.\n이번 여행은 어디로 떠나? 지도에 영역을 클릭해줘!",
+          "안녕! 나는 너만을 위한 여행 가이드, 챗트라고 해.\n이번 여행은 어디로 떠나? 지도에 영역을 클릭해줘!",
         ]}
       />
       <Map handleClick={clickRegion} />
