@@ -59,17 +59,17 @@ export interface Course {
 
 export interface Place {
   placeId: number;
-  type: "숙소" | "식당" | "카페" | "여행지";
+  placeType: "숙소" | "식당" | "카페" | "여행지";
   placeName: string;
   comment: string;
   address: string;
-  ratings: string;
+  ratings?: string;
   url: string;
 }
 
 export interface Message {
   messageId: number;
-  type: "C_TEXT" | "C_COURSE" | "U_TEXT";
+  messageType: "C_TEXT" | "C_COURSE" | "U_TEXT";
   content: {
     message: string;
     courses: Course[];

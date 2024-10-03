@@ -24,7 +24,7 @@ const Home = () => {
       <Wrapper>
         <Badge text="Welcome to Chattravel!" />
         <h1>
-          당신만을 위한 국내여행코스를 <br />단 10초만에 받아보세요
+          당신만을 위한 국내여행코스를 <br />단 1분만에 받아보세요
         </h1>
         <p>
           AI로 개인의 여행스타일에 맞는 최적의 맞춤 여행코스를 짜요.
@@ -52,7 +52,7 @@ const Home = () => {
     <Wrapper>
       <Badge text="Welcome to Chattravel!" />
       <h1>
-        당신만을 위한 국내여행코스를 <br />단 10초만에 받아보세요
+        당신만을 위한 국내여행코스를 <br />단 1분만에 받아보세요
       </h1>
       <p>
         AI로 개인의 여행스타일에 맞는 최적의 맞춤 여행코스를 짜요.

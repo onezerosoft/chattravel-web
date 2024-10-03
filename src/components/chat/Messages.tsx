@@ -11,7 +11,7 @@ const Messages = ({ scrollDown, messages }: MessagesProps) => {
   return (
     <>
       {messages.map((message) => {
-        switch (message.type) {
+        switch (message.messageType) {
           case "C_COURSE":
             return (
               <Course

@@ -3,9 +3,9 @@ import { ShareIconSVG } from "../assets";
 import PageTemplate from "../components/common/PageTemplate";
 import TravelCourse from "../components/travel/TravelCourse";
 import useGetTravelCourse from "../hooks/useGetTravelCourse";
-// import useGetRegionThumbnail from "../hooks/useGetRegionThumbnail";
-// import useGetTrackingCourses from "../hooks/useGetTrackingCourses";
-// import TrackingCourse from "../components/travel/TrackingCourse";
+import useGetRegionThumbnail from "../hooks/useGetRegionThumbnail";
+import useGetTrackingCourses from "../hooks/useGetTrackingCourses";
+import TrackingCourse from "../components/travel/TrackingCourse";
 import { useLocation } from "react-router";
 
 const Travel = () => {
@@ -17,8 +17,8 @@ const Travel = () => {
     Number(travelId)
   );
 
-  // const { data: regionThumbnail } = useGetRegionThumbnail();
-  // const { trackingCourses, isSuccess } = useGetTrackingCourses();
+  const { data: regionThumbnail } = useGetRegionThumbnail();
+  const { trackingCourses, isSuccess } = useGetTrackingCourses();
 
   const handleCopy = async () => {
     try {
@@ -78,15 +78,15 @@ const Travel = () => {
           </Icons>
         </TravelTitle>
         <TravelCourse courses={travelCourse.courses} />
-        {/* <TravelTitle>
+        <TravelTitle>
           <h2>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🚵🏻‍♀️ 트래킹을 선호하는 당신을 위해
             준비했어요
           </h2>
-        </TravelTitle> */}
-        {/* <TrackingCourse courses={trackingCourses} /> */}
+        </TravelTitle>
+        <TrackingCourse courses={trackingCourses} />
       </TravelWrapper>
-      {/* <RegionThumbnail src={regionThumbnail} /> */}
+      <RegionThumbnail src={regionThumbnail} />
     </PageTemplate>
   );
 };
@@ -115,16 +115,16 @@ const Icons = styled.div`
   }
 `;
 
-// const RegionThumbnail = styled.img`
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   z-index: -1;
-//   opacity: 20%;
-//   object-fit: cover;
-// `;
+const RegionThumbnail = styled.img`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 20%;
+  object-fit: cover;
+`;
 
 const TravelWrapper = styled.div`
   margin: 100px 85px;

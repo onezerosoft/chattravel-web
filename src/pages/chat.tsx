@@ -17,6 +17,7 @@ import { DURATIONS } from "../constants";
 import { AxiosResponse } from "axios";
 import LoadingDots from "../components/common/LoadingDots";
 import LoadingChet from "../components/chat/LoadingChet";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Chat = () => {
   const chatListRef = useRef<HTMLUListElement>(null);
@@ -27,7 +28,7 @@ const Chat = () => {
   const reset = useChatStore((state) => state.reset);
 
   const [userMessages, setUserMessages] = useState<Message[]>([]);
-  const [chetMessages, setChetAnswerMessage] = useState<Message[]>([]);
+  const [chetMessages, setChetMessages] = useState<Message[]>([]);
 
   const { data: totalMessages, status: totalMessagesStatus } =
     useGetTotalMessages();
@@ -40,7 +41,7 @@ const Chat = () => {
       ...prev,
       {
         messageId: 0,
-        type: "U_TEXT",
+        messageType: "U_TEXT",
         content: {
           message: userMessage,
           courses: [],
@@ -59,7 +60,7 @@ const Chat = () => {
     });
 
     if (res.status) {
-      setChetAnswerMessage((prev) => [...prev, ...res.data.result.messages]);
+      setChetMessages((prev) => [...prev, ...res.data.result.messages]);
       localStorage.setItem(
         "lastMessageId",
         res.data.result.messages.at(-1)!.messageId.toString()
@@ -72,6 +73,8 @@ const Chat = () => {
     localStorage.removeItem("region");
     localStorage.removeItem("duration");
     localStorage.removeItem("districts");
+    setUserMessages([]);
+    setChetMessages([]);
   };
 
   const scrollDown = () => {
@@ -119,7 +122,7 @@ const Chat = () => {
             groupKey={"course"}
             who="chet"
             texts={[
-              `너만을 위한 ${DURATIONS[duration - 1]} 여행코스를 생성 중이야!\n잠시만 기다려줘~ (약 10초 소요)`,
+              `너만을 위한 ${DURATIONS[duration - 1]} 여행코스를 생성 중이야!\n잠시만 기다려줘~ (약 1분 소요)`,
             ]}
           />
         )}

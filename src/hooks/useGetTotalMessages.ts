@@ -5,10 +5,9 @@ import { TotalMessagesResponse } from "../types/domain";
 
 const useGetTotalMessages = () => {
   const chatId = useChatStore((state) => state.id);
-  const messageTimeStamp = useChatStore((state) => state.messageTimeStamp);
 
   const { data, status } = useQuery({
-    queryKey: ["totalMessages", chatId, messageTimeStamp],
+    queryKey: ["totalMessages", chatId],
     enabled: chatId !== 0,
     refetchOnWindowFocus: false,
     staleTime: Infinity,

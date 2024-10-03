@@ -49,20 +49,22 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
   useEffect(() => {
     if (courseIndex < courses.length) {
       const fullText = courses[courseIndex].places
-        .map(
-          (place) =>
-            `<h4> ${PLACETYPE_IMOGI_MAP[place.type]} ${place.placeName} <span>${place.type}<span> 추천 점수: ${place.ratings.split(".")[0]}점 ❤️</span></span> </h4> 
+        .map((place) =>
+          place.placeName != ""
+            ? `<h4> ${PLACETYPE_IMOGI_MAP[place.placeType]} ${place.placeName} <span>${place.placeType}<span> ${place.ratings && place.ratings != "" ? `추천 점수: ${place.ratings.split(".")[0]}점 ❤️` : ""}</span></span> </h4> 
             <p>${place.comment}</p> `
+            : ""
         )
         .join("");
 
       if (localStorage.getItem("lastMessageId") !== messageId.toString()) {
         const fullTexts = courses.map((course) =>
           course.places
-            .map(
-              (place) =>
-                `<h4> ${PLACETYPE_IMOGI_MAP[place.type]} ${place.placeName} <span>${place.type}</span> ${place.ratings}%</h4> 
+            .map((place) =>
+              place.placeName != ""
+                ? `<h4> ${PLACETYPE_IMOGI_MAP[place.placeType]} ${place.placeName} <span>${place.placeType}<span> ${place.ratings && place.ratings != "" ? `추천 점수: ${place.ratings.split(".")[0]}점 ❤️` : ""}</span></span> </h4> 
             <p>${place.comment}</p> `
+                : ""
             )
             .join("")
         );

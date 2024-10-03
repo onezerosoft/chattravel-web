@@ -21,7 +21,7 @@ const TravelCourse = ({ courses }: TravelCourse) => {
   if (!isSuccess) return <></>;
 
   const renderPlace = (place: Place, index: number) => {
-    switch (place.type) {
+    switch (place.placeType) {
       case "숙소":
         return (
           <Accomodation
