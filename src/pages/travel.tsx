@@ -36,37 +36,36 @@ const Travel = () => {
       </PageTemplate>
     );
 
-  // FIXME: 관광공사api 운영 승인 되면 제거
-  // if (!trackingCourses || !regionThumbnail)
-  //   return (
-  //     <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
-  //       <TravelWrapper>
-  //         <TravelTitle>
-  //           <h2>{travelCourse.travelTitle}</h2>
-  //           <Icons>
-  //             <ShareIconSVG width={24} onClick={handleCopy} />
-  //           </Icons>
-  //         </TravelTitle>
-  //         <TravelCourse courses={travelCourse.courses} />
-  //       </TravelWrapper>
-  //     </PageTemplate>
-  //   );
+  if (!trackingCourses || !regionThumbnail)
+    return (
+      <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
+        <TravelWrapper>
+          <TravelTitle>
+            <h2>{travelCourse.travelTitle}</h2>
+            <Icons>
+              <ShareIconSVG width={24} onClick={handleCopy} />
+            </Icons>
+          </TravelTitle>
+          <TravelCourse courses={travelCourse.courses} />
+        </TravelWrapper>
+      </PageTemplate>
+    );
 
-  // if (!isSuccess || !trackingCourses || !trackingCourses.length)
-  //   return (
-  //     <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
-  //       <TravelWrapper>
-  //         <TravelTitle>
-  //           <h2>{travelCourse.travelTitle}</h2>
-  //           <Icons>
-  //             <ShareIconSVG width={24} onClick={handleCopy} />
-  //           </Icons>
-  //         </TravelTitle>
-  //         <TravelCourse courses={travelCourse.courses} />
-  //       </TravelWrapper>
-  //       <RegionThumbnail src={regionThumbnail} />
-  //     </PageTemplate>
-  //   );
+  if (!isSuccess || !trackingCourses || !trackingCourses.length)
+    return (
+      <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
+        <TravelWrapper>
+          <TravelTitle>
+            <h2>{travelCourse.travelTitle}</h2>
+            <Icons>
+              <ShareIconSVG width={24} onClick={handleCopy} />
+            </Icons>
+          </TravelTitle>
+          <TravelCourse courses={travelCourse.courses} />
+        </TravelWrapper>
+        <RegionThumbnail src={regionThumbnail} />
+      </PageTemplate>
+    );
 
   return (
     <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">

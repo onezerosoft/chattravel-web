@@ -17,7 +17,6 @@ import { DURATIONS } from "../constants";
 import { AxiosResponse } from "axios";
 import LoadingDots from "../components/common/LoadingDots";
 import LoadingChet from "../components/chat/LoadingChet";
-import { useQueryClient } from "@tanstack/react-query";
 
 const Chat = () => {
   const chatListRef = useRef<HTMLUListElement>(null);
