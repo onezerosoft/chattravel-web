@@ -69,9 +69,6 @@ const Chat = () => {
 
   const resetCourse = () => {
     reset();
-    localStorage.removeItem("region");
-    localStorage.removeItem("duration");
-    localStorage.removeItem("districts");
     setUserMessages([]);
     setChetMessages([]);
   };

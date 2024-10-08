@@ -3,9 +3,11 @@ import Logo from "./Logo";
 import Button from "./Button";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import { useChatStore } from "../../stores";
 
 const Header = () => {
   const location = useLocation();
+  const reset = useChatStore((state) => state.reset);
 
   return (
     <Wrapper>
@@ -15,7 +17,7 @@ const Header = () => {
       <NavigationsContainer>
         {/* <Link to={"/style"}>Login</Link> */}
         {location.pathname != "/chat" && (
-          <Button design="primary">
+          <Button design="primary" onClick={reset}>
             <Link to={"/chat"}>채팅 시작하기</Link>
           </Button>
         )}
