@@ -4,7 +4,7 @@
 </div>
 
 - [Here](https://freckle-pipe-840.notion.site/119b43be904c80af843cf1fccc01761b) is the Service Introduction.
-- [Here](www.chattravel.pro) is the Service Link.
+- [Here](https://www.chattravel.pro) is the Service Link.
 
 ---
 
