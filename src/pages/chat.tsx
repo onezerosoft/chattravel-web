@@ -69,9 +69,6 @@ const Chat = () => {
 
   const resetCourse = () => {
     reset();
-    localStorage.removeItem("region");
-    localStorage.removeItem("duration");
-    localStorage.removeItem("districts");
     setUserMessages([]);
     setChetMessages([]);
   };
@@ -156,7 +153,7 @@ const ChatList = styled.ul`
   margin-right: auto;
 
   width: 50vw;
-  height: 75vh;
+  height: 80vh;
   overflow: scroll;
   display: flex;
   flex-direction: column;

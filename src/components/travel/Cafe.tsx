@@ -11,12 +11,16 @@ const Cafe = ({ cafe, cafeUrls, placeNumber }: CafeProps) => {
   return (
     <a href={cafeUrls.doc_url} target="_blank">
       <Wrapper>
-        <PlaceComment>{cafe.comment}</PlaceComment>
+        <PlaceComment>
+          {cafe.placeName == ""
+            ? "인근의 카페 정보를 찾지 못했어요. 🥲"
+            : cafe.comment}
+        </PlaceComment>
         <PlaceName>카페 ☕️</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
         <img src={cafeUrls.thumbnail_url} />
         <PlaceInfo>
-          <h5>{cafe.placeName}</h5>
+          <h5>{cafe.placeName == "" ? "근처 카페" : cafe.placeName}</h5>
           <p>
             {cafe.address
               ? cafe.address.split(" ").slice(0, 2).join(" ")
@@ -122,6 +126,9 @@ const PlaceInfo = styled.p`
     font-size: 14px;
     margin: 0;
     margin-bottom: 5px;
+    white-space: nowrap; /* 한 줄로 유지 */
+    overflow: hidden; /* 넘치는 부분 숨기기 */
+    text-overflow: ellipsis;
   }
 
   & > p {

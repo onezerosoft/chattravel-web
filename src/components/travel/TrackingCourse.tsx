@@ -30,29 +30,50 @@ const getEmojiFromCourseName = (courseName: string) => {
 };
 
 const TrackingCourse = ({ courses }: TrackingCourseProps) => {
+  if (courses.length == 0) return <></>;
+
   return (
-    <Wrapper>
-      {courses.map((course) => (
-        <CourseContainer>
-          <CourseTitle>
-            <h3>
-              {course.crsKorNm} {getEmojiFromCourseName(course.crsKorNm)}
-            </h3>
-            <span>난이도 {LEVEL_MAP[Number(course.crsLevel)]}</span>
-          </CourseTitle>
-          <CourseContents>
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-              {course.crsSummary}
-            </ReactMarkdown>
-            <p>{course.sigun}</p>
-          </CourseContents>
-        </CourseContainer>
-      ))}
-    </Wrapper>
+    <>
+      <TravelTitle>
+        <h2>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🚵🏻‍♀️ 트래킹을 선호하는 당신을 위해
+          준비했어요
+        </h2>
+      </TravelTitle>
+      <Wrapper>
+        {courses.map((course) => (
+          <CourseContainer>
+            <CourseTitle>
+              <h3>
+                {course.crsKorNm.split(" ").splice(0, 3).join(" ")}{" "}
+                {getEmojiFromCourseName(course.crsKorNm)}
+              </h3>
+              <span>난이도 {LEVEL_MAP[Number(course.crsLevel)]}</span>
+            </CourseTitle>
+            <CourseContents>
+              <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                {course.crsSummary}
+              </ReactMarkdown>
+              <p>{course.sigun}</p>
+            </CourseContents>
+          </CourseContainer>
+        ))}
+      </Wrapper>
+    </>
   );
 };
 
 export default TrackingCourse;
+
+const TravelTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & > h2 {
+    font-size: 28px;
+  }
+`;
 
 const CourseTitle = styled.div`
   display: flex;

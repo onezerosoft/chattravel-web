@@ -1,11 +1,9 @@
 import { delay, http, HttpResponse } from "msw";
 import { BASE_URL } from "../apis/api";
-import { mockTotalMessage, mockTotalMessage2, mockTravelCourse } from "./data";
+import { mockTotalMessage, mockTravelCourse } from "./data";
 
 export const handlers = [
   http.get(`${BASE_URL}/chat/:chatId`, async () => {
-    if (localStorage.getItem("timestamp"))
-      return HttpResponse.json(mockTotalMessage2);
     return HttpResponse.json(mockTotalMessage);
   }),
 

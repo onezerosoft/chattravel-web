@@ -1,11 +1,16 @@
 import styled from "styled-components";
-import type { Course, Place } from "../../types/domain";
+import type { Course, Place, Document } from "../../types/domain";
 import useGetPlaceThumbnails from "../../hooks/useGetPlaceThumbnails";
 import TravelPlace from "./TravelPlace";
 import Accomodation from "./Accomodation";
 import React from "react";
 import Restaurant from "./Restaurant";
 import Cafe from "./Cafe";
+import {
+  CafeDefaultThumbnail,
+  ExpensiveJPG,
+  RestaurantDefaultThumbnail,
+} from "../../assets";
 
 interface TravelCourse {
   courses: Course[];
@@ -16,33 +21,59 @@ const TravelCourse = ({ courses }: TravelCourse) => {
     .map((course) => course.places)
     .flat()
     .map((place) => place.placeName);
-  const { placeThumbnails, isSuccess } = useGetPlaceThumbnails(places);
+  const { placeThumbnails } = useGetPlaceThumbnails(places);
 
-  if (!isSuccess) return <></>;
+  const getUrls = (place: Place): Document => {
+    if (place.placeName in placeThumbnails)
+      return placeThumbnails[place.placeName];
 
-  const renderPlace = (place: Place, index: number) => {
+    if (place.placeType == "숙소")
+      return {
+        thumbnail_url: ExpensiveJPG,
+        doc_url: "",
+        image_url: "",
+      };
+
+    if (place.placeType == "식당")
+      return {
+        thumbnail_url: RestaurantDefaultThumbnail,
+        doc_url: "",
+        image_url: "",
+      };
+
+    return {
+      thumbnail_url: CafeDefaultThumbnail,
+      doc_url: "",
+      image_url: "",
+    };
+  };
+
+  const renderPlace = (place: Place, index: number, day: number) => {
     switch (place.placeType) {
       case "숙소":
         return (
           <Accomodation
+            key={place.placeId}
             accomodation={place}
-            urls={placeThumbnails[place.placeName]}
-            check={index === 0 ? "Check-in" : "Check-out"}
+            urls={getUrls(place)}
+            check={day === 1 ? "Check-in" : "Check-out"}
           />
         );
       case "식당":
         return (
           <Restaurant
+            key={place.placeId}
             restaurant={place}
-            restaurantUrls={placeThumbnails[place.placeName]}
+            restaurantUrls={getUrls(place)}
             placeNumber={index}
           />
         );
       case "카페":
         return (
           <Cafe
+            key={place.placeId}
             cafe={place}
-            cafeUrls={placeThumbnails[place.placeName]}
+            cafeUrls={getUrls(place)}
             placeNumber={index}
           />
         );
@@ -50,8 +81,9 @@ const TravelCourse = ({ courses }: TravelCourse) => {
       default:
         return (
           <TravelPlace
+            key={place.placeId}
             place={place}
-            urls={placeThumbnails[place.placeName]}
+            urls={getUrls(place)}
             placeNumber={index}
           />
         );
@@ -64,7 +96,7 @@ const TravelCourse = ({ courses }: TravelCourse) => {
       <PlacesContainer>
         {course.places.map((place, index) => (
           <React.Fragment key={index}>
-            {renderPlace(place, index + 1)}
+            {renderPlace(place, index + 1, course.day)}
           </React.Fragment>
         ))}
       </PlacesContainer>

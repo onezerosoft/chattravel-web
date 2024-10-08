@@ -18,3 +18,5 @@ export { default as HateTrackingJPG } from "./hate_tracking.jpg";
 
 export { default as ChatPageWebp } from "./chat_page.webp";
 export { default as TravelPageWebp } from "./travel_page.webp";
+export { default as RestaurantDefaultThumbnail } from "./restaurant_default_thumbnail.webp";
+export { default as CafeDefaultThumbnail } from "./cafe_default_thumbnail.webp";

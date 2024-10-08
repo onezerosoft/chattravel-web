@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import useGetGalleryItems from "../hooks/useGetGalleryItems";
 import { ChatPageWebp, TravelPageWebp } from "../assets";
+import { useChatStore } from "../stores";
 
 const sliderSettings = {
   infinite: true,
@@ -18,6 +19,7 @@ const sliderSettings = {
 
 const Home = () => {
   const { data: galleryItems, status } = useGetGalleryItems();
+  const reset = useChatStore((state) => state.reset);
 
   if (status == "pending" || !galleryItems)
     return (
@@ -32,7 +34,7 @@ const Home = () => {
           간편하게 여행코스를 완성시키세요.
         </p>
         <ButtonsContainer>
-          <Button>
+          <Button onClick={reset}>
             <Link to={"/chat"}>채팅 시작하기</Link>
           </Button>
           <Button design="secondary">
@@ -60,7 +62,7 @@ const Home = () => {
         여행코스를 완성시키세요.
       </p>
       <ButtonsContainer>
-        <Button>
+        <Button onClick={reset}>
           <Link to={"/chat"}>채팅 시작하기</Link>
         </Button>
         <Button design="secondary">
