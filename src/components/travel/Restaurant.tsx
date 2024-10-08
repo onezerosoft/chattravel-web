@@ -15,12 +15,18 @@ const Restaurant = ({
   return (
     <a href={restaurantUrls.doc_url} target="_blank">
       <Wrapper>
-        <PlaceComment>{restaurant.comment}</PlaceComment>
+        <PlaceComment>
+          {restaurant.placeName == ""
+            ? "인근의 식당 정보를 찾지 못했어요. 🥲"
+            : restaurant.comment}
+        </PlaceComment>
         <PlaceName>식당 🍱</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
         <img src={restaurantUrls.thumbnail_url} />
         <PlaceInfo>
-          <h5>{restaurant.placeName}</h5>
+          <h5>
+            {restaurant.placeName == "" ? "근처 식당" : restaurant.placeName}
+          </h5>
           <p>
             {restaurant.address
               ? restaurant.address.split(" ").slice(0, 2).join(" ")

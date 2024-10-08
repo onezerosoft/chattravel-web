@@ -18,12 +18,12 @@ const Travel = () => {
   );
 
   const { data: regionThumbnail } = useGetRegionThumbnail();
-  const { trackingCourses, isSuccess } = useGetTrackingCourses();
+  const { trackingCourses } = useGetTrackingCourses();
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
-      alert("URL이 복사되었습니다!");
+      alert("여행 페이지 링크가 복사되었어요!");
     } catch (err) {
       console.error("복사 실패:", err);
     }
@@ -51,22 +51,6 @@ const Travel = () => {
       </PageTemplate>
     );
 
-  if (!isSuccess || !trackingCourses || !trackingCourses.length)
-    return (
-      <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
-        <TravelWrapper>
-          <TravelTitle>
-            <h2>{travelCourse.travelTitle}</h2>
-            <Icons>
-              <ShareIconSVG width={24} onClick={handleCopy} />
-            </Icons>
-          </TravelTitle>
-          <TravelCourse courses={travelCourse.courses} />
-        </TravelWrapper>
-        <RegionThumbnail src={regionThumbnail} />
-      </PageTemplate>
-    );
-
   return (
     <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
       <TravelWrapper>
@@ -77,12 +61,6 @@ const Travel = () => {
           </Icons>
         </TravelTitle>
         <TravelCourse courses={travelCourse.courses} />
-        <TravelTitle>
-          <h2>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🚵🏻‍♀️ 트래킹을 선호하는 당신을 위해
-            준비했어요
-          </h2>
-        </TravelTitle>
         <TrackingCourse courses={trackingCourses} />
       </TravelWrapper>
       <RegionThumbnail src={regionThumbnail} />

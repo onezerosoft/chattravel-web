@@ -112,14 +112,14 @@ export const mockTotalMessage = {
                 },
                 {
                   placeId: 6,
-                  placeplaceType: "카페",
+                  placeType: "카페",
                   placeName: "더빙수",
                   comment: "녹차빙수가 맛있습니다.",
                   ratings: "98.23",
                 },
                 {
                   placeId: 7,
-                  placeplaceType: "여행지",
+                  placeType: "여행지",
                   placeName: "서귀포불꽃축제",
                   comment: "야간에 들리기 좋은 곳입니다.",
                   ratings: "98.23",

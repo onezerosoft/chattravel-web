@@ -11,12 +11,16 @@ const Cafe = ({ cafe, cafeUrls, placeNumber }: CafeProps) => {
   return (
     <a href={cafeUrls.doc_url} target="_blank">
       <Wrapper>
-        <PlaceComment>{cafe.comment}</PlaceComment>
+        <PlaceComment>
+          {cafe.placeName == ""
+            ? "인근의 카페 정보를 찾지 못했어요. 🥲"
+            : cafe.comment}
+        </PlaceComment>
         <PlaceName>카페 ☕️</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
         <img src={cafeUrls.thumbnail_url} />
         <PlaceInfo>
-          <h5>{cafe.placeName}</h5>
+          <h5>{cafe.placeName == "" ? "근처 카페" : cafe.placeName}</h5>
           <p>
             {cafe.address
               ? cafe.address.split(" ").slice(0, 2).join(" ")

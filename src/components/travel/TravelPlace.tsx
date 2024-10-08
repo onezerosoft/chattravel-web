@@ -9,19 +9,6 @@ interface PlaceProps {
 }
 
 const TravelPlace = ({ place, urls, placeNumber }: PlaceProps) => {
-  // const getDayPart = () => {
-  //   switch (placeNumber) {
-  //     case 1:
-  //       return "오전";
-  //     case 3:
-  //       return "오후";
-  //     case 5:
-  //       return "저녁";
-  //     default:
-  //       return "";
-  //   }
-  // };
-
   return (
     <a href={urls.doc_url} target="_blank">
       <Wrapper>

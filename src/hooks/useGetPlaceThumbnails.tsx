@@ -17,6 +17,7 @@ const useGetPlaceThumbnails = (placeNames: string[]) => {
               query: placeName,
             },
           }),
+        enabled: placeName != "",
         select: (data: PlaceThumbnailResponse) => {
           return data.documents[0];
         },
@@ -33,9 +34,7 @@ const useGetPlaceThumbnails = (placeNames: string[]) => {
     {}
   );
 
-  const isSuccess = allQueries.every((query) => query.isSuccess);
-
-  return { placeThumbnails, isSuccess };
+  return { placeThumbnails };
 };
 
 export default useGetPlaceThumbnails;

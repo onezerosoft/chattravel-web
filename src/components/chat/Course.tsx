@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import type { Course } from "../../types/domain";
+import type { Course, Place } from "../../types/domain";
 import { useEffect, useState } from "react";
 import Button from "../common/Button";
 import usePostSaveTravel from "../../hooks/usePostSaveTravel";
@@ -46,39 +46,43 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
     navigate(`/travel/travelId=${res.data.result.travelId}`);
   };
 
+  const getCheckInfo = (place: Place, day: number) => {
+    if (place.placeType != "숙소") return "";
+    if (day == 1) return "체크인";
+    return "체크아웃";
+  };
+
+  const makePlacesToHTML = (places: Place[], day: number) =>
+    places
+      .map((place) => {
+        if (place.placeName == "") return "";
+        return `<h4> ${PLACETYPE_IMOGI_MAP[place.placeType]} ${place.placeName} ${getCheckInfo(place, day)} <span>${place.placeType}<span> ${place.ratings && place.ratings != "" ? `추천 점수: ${place.ratings.split(".")[0]}점 ❤️` : ""}</span></span> </h4> 
+    <p>${place.comment}</p> `;
+      })
+      .join("");
+
   useEffect(() => {
     if (courseIndex < courses.length) {
-      const fullText = courses[courseIndex].places
-        .map((place) =>
-          place.placeName != ""
-            ? `<h4> ${PLACETYPE_IMOGI_MAP[place.placeType]} ${place.placeName} <span>${place.placeType}<span> ${place.ratings && place.ratings != "" ? `추천 점수: ${place.ratings.split(".")[0]}점 ❤️` : ""}</span></span> </h4> 
-            <p>${place.comment}</p> `
-            : ""
-        )
-        .join("");
+      const placesHTML = makePlacesToHTML(
+        courses[courseIndex].places,
+        courses[courseIndex].day
+      );
 
       if (localStorage.getItem("lastMessageId") !== messageId.toString()) {
-        const fullTexts = courses.map((course) =>
-          course.places
-            .map((place) =>
-              place.placeName != ""
-                ? `<h4> ${PLACETYPE_IMOGI_MAP[place.placeType]} ${place.placeName} <span>${place.placeType}<span> ${place.ratings && place.ratings != "" ? `추천 점수: ${place.ratings.split(".")[0]}점 ❤️` : ""}</span></span> </h4> 
-            <p>${place.comment}</p> `
-                : ""
-            )
-            .join("")
+        const totalPlacesHTML = courses.map((course) =>
+          makePlacesToHTML(course.places, course.day)
         );
-        setDisplayedTexts(fullTexts);
+        setDisplayedTexts(totalPlacesHTML);
         setCourseIndex(courses.length);
         return;
       }
 
       const interval = setInterval(() => {
-        if (charIndex < fullText.length) {
+        if (charIndex < placesHTML.length) {
           setDisplayedTexts((prev) => {
             const newTexts = [...prev];
             newTexts[courseIndex] =
-              (newTexts[courseIndex] || "") + fullText[charIndex];
+              (newTexts[courseIndex] || "") + placesHTML[charIndex];
             return newTexts;
           });
           setCharIndex((prev) => prev + 1);
