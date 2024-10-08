@@ -8,7 +8,7 @@
 
 ---
 
-<h3> Service Sequence</h3>
+<h3> Sequence</h3>
 <img src="./src/assets/service_flow.png">
 <h3> Architecture </h3>
 <img src="./src/assets/service_architecture.png">
