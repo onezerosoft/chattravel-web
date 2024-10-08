@@ -7,6 +7,7 @@ const LoadingChet = () => {
     <Wrapper>
       <ChetSVG height={100} />
       <ChatBox>
+        {" "}
         <LoadingDots />
       </ChatBox>
     </Wrapper>
@@ -20,13 +21,6 @@ const Wrapper = styled.li`
 `;
 
 const ChatBox = styled.div`
-  background-color: #f5f5f5;
-  border-radius: 20px;
-  padding: 10px 15px;
-  font-weight: 500;
-  text-align: start;
-  width: fit-content;
-  height: fit-content;
   gap: 10px;
   margin-top: 25px;
 `;

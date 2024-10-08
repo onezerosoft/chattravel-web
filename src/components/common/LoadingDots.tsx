@@ -25,7 +25,6 @@ const Loader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: #f5f5f5;
   border-radius: 20px;
   padding: 10px 15px;
@@ -33,8 +32,6 @@ const Loader = styled.div`
   text-align: start;
   width: fit-content;
   height: fit-content;
-  margin-left: 120px;
-  margin-top: -15px;
 `;
 
 const Dot = styled.div`

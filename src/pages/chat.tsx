@@ -122,7 +122,11 @@ const Chat = () => {
             ]}
           />
         )}
-        {step >= 5 && totalMessagesStatus == "pending" && <LoadingDots />}
+        {step >= 5 && totalMessagesStatus == "pending" && (
+          <LoadingDotsWrapper>
+            <LoadingDots />
+          </LoadingDotsWrapper>
+        )}
         {step >= 5 && totalMessages && (
           <Messages messages={totalMessages} scrollDown={scrollDown} />
         )}
@@ -147,6 +151,11 @@ const Chat = () => {
     </PageTemplate>
   );
 };
+
+const LoadingDotsWrapper = styled.div`
+  margin-left: 120px;
+  margin-top: -15px;
+`;
 
 const ChatList = styled.ul`
   margin-left: auto;
