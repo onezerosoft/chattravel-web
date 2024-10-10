@@ -99,6 +99,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
       };
     } else {
       localStorage.setItem("lastMessageId", "course_done");
+      scrollDown();
     }
   }, [courseIndex, charIndex, courses, scrollDown]);
 

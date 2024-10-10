@@ -14,10 +14,12 @@ const useGetTotalMessages = () => {
     gcTime: 1000 * 60 * 60 * 24,
     queryFn: async (): Promise<TotalMessagesResponse> => {
       const res = await getTotalMessages({ params: { chatId } });
-      localStorage.setItem(
-        "lastMessageId",
-        res.result.messages.at(-1)!.messageId.toString()
-      );
+
+      if (localStorage.getItem("lastMessageId") !== "course_done")
+        localStorage.setItem(
+          "lastMessageId",
+          res.result.messages.at(-1)!.messageId.toString()
+        );
       return res;
     },
     select: (data) => data.result.messages,
