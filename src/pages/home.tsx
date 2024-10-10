@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import useGetGalleryItems from "../hooks/useGetGalleryItems";
 import { ChatPageWebp, TravelPageWebp } from "../assets";
-import { useChatStore } from "../stores";
+import { useChatStore } from "../stores/useChatStore";
 
 const sliderSettings = {
   infinite: true,
@@ -19,6 +19,7 @@ const sliderSettings = {
 
 const Home = () => {
   const { data: galleryItems, status } = useGetGalleryItems();
+
   const reset = useChatStore((state) => state.reset);
 
   if (status == "pending" || !galleryItems)

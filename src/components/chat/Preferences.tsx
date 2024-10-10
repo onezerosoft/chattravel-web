@@ -1,6 +1,7 @@
 import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
-import { useChatStore, useTravelStore } from "../../stores";
+import { useTravelStore } from "../../stores/useTravelStore";
+import { useChatStore } from "../../stores/useChatStore";
 import { memo } from "react";
 import { useNavigate } from "react-router";
 import { PREFERENCE_DESCRIPTIONS_MAP, STYLE_CATEGORIES } from "../../constants";

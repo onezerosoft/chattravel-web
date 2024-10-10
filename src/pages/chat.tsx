@@ -3,7 +3,7 @@ import type { Chat, Message, TotalMessagesResponse } from "../types/domain";
 import { useEffect, useRef, useState } from "react";
 import PageTemplate from "../components/common/PageTemplate";
 import Button from "../components/common/Button";
-import { useChatStore, useTravelStore } from "../stores";
+import { useTravelStore } from "../stores/useTravelStore";
 import Region from "../components/chat/Region";
 import Districts from "../components/chat/Districts";
 import Duration from "../components/chat/Duration";
@@ -17,14 +17,16 @@ import { DURATIONS } from "../constants";
 import { AxiosResponse } from "axios";
 import LoadingDots from "../components/common/LoadingDots";
 import LoadingChet from "../components/chat/LoadingChet";
+import { useChatStore } from "../stores/useChatStore";
 
 const Chat = () => {
   const chatListRef = useRef<HTMLUListElement>(null);
 
   const step = useChatStore((state) => state.step);
   const chatId = useChatStore((state) => state.id);
-  const duration = useTravelStore((state) => state.duration);
   const reset = useChatStore((state) => state.reset);
+
+  const duration = useTravelStore((state) => state.duration);
 
   const [userMessages, setUserMessages] = useState<Message[]>([]);
   const [chetMessages, setChetMessages] = useState<Message[]>([]);

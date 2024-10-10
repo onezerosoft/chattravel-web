@@ -3,7 +3,7 @@ import StyleSlide from "./StyleSlide";
 import { CityWEBP, NatureWEBP } from "../../assets";
 import { FunnelProps } from "../common/Funnel";
 import Button from "../common/Button";
-import { useTravelStore, TravelStore } from "../../stores";
+import { useTravelStore, TravelStore } from "../../stores/useTravelStore";
 import styled from "styled-components";
 
 const 자연도시 = ({ onNext }: FunnelProps) => {

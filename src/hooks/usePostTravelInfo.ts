@@ -1,7 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { postTravelInfo } from "../apis/post";
-import { useChatStore, useTravelStore } from "../stores";
+import { useTravelStore } from "../stores/useTravelStore";
 import { REGION_MAP } from "../constants";
+import { useChatStore } from "../stores/useChatStore";
 
 const usePostTravelInfo = () => {
   const createChat = useChatStore((state) => state.createChat);

@@ -4,12 +4,12 @@ import Button from "../common/Button";
 import { FunnelProps } from "../common/Funnel";
 import StyleSlide from "./StyleSlide";
 import styled from "styled-components";
-import { useTravelStore, TravelStore } from "../../stores";
+import { useTravelStore } from "../../stores/useTravelStore";
 
 const 트래킹 = ({ onNext, onPrev }: FunnelProps) => {
   const [preference, setPreference] = useState(0);
 
-  const preferences = useTravelStore((state: TravelStore) => state.preferences);
+  const preferences = useTravelStore((state) => state.preferences);
   const setLikeTracking = useTravelStore((state) => state.setLikeTracking);
 
   const changePreference = (newPreference: number) => () => {

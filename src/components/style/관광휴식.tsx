@@ -4,7 +4,7 @@ import { ResortWEBP, TourWEBP } from "../../assets";
 import { FunnelProps } from "../common/Funnel";
 import Button from "../common/Button";
 import styled from "styled-components";
-import { useTravelStore, TravelStore } from "../../stores";
+import { useTravelStore, TravelStore } from "../../stores/useTravelStore";
 
 const 관광휴식 = ({ onNext, onPrev }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);

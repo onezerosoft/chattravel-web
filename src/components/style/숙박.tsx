@@ -4,7 +4,7 @@ import Button from "../common/Button";
 import { FunnelProps } from "../common/Funnel";
 import StyleSlide from "./StyleSlide";
 import styled from "styled-components";
-import { useTravelStore, TravelStore } from "../../stores";
+import { useTravelStore, TravelStore } from "../../stores/useTravelStore";
 
 const 숙박 = ({ onNext, onPrev }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);

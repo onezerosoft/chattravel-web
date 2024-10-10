@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTotalMessages } from "../apis/get";
-import { useChatStore } from "../stores";
 import { TotalMessagesResponse } from "../types/domain";
+import { useChatStore } from "../stores/useChatStore";
 
 const useGetTotalMessages = () => {
   const chatId = useChatStore((state) => state.id);

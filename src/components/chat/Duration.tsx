@@ -1,6 +1,7 @@
 import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
-import { useChatStore, useTravelStore } from "../../stores";
+import { useTravelStore } from "../../stores/useTravelStore";
+import { useChatStore } from "../../stores/useChatStore";
 import { DURATIONS } from "../../constants";
 
 const Duration = () => {

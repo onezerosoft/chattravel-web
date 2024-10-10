@@ -2,7 +2,7 @@ import { useQueries } from "@tanstack/react-query";
 import { getTrackingCourses } from "../apis/get";
 import { TourApiResponse } from "../types/api";
 import { TrackingCourses } from "../types/domain";
-import { useTravelStore } from "../stores";
+import { useTravelStore } from "../stores/useTravelStore";
 import { DISTRICT_COURSES_MAP } from "../constants";
 
 const useGetTrackingCourses = () => {

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { DISTRICT_MAP, REGION_MAP } from "../../constants";
-import { useChatStore, useTravelStore } from "../../stores";
-
+import { useTravelStore } from "../../stores/useTravelStore";
 import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
 import DistrictGrid from "./DistrictGrid";
 import styled from "styled-components";
+import { useChatStore } from "../../stores/useChatStore";
 
 const Districts = () => {
   const [districtBooleans, setDistrictBooleans] = useState(
@@ -26,9 +26,7 @@ const Districts = () => {
     const selectedDistricts = DISTRICT_MAP[region].filter(
       (_, index) => districtBooleans[index]
     );
-    const newDistricts = districtBooleans.every((x) => x == true)
-      ? ["전체"]
-      : selectedDistricts;
+    const newDistricts = selectedDistricts;
 
     setDistricts(newDistricts);
     next();
