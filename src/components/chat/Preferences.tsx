@@ -42,7 +42,7 @@ const Preferences = memo(() => {
 
   const getStyleDescriptions = () => {
     const tracking =
-      likeTracking == "Y" ? ", 트래킹 선호" : ", 트래킹 선호하지 않음";
+      likeTracking === "Y" ? ", 트래킹 선호" : ", 트래킹 선호하지 않음";
     return (
       preferences
         .map((preference, index) => {

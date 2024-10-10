@@ -22,7 +22,7 @@ export const useTravelStore = create<TravelStore>((set) => ({
   duration: JSON.parse(localStorage.getItem("duration") || "0"),
   districts: JSON.parse(localStorage.getItem("districts") || "[]"),
   likeTracking:
-    (localStorage.getItem("likeTraking") as LikeTrackingType) || "Y",
+    (localStorage.getItem("likeTracking") as LikeTrackingType) || "Y",
   setRegion: (region: Region) => {
     set({ region });
     localStorage.setItem("region", JSON.stringify(region));
