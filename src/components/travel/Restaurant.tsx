@@ -132,6 +132,9 @@ const PlaceInfo = styled.p`
     font-size: 14px;
     margin: 0;
     margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   & > p {
