@@ -98,7 +98,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         clearInterval(interval);
       };
     } else {
-      localStorage.setItem("lastMessageId", "course_done");
+      localStorage.setItem("lastMessageId", "done");
       scrollDown();
     }
   }, [courseIndex, charIndex, courses, scrollDown]);
