@@ -3,16 +3,14 @@ import StyleSlide from "./StyleSlide";
 import { CityWEBP, NatureWEBP } from "../../assets";
 import { FunnelProps } from "../common/Funnel";
 import Button from "../common/Button";
-import { useTravelStore, TravelStore } from "../../stores/useTravelStore";
+import { useTravelStore } from "../../stores/useTravelStore";
 import styled from "styled-components";
 
 const 자연도시 = ({ onNext }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);
   const [preference, setPreference] = useState(preferences[0]);
 
-  const updatePreferences = useTravelStore(
-    (state: TravelStore) => state.updatePreferences
-  );
+  const updatePreferences = useTravelStore((state) => state.updatePreferences);
 
   const changePreference = (newPreference: number) => () => {
     setPreference(newPreference);

@@ -4,15 +4,13 @@ import Button from "../common/Button";
 import { FunnelProps } from "../common/Funnel";
 import StyleSlide from "./StyleSlide";
 import styled from "styled-components";
-import { useTravelStore, TravelStore } from "../../stores/useTravelStore";
+import { useTravelStore } from "../../stores/useTravelStore";
 
 const 사진 = ({ onNext, onPrev }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);
   const [preference, setPreference] = useState(preferences[3]);
 
-  const updatePreferences = useTravelStore(
-    (state: TravelStore) => state.updatePreferences
-  );
+  const updatePreferences = useTravelStore((state) => state.updatePreferences);
 
   const changePreference = (newPreference: number) => () => {
     setPreference(newPreference);
