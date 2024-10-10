@@ -28,7 +28,7 @@ const 트래킹 = ({ onNext, onPrev }: FunnelProps) => {
     if (preference <= 3) setLikeTracking("Y");
     else setLikeTracking("N");
 
-    localStorage.setItem("lastMessageId", "course");
+    localStorage.setItem("activeMessageId", "course");
     onNext();
   };
 

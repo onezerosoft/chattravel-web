@@ -20,6 +20,7 @@ export const useChatStore = create<ChatStore>((set) => ({
   },
   reset: () => {
     set({ step: 1, id: 0 });
+
     localStorage.setItem("step", JSON.stringify(1));
     localStorage.setItem("chatId", JSON.stringify(0));
     localStorage.removeItem("region");
@@ -28,5 +29,7 @@ export const useChatStore = create<ChatStore>((set) => ({
   },
   createChat: (chatId: number) => {
     set({ id: chatId });
+
+    localStorage.setItem("chatId", JSON.stringify(chatId));
   },
 }));

@@ -37,7 +37,7 @@ const Chat = () => {
   const { mutateAsync, status: userMessageStatus } = usePostUserMessage();
 
   const sendUserMessage = async (userMessage: string) => {
-    localStorage.setItem("lastMessageId", "userMessage");
+    localStorage.setItem("activeMessageId", "userMessage");
     setUserMessages((prev) => [
       ...prev,
       {
@@ -63,7 +63,7 @@ const Chat = () => {
     if (res.status) {
       setChetMessages((prev) => [...prev, ...res.data.result.messages]);
       localStorage.setItem(
-        "lastMessageId",
+        "activeMessageId",
         res.data.result.messages.at(-1)!.messageId.toString()
       );
     }
@@ -95,7 +95,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (step == 1) {
-      localStorage.setItem("lastMessageId", "region");
+      localStorage.setItem("activeMessageId", "region");
       scrollUp();
       return;
     }

@@ -37,7 +37,7 @@ const ChatGroup = ({
     if (textIndex < texts.length) {
       const fullText = texts[textIndex];
 
-      if (localStorage.getItem("lastMessageId") != groupKey) {
+      if (localStorage.getItem("activeMessageId") != groupKey) {
         setDisplayedTexts([fullText]);
         return;
       }

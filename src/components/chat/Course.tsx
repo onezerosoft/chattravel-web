@@ -68,7 +68,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         courses[courseIndex].day
       );
 
-      if (localStorage.getItem("lastMessageId") !== messageId.toString()) {
+      if (localStorage.getItem("activeMessageId") !== messageId.toString()) {
         const totalPlacesHTML = courses.map((course) =>
           makePlacesToHTML(course.places, course.day)
         );
@@ -98,7 +98,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         clearInterval(interval);
       };
     } else {
-      localStorage.setItem("lastMessageId", "done");
+      localStorage.setItem("activeMessageId", "done");
       scrollDown();
     }
   }, [courseIndex, charIndex, courses, scrollDown]);

@@ -8,15 +8,18 @@ import styled from "styled-components";
 import { useChatStore } from "../../stores/useChatStore";
 
 const Districts = () => {
+  const region = useTravelStore((state) => state.region);
+  const districts = useTravelStore((state) => state.districts);
+  const setDistricts = useTravelStore((state) => state.setDistricts);
+
   const [districtBooleans, setDistrictBooleans] = useState(
-    Array(30).fill(false)
+    DISTRICT_MAP[region!].map((district) =>
+      districts.includes(district) ? true : false
+    )
   );
 
   const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
-
-  const region = useTravelStore((state) => state.region);
-  const setDistricts = useTravelStore((state) => state.setDistricts);
 
   const clickDone = () => {
     if (step !== 2) return;
@@ -30,7 +33,7 @@ const Districts = () => {
 
     setDistricts(newDistricts);
     next();
-    localStorage.setItem("lastMessageId", "duration1");
+    localStorage.setItem("activeMessageId", "duration1");
   };
 
   if (!region) return <></>;

@@ -17,7 +17,7 @@ const Region = () => {
 
     setRegion(event.currentTarget.id);
     next();
-    localStorage.setItem("lastMessageId", "districts2");
+    localStorage.setItem("activeMessageId", "districts2");
   };
 
   return (
