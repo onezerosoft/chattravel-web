@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTotalMessages } from "../apis/get";
-import { useChatStore } from "../stores";
 import { TotalMessagesResponse } from "../types/domain";
+import { useChatStore } from "../stores/useChatStore";
 
 const useGetTotalMessages = () => {
   const chatId = useChatStore((state) => state.id);
@@ -14,10 +14,12 @@ const useGetTotalMessages = () => {
     gcTime: 1000 * 60 * 60 * 24,
     queryFn: async (): Promise<TotalMessagesResponse> => {
       const res = await getTotalMessages({ params: { chatId } });
-      localStorage.setItem(
-        "lastMessageId",
-        res.result.messages.at(-1)!.messageId.toString()
-      );
+
+      if (localStorage.getItem("activeMessageId") !== "done")
+        localStorage.setItem(
+          "activeMessageId",
+          res.result.messages.at(-1)!.messageId.toString()
+        );
       return res;
     },
     select: (data) => data.result.messages,

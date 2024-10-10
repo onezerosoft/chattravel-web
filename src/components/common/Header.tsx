@@ -3,7 +3,7 @@ import Logo from "./Logo";
 import Button from "./Button";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { useChatStore } from "../../stores";
+import { useChatStore } from "../../stores/useChatStore";
 
 const Header = () => {
   const location = useLocation();

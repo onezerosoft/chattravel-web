@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { HateTrackingJPG, LikeTrackingJPG } from "../../assets";
+import { HateTrackingWEBP, LikeTrackingWEBP } from "../../assets";
 import Button from "../common/Button";
 import { FunnelProps } from "../common/Funnel";
 import StyleSlide from "./StyleSlide";
 import styled from "styled-components";
-import { useTravelStore, TravelStore } from "../../stores";
+import { useTravelStore } from "../../stores/useTravelStore";
 
 const 트래킹 = ({ onNext, onPrev }: FunnelProps) => {
   const [preference, setPreference] = useState(0);
 
-  const preferences = useTravelStore((state: TravelStore) => state.preferences);
+  const preferences = useTravelStore((state) => state.preferences);
   const setLikeTracking = useTravelStore((state) => state.setLikeTracking);
 
   const changePreference = (newPreference: number) => () => {
@@ -28,7 +28,7 @@ const 트래킹 = ({ onNext, onPrev }: FunnelProps) => {
     if (preference <= 3) setLikeTracking("Y");
     else setLikeTracking("N");
 
-    localStorage.setItem("lastMessageId", "course");
+    localStorage.setItem("activeMessageId", "course");
     onNext();
   };
 
@@ -37,7 +37,7 @@ const 트래킹 = ({ onNext, onPrev }: FunnelProps) => {
       <StyleSlide
         title="트래킹 선호 VS 선호하지 않음"
         preference={preference}
-        images={[LikeTrackingJPG, HateTrackingJPG]}
+        images={[LikeTrackingWEBP, HateTrackingWEBP]}
         descriptions={[
           "걷기나 자전거로 \n트래킹하는 코스도 원해요",
           "트래킹을 선호하지 않고 \n 차로만 이동해요",

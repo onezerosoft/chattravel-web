@@ -8,7 +8,7 @@ import Restaurant from "./Restaurant";
 import Cafe from "./Cafe";
 import {
   CafeDefaultThumbnail,
-  ExpensiveJPG,
+  ExpensiveWEBP,
   RestaurantDefaultThumbnail,
 } from "../../assets";
 
@@ -29,7 +29,7 @@ const TravelCourse = ({ courses }: TravelCourse) => {
 
     if (place.placeType == "숙소")
       return {
-        thumbnail_url: ExpensiveJPG,
+        thumbnail_url: ExpensiveWEBP,
         doc_url: "",
         image_url: "",
       };

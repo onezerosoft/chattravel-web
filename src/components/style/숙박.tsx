@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { ExpensiveJPG, CheapJPG } from "../../assets";
+import { ExpensiveWEBP, CheapWEBP } from "../../assets";
 import Button from "../common/Button";
 import { FunnelProps } from "../common/Funnel";
 import StyleSlide from "./StyleSlide";
 import styled from "styled-components";
-import { useTravelStore, TravelStore } from "../../stores";
+import { useTravelStore } from "../../stores/useTravelStore";
 
 const 숙박 = ({ onNext, onPrev }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);
-  const updatePreferences = useTravelStore(
-    (state: TravelStore) => state.updatePreferences
-  );
+  const updatePreferences = useTravelStore((state) => state.updatePreferences);
 
   const [preference, setPreference] = useState(preferences[2]);
 
@@ -29,7 +27,7 @@ const 숙박 = ({ onNext, onPrev }: FunnelProps) => {
       <StyleSlide
         title="럭셔리숙소 vs 가성비숙소"
         preference={preference}
-        images={[ExpensiveJPG, CheapJPG]}
+        images={[ExpensiveWEBP, CheapWEBP]}
         descriptions={["호캉스가 좋아요", "잠만 자도 괜찮아요"]}
         onChange={changePreference}
       />

@@ -5,20 +5,21 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import useGetGalleryItems from "../hooks/useGetGalleryItems";
 import { ChatPageWebp, TravelPageWebp } from "../assets";
-import { useChatStore } from "../stores";
+import { useChatStore } from "../stores/useChatStore";
 
 const sliderSettings = {
   infinite: true,
-  speed: 400,
+  speed: 1000,
   slidesToShow: 3,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 2200,
+  autoplaySpeed: 1000,
   cssEase: "linear",
 };
 
 const Home = () => {
   const { data: galleryItems, status } = useGetGalleryItems();
+
   const reset = useChatStore((state) => state.reset);
 
   if (status == "pending" || !galleryItems)

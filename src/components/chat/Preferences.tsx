@@ -1,6 +1,7 @@
 import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
-import { useChatStore, useTravelStore } from "../../stores";
+import { useTravelStore } from "../../stores/useTravelStore";
+import { useChatStore } from "../../stores/useChatStore";
 import { memo } from "react";
 import { useNavigate } from "react-router";
 import { PREFERENCE_DESCRIPTIONS_MAP, STYLE_CATEGORIES } from "../../constants";
@@ -41,7 +42,7 @@ const Preferences = memo(() => {
 
   const getStyleDescriptions = () => {
     const tracking =
-      likeTracking == "Y" ? ", 트래킹 선호" : ", 트래킹 선호하지 않음";
+      likeTracking === "Y" ? ", 트래킹 선호" : ", 트래킹 선호하지 않음";
     return (
       preferences
         .map((preference, index) => {

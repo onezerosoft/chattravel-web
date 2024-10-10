@@ -1,22 +1,25 @@
 import { useState } from "react";
 import { DISTRICT_MAP, REGION_MAP } from "../../constants";
-import { useChatStore, useTravelStore } from "../../stores";
-
+import { useTravelStore } from "../../stores/useTravelStore";
 import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
 import DistrictGrid from "./DistrictGrid";
 import styled from "styled-components";
+import { useChatStore } from "../../stores/useChatStore";
 
 const Districts = () => {
+  const region = useTravelStore((state) => state.region);
+  const districts = useTravelStore((state) => state.districts);
+  const setDistricts = useTravelStore((state) => state.setDistricts);
+
   const [districtBooleans, setDistrictBooleans] = useState(
-    Array(30).fill(false)
+    DISTRICT_MAP[region!].map((district) =>
+      districts.includes(district) ? true : false
+    )
   );
 
   const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
-
-  const region = useTravelStore((state) => state.region);
-  const setDistricts = useTravelStore((state) => state.setDistricts);
 
   const clickDone = () => {
     if (step !== 2) return;
@@ -26,13 +29,11 @@ const Districts = () => {
     const selectedDistricts = DISTRICT_MAP[region].filter(
       (_, index) => districtBooleans[index]
     );
-    const newDistricts = districtBooleans.every((x) => x == true)
-      ? ["전체"]
-      : selectedDistricts;
+    const newDistricts = selectedDistricts;
 
     setDistricts(newDistricts);
     next();
-    localStorage.setItem("lastMessageId", "duration1");
+    localStorage.setItem("activeMessageId", "duration1");
   };
 
   if (!region) return <></>;

@@ -1,16 +1,14 @@
 import { useState } from "react";
 import StyleSlide from "./StyleSlide";
-import { ResortJPG, TourJPG } from "../../assets";
+import { ResortWEBP, TourWEBP } from "../../assets";
 import { FunnelProps } from "../common/Funnel";
 import Button from "../common/Button";
 import styled from "styled-components";
-import { useTravelStore, TravelStore } from "../../stores";
+import { useTravelStore } from "../../stores/useTravelStore";
 
 const 관광휴식 = ({ onNext, onPrev }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);
-  const updatePreferences = useTravelStore(
-    (state: TravelStore) => state.updatePreferences
-  );
+  const updatePreferences = useTravelStore((state) => state.updatePreferences);
 
   const [preference, setPreference] = useState(preferences[1]);
 
@@ -30,7 +28,7 @@ const 관광휴식 = ({ onNext, onPrev }: FunnelProps) => {
       <StyleSlide
         title="관광 vs 휴식"
         preference={preference}
-        images={[TourJPG, ResortJPG]}
+        images={[TourWEBP, ResortWEBP]}
         descriptions={["관광이 목적이에요", "휴식을 취하러 가요"]}
         onChange={changePreference}
       />

@@ -1,7 +1,8 @@
 import React from "react";
 import ChatGroup from "./ChatGroup";
 import { isRegionType } from "../../utils";
-import { useChatStore, useTravelStore } from "../../stores";
+import { useTravelStore } from "../../stores/useTravelStore";
+import { useChatStore } from "../../stores/useChatStore";
 import Map from "./Map";
 
 const Region = () => {
@@ -16,7 +17,7 @@ const Region = () => {
 
     setRegion(event.currentTarget.id);
     next();
-    localStorage.setItem("lastMessageId", "districts2");
+    localStorage.setItem("activeMessageId", "districts2");
   };
 
   return (

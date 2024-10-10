@@ -7,11 +7,14 @@ import useGetRegionThumbnail from "../hooks/useGetRegionThumbnail";
 import useGetTrackingCourses from "../hooks/useGetTrackingCourses";
 import TrackingCourse from "../components/travel/TrackingCourse";
 import { useLocation } from "react-router";
+import { useTravelStore } from "../stores/useTravelStore";
 
 const Travel = () => {
   const location = useLocation();
   const pathname = location.pathname;
   const travelId = pathname.split("=")[1];
+
+  const likeTracking = useTravelStore((state) => state.likeTracking);
 
   const { data: travelCourse, status: travelCourseStatus } = useGetTravelCourse(
     Number(travelId)
@@ -36,21 +39,6 @@ const Travel = () => {
       </PageTemplate>
     );
 
-  if (!trackingCourses || !regionThumbnail)
-    return (
-      <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
-        <TravelWrapper>
-          <TravelTitle>
-            <h2>{travelCourse.travelTitle}</h2>
-            <Icons>
-              <ShareIconSVG width={24} onClick={handleCopy} />
-            </Icons>
-          </TravelTitle>
-          <TravelCourse courses={travelCourse.courses} />
-        </TravelWrapper>
-      </PageTemplate>
-    );
-
   return (
     <PageTemplate pageName="Travel" badgeText="Enjoy the Travel!">
       <TravelWrapper>
@@ -61,9 +49,11 @@ const Travel = () => {
           </Icons>
         </TravelTitle>
         <TravelCourse courses={travelCourse.courses} />
-        <TrackingCourse courses={trackingCourses} />
+        {trackingCourses && likeTracking === "Y" && (
+          <TrackingCourse courses={trackingCourses} />
+        )}
       </TravelWrapper>
-      <RegionThumbnail src={regionThumbnail} />
+      {regionThumbnail && <RegionThumbnail src={regionThumbnail} />}
     </PageTemplate>
   );
 };

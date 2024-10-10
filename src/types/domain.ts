@@ -95,3 +95,5 @@ export interface TotalMessagesResponse {
     messages: Message[];
   };
 }
+
+export type LikeTrackingType = "Y" | "N";

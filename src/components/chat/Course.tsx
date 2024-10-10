@@ -3,7 +3,7 @@ import type { Course, Place } from "../../types/domain";
 import { useEffect, useState } from "react";
 import Button from "../common/Button";
 import usePostSaveTravel from "../../hooks/usePostSaveTravel";
-import { useChatStore } from "../../stores";
+import { useChatStore } from "../../stores/useChatStore";
 import { useNavigate } from "react-router";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -68,7 +68,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         courses[courseIndex].day
       );
 
-      if (localStorage.getItem("lastMessageId") !== messageId.toString()) {
+      if (localStorage.getItem("activeMessageId") !== messageId.toString()) {
         const totalPlacesHTML = courses.map((course) =>
           makePlacesToHTML(course.places, course.day)
         );
@@ -94,9 +94,13 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         }
       }, 10);
 
-      return () => clearInterval(interval);
+      return () => {
+        clearInterval(interval);
+      };
+    } else {
+      localStorage.setItem("activeMessageId", "done");
+      scrollDown();
     }
-    scrollDown();
   }, [courseIndex, charIndex, courses, scrollDown]);
 
   return (
