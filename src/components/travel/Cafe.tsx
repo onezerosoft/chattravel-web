@@ -126,8 +126,8 @@ const PlaceInfo = styled.p`
     font-size: 14px;
     margin: 0;
     margin-bottom: 5px;
-    white-space: nowrap; /* 한 줄로 유지 */
-    overflow: hidden; /* 넘치는 부분 숨기기 */
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
   }
 

@@ -6,7 +6,6 @@ import 관광휴식 from "../components/style/관광휴식";
 import 숙박 from "../components/style/숙박";
 import 사진 from "../components/style/사진";
 import 트래킹 from "../components/style/트래킹";
-
 import { useNavigate } from "react-router";
 import usePostTravelInfo from "../hooks/usePostTravelInfo";
 import { useChatStore } from "../stores/useChatStore";

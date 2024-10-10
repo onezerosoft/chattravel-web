@@ -9,12 +9,14 @@ import Chat from "./pages/chat";
 import Style from "./pages/style";
 import Travel from "./pages/travel";
 import Header from "./components/common/Header";
+import Alert from "./components/common/Alert";
 
 const Root = () => {
   return (
     <>
       <Header />
       <Outlet />
+      <Alert />
     </>
   );
 };
