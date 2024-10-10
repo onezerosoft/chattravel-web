@@ -9,11 +9,11 @@ import { useChatStore } from "../stores";
 
 const sliderSettings = {
   infinite: true,
-  speed: 400,
+  speed: 1000,
   slidesToShow: 3,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 2200,
+  autoplaySpeed: 1000,
   cssEase: "linear",
 };
 

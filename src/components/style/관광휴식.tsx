@@ -1,6 +1,6 @@
 import { useState } from "react";
 import StyleSlide from "./StyleSlide";
-import { ResortJPG, TourJPG } from "../../assets";
+import { ResortWEBP, TourWEBP } from "../../assets";
 import { FunnelProps } from "../common/Funnel";
 import Button from "../common/Button";
 import styled from "styled-components";
@@ -30,7 +30,7 @@ const 관광휴식 = ({ onNext, onPrev }: FunnelProps) => {
       <StyleSlide
         title="관광 vs 휴식"
         preference={preference}
-        images={[TourJPG, ResortJPG]}
+        images={[TourWEBP, ResortWEBP]}
         descriptions={["관광이 목적이에요", "휴식을 취하러 가요"]}
         onChange={changePreference}
       />

@@ -5,16 +5,16 @@ export { default as ArrowRightSVG } from "./arrow_right.svg?react";
 export { default as DownloadIconSVG } from "./download_icon.svg?react";
 export { default as ShareIconSVG } from "./share_icon.svg?react";
 
-export { default as NatureJPG } from "./nature.jpg";
-export { default as CityJPG } from "./city.jpg";
-export { default as TourJPG } from "./tour.jpg";
-export { default as ResortJPG } from "./resort.jpg";
-export { default as ExpensiveJPG } from "./expensive.jpg";
-export { default as CheapJPG } from "./cheap.jpg";
-export { default as LikePhotoJPG } from "./like_photo.jpg";
-export { default as HatePhotoJPG } from "./hate_photo.jpg";
-export { default as LikeTrackingJPG } from "./like_tracking.jpg";
-export { default as HateTrackingJPG } from "./hate_tracking.jpg";
+export { default as NatureWEBP } from "./nature.webp";
+export { default as CityWEBP } from "./city.webp";
+export { default as TourWEBP } from "./tour.webp";
+export { default as ResortWEBP } from "./resort.webp";
+export { default as ExpensiveWEBP } from "./expensive.webp";
+export { default as CheapWEBP } from "./cheap.webp";
+export { default as LikePhotoWEBP } from "./like_photo.webp";
+export { default as HatePhotoWEBP } from "./hate_photo.webp";
+export { default as LikeTrackingWEBP } from "./like_tracking.webp";
+export { default as HateTrackingWEBP } from "./hate_tracking.webp";
 
 export { default as ChatPageWebp } from "./chat_page.webp";
 export { default as TravelPageWebp } from "./travel_page.webp";

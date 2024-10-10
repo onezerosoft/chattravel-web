@@ -7,7 +7,6 @@ const LoadingChet = () => {
     <Wrapper>
       <ChetSVG height={100} />
       <ChatBox>
-        {" "}
         <LoadingDots />
       </ChatBox>
     </Wrapper>

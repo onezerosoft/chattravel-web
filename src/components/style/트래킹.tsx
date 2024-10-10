@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { HateTrackingJPG, LikeTrackingJPG } from "../../assets";
+import { HateTrackingWEBP, LikeTrackingWEBP } from "../../assets";
 import Button from "../common/Button";
 import { FunnelProps } from "../common/Funnel";
 import StyleSlide from "./StyleSlide";
@@ -37,7 +37,7 @@ const 트래킹 = ({ onNext, onPrev }: FunnelProps) => {
       <StyleSlide
         title="트래킹 선호 VS 선호하지 않음"
         preference={preference}
-        images={[LikeTrackingJPG, HateTrackingJPG]}
+        images={[LikeTrackingWEBP, HateTrackingWEBP]}
         descriptions={[
           "걷기나 자전거로 \n트래킹하는 코스도 원해요",
           "트래킹을 선호하지 않고 \n 차로만 이동해요",

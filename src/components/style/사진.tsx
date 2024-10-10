@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { HatePhotoJPG, LikePhotoJPG } from "../../assets";
+import { HatePhotoWEBP, LikePhotoWEBP } from "../../assets";
 import Button from "../common/Button";
 import { FunnelProps } from "../common/Funnel";
 import StyleSlide from "./StyleSlide";
@@ -29,7 +29,7 @@ const 사진 = ({ onNext, onPrev }: FunnelProps) => {
       <StyleSlide
         title="사진촬영 중요 vs 안 중요"
         preference={preference}
-        images={[LikePhotoJPG, HatePhotoJPG]}
+        images={[LikePhotoWEBP, HatePhotoWEBP]}
         descriptions={["포토스팟을 원해요", "사진에 관심없어요"]}
         onChange={changePreference}
       />
