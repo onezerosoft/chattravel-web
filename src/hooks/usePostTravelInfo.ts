@@ -12,7 +12,7 @@ const usePostTravelInfo = () => {
   const duration = useTravelStore((state) => state.duration);
   const preferences = useTravelStore((state) => state.preferences);
 
-  const { mutate } = useMutation({
+  const { mutate, isError } = useMutation({
     mutationFn: () =>
       postTravelInfo({
         body: {
@@ -26,7 +26,7 @@ const usePostTravelInfo = () => {
     },
   });
 
-  return { mutate };
+  return { mutate, isError };
 };
 
 export default usePostTravelInfo;

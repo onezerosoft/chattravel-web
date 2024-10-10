@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { Region } from "../../types/domain";
-import { DISTRICT_MAP, POPULAR_DISTRICTS } from "../../constants";
+import {
+  DISTRICT_MAP,
+  IMPOSSIBLE_DISTRICTS,
+  POPULAR_DISTRICTS,
+} from "../../constants";
 import { Dispatch, SetStateAction } from "react";
 
 interface DistrictGridProps {
@@ -38,6 +42,7 @@ const DistrictGrid = ({
           key={district}
           $isSelected={districtBooleans[index]}
           onClick={clickDistrict(index)}
+          disabled={IMPOSSIBLE_DISTRICTS.includes(district)}
         >
           {district}
           <PopularBadge $isPopular={POPULAR_DISTRICTS.includes(district)}>
@@ -72,6 +77,10 @@ const District = styled.button<{ $isSelected: boolean }>`
   &:hover {
     transform: scale(1.05);
     opacity: 80%;
+  }
+
+  &:disabled {
+    display: none;
   }
 `;
 
