@@ -18,7 +18,12 @@ const useGetTotalMessages = () => {
     queryFn: async (): Promise<TotalMessagesResponse> => {
       const res = await getTotalMessages({ params: { chatId } });
 
-      if (localStorage.getItem("activeMessageId") !== "done")
+      if (
+        !(
+          localStorage.getItem("activeMessageId") === "done" &&
+          res.result.messages.at(-1)!.messageType === "C_COURSE"
+        )
+      )
         localStorage.setItem(
           "activeMessageId",
           res.result.messages.at(-1)!.messageId.toString()
