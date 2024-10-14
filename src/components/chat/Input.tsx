@@ -25,7 +25,7 @@ const Input = ({ onSubmit }: InputProps) => {
           id="userMessage"
           value={value}
           ref={inputRef}
-          placeholder="ex) 첫째날 오후 여행지 다른 여행지로 바꿔줘."
+          placeholder="ex) 00의 영업 시간은 어떻게 돼?"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onChange={(event: ChangeEvent<HTMLInputElement>) =>
