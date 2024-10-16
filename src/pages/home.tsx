@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import useGetGalleryItems from "../hooks/useGetGalleryItems";
 import { ChatPageWebp, TravelPageWebp } from "../assets";
 import { useChatStore } from "../stores/useChatStore";
+import { useTravelStore } from "../stores/useTravelStore";
 
 const sliderSettings = {
   infinite: true,
@@ -20,7 +21,13 @@ const sliderSettings = {
 const Home = () => {
   const { data: galleryItems, status } = useGetGalleryItems();
 
-  const reset = useChatStore((state) => state.reset);
+  const resetChatStore = useChatStore((state) => state.reset);
+  const resetTravelStore = useTravelStore((state) => state.reset);
+
+  const onClickStartButton = () => {
+    resetChatStore();
+    resetTravelStore();
+  };
 
   if (status == "pending" || !galleryItems)
     return (
@@ -35,7 +42,7 @@ const Home = () => {
           간편하게 여행코스를 완성시키세요.
         </p>
         <ButtonsContainer>
-          <Button onClick={reset}>
+          <Button onClick={onClickStartButton}>
             <Link to={"/chat"}>채팅 시작하기</Link>
           </Button>
           <Button design="secondary">
@@ -63,7 +70,7 @@ const Home = () => {
         여행코스를 완성시키세요.
       </p>
       <ButtonsContainer>
-        <Button onClick={reset}>
+        <Button onClick={onClickStartButton}>
           <Link to={"/chat"}>채팅 시작하기</Link>
         </Button>
         <Button design="secondary">

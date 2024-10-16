@@ -60,15 +60,17 @@ const Chat = () => {
         chatId,
       },
     });
-
-    if (res.status) {
-      console.log(res.data.result.messages);
+    console.log(res.status);
+    if (res.status == 200) {
       setChetMessages((prev) => [...prev, res.data.result.messages]);
+
       localStorage.setItem(
         "activeMessageId",
         res.data.result.messages.at(-1)!.messageId.toString()
       );
     }
+
+    console.log(localStorage.getItem("activeMessageId"));
   };
 
   const resetCourse = () => {

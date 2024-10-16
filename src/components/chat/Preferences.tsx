@@ -29,6 +29,7 @@ const Preferences = () => {
   const createTravel = () => {
     if (step !== 4) return;
 
+    localStorage.setItem("activeMessageId", "course");
     next();
     mutate();
   };
