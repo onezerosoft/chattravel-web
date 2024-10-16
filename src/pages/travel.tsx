@@ -26,7 +26,7 @@ const Travel = () => {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
-      alert("여행 페이지 링크가 복사되었어요!");
+      alert("여행을 같이 갈 친구에게 링크를 공유해보세요!");
     } catch (err) {
       console.error("복사 실패:", err);
     }

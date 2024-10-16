@@ -15,7 +15,7 @@ const Accomodation = ({ accomodation, urls, check }: AccomodationProps) => {
         <PlaceComment>{accomodation.comment}</PlaceComment>
         <PlaceName>{check} 🛏</PlaceName>
         <PlaceNumber>{1}</PlaceNumber>
-        <img src={urls.thumbnail_url} />
+        <img src={urls.image_url} />
         <PlaceInfo>
           <h5>{accomodation.placeName} </h5>
           <p>{accomodation.address.split(" ").slice(0, 2).join(" ")}</p>

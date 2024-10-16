@@ -1,25 +1,28 @@
 import { useQueries } from "@tanstack/react-query";
 import { getPlaceThumbnail } from "../apis/get";
-import { Document } from "../types/domain";
+import { Document, Place } from "../types/domain";
 
 interface PlaceThumbnailResponse {
   documents: Document[];
 }
 
-const useGetPlaceThumbnails = (placeNames: string[]) => {
+const useGetPlaceThumbnails = (places: Place[]) => {
   const allQueries = useQueries({
-    queries: placeNames.map((placeName) => {
+    queries: places.map((place) => {
       return {
-        queryKey: ["placeThumbnails", placeName],
+        queryKey: ["placeThumbnails", place],
         queryFn: () =>
           getPlaceThumbnail({
             params: {
-              query: placeName,
+              query: `${place.placeName} ${place.placeType}`,
             },
           }),
-        enabled: placeName != "",
+        enabled: place.placeName != "",
         select: (data: PlaceThumbnailResponse) => {
-          return data.documents[0];
+          for (let i = 0; i < data.documents.length; i++) {
+            if (data.documents[i].display_sitename == "Daum카페") continue;
+            return data.documents[i];
+          }
         },
       };
     }),
@@ -27,7 +30,7 @@ const useGetPlaceThumbnails = (placeNames: string[]) => {
 
   const placeThumbnails = allQueries.reduce(
     (acc: Record<string, Document>, query, index) => {
-      const placeName = placeNames[index];
+      const placeName = places[index].placeName;
       if (query.data) acc[placeName] = query.data;
       return acc;
     },
