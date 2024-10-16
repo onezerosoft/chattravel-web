@@ -20,8 +20,11 @@ const useGetPlaceThumbnails = (places: Place[]) => {
         enabled: place.placeName != "",
         select: (data: PlaceThumbnailResponse) => {
           for (let i = 0; i < data.documents.length; i++) {
-            if (data.documents[i].display_sitename == "Daum카페") continue;
-            return data.documents[i];
+            if (
+              data.documents[i].display_sitename!.replace(/ /g, "") ==
+              "네이버블로그"
+            )
+              return data.documents[i];
           }
         },
       };

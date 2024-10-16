@@ -81,7 +81,7 @@ export interface Document {
   doc_url: string;
   image_url: string;
   thumbnail_url: string;
-  display_sitename?: "네이버 블로그" | "Daum카페" | "티스토리";
+  display_sitename?: string;
 }
 
 export interface TotalMessagesResponse {
