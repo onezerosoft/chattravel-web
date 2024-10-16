@@ -2,12 +2,11 @@ import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
 import { useTravelStore } from "../../stores/useTravelStore";
 import { useChatStore } from "../../stores/useChatStore";
-import { memo } from "react";
 import { useNavigate } from "react-router";
 import { PREFERENCE_DESCRIPTIONS_MAP, STYLE_CATEGORIES } from "../../constants";
 import usePostTravelInfo from "../../hooks/usePostTravelInfo";
 
-const Preferences = memo(() => {
+const Preferences = () => {
   const navigate = useNavigate();
 
   const likeTracking = useTravelStore((store) => store.likeTracking);
@@ -93,6 +92,6 @@ const Preferences = memo(() => {
       </ChatGroup>
     </>
   );
-});
+};
 
 export default Preferences;

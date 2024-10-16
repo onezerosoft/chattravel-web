@@ -30,7 +30,7 @@ const Chat = () => {
   const resetTravelStore = useTravelStore((state) => state.reset);
 
   const [userMessages, setUserMessages] = useState<Message[]>([]);
-  const [chetMessages, setChetMessages] = useState<Message[]>([]);
+  const [chetMessages, setChetMessages] = useState<Message[][]>([]);
 
   const { data: totalMessages, status: totalMessagesStatus } =
     useGetTotalMessages();
@@ -62,7 +62,8 @@ const Chat = () => {
     });
 
     if (res.status) {
-      setChetMessages((prev) => [...prev, ...res.data.result.messages]);
+      console.log(res.data.result.messages);
+      setChetMessages((prev) => [...prev, res.data.result.messages]);
       localStorage.setItem(
         "activeMessageId",
         res.data.result.messages.at(-1)!.messageId.toString()
@@ -144,7 +145,7 @@ const Chat = () => {
                 <LoadingChet />
               ) : (
                 <Messages
-                  messages={[chetMessages[index]]}
+                  messages={chetMessages[index]}
                   scrollDown={scrollDown}
                 />
               )}
