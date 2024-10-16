@@ -1,22 +1,23 @@
 import { create } from "zustand";
 
 interface AlertStore {
-  close: any;
   isOpen: boolean;
   title: string;
   content: string;
   topOption: string;
   bottomOption: string;
-  topOptionHandler: void | undefined;
-  bottomOptionHandler: void | undefined;
   makeAlert: (
     title: string,
     content: string,
     topOption: string,
-    bottomOption: string
+    bottomOption: string,
+    onClickTopOption: () => void,
+    onClickBottomOption: () => void
   ) => void;
   onClickTopOption: () => void;
   onClickBottomOption: () => void;
+  close: () => void;
+  open: () => void;
 }
 
 export const useAlertStore = create<AlertStore>((set) => ({
@@ -25,17 +26,25 @@ export const useAlertStore = create<AlertStore>((set) => ({
   content: "",
   topOption: "",
   bottomOption: "",
-  topOptionHandler: undefined,
-  bottomOptionHandler: undefined,
   onClickTopOption: () => {},
   onClickBottomOption: () => {},
   makeAlert: (
     title: string,
     content: string,
     topOption: string,
-    bottomOption: string
+    bottomOption: string,
+    onClickTopOption: () => void,
+    onClickBottomOption: () => void
   ) => {
-    set({ isOpen: true, title, content, topOption, bottomOption });
+    set({
+      isOpen: true,
+      title,
+      content,
+      topOption,
+      bottomOption,
+      onClickTopOption,
+      onClickBottomOption,
+    });
   },
   open: () => {
     set({ isOpen: true });

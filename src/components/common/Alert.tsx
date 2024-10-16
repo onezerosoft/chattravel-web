@@ -10,6 +10,12 @@ const Alert = () => {
   const topOption = useAlertStore((state) => state.topOption);
   const bottomOption = useAlertStore((state) => state.bottomOption);
   const close = useAlertStore((state) => state.close);
+
+  const onClickTopOtion = useAlertStore((state) => state.onClickTopOption);
+  const onClickBottomOtion = useAlertStore(
+    (state) => state.onClickBottomOption
+  );
+
   const navigate = useNavigate();
 
   if (!isOpen) return;
@@ -21,22 +27,10 @@ const Alert = () => {
         <h1>{title}</h1>
         <p>{content}</p>
         <OptionContainer>
-          <OptionWrapper
-            $option={"top"}
-            onClick={() => {
-              close();
-              location.reload();
-            }}
-          >
+          <OptionWrapper $option={"top"} onClick={onClickTopOtion}>
             {topOption}
           </OptionWrapper>
-          <OptionWrapper
-            $option={"bottom"}
-            onClick={() => {
-              navigate("/");
-              close();
-            }}
-          >
+          <OptionWrapper $option={"bottom"} onClick={onClickBottomOtion}>
             {bottomOption}
           </OptionWrapper>
         </OptionContainer>
