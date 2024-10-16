@@ -98,8 +98,6 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         clearInterval(interval);
       };
     } else {
-      console.log("Herere!");
-
       localStorage.setItem("activeMessageId", "done");
       scrollDown();
     }
