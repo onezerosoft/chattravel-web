@@ -10,7 +10,7 @@ const 자연도시 = ({ onNext }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);
   const [preference, setPreference] = useState(preferences[0]);
 
-  const updatePreferences = useTravelStore((state) => state.updatePreferences);
+  const setPreferences = useTravelStore((state) => state.setPreferences);
 
   const changePreference = (newPreference: number) => () => {
     setPreference(newPreference);
@@ -19,7 +19,7 @@ const 자연도시 = ({ onNext }: FunnelProps) => {
   const savePreferences = () => {
     const newPreferences = [...preferences];
     newPreferences[0] = preference;
-    updatePreferences(newPreferences);
+    setPreferences(newPreferences);
   };
 
   return (

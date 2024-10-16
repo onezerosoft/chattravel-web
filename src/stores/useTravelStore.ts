@@ -3,15 +3,16 @@ import type { LikeTrackingType, Region } from "../types/domain";
 
 interface TravelStore {
   region: Region | null;
-  setRegion: (region: Region) => void;
   preferences: number[];
-  updatePreferences: (newPreferences: number[]) => void;
   duration: number;
-  setDuration: (duration: number) => void;
   districts: string[];
-  setDistricts: (districts: string[]) => void;
   likeTracking: LikeTrackingType;
+  setRegion: (region: Region) => void;
+  setPreferences: (newPreferences: number[]) => void;
+  setDuration: (duration: number) => void;
+  setDistricts: (districts: string[]) => void;
   setLikeTracking: (likeTracking: LikeTrackingType) => void;
+  reset: () => void;
 }
 
 export const useTravelStore = create<TravelStore>((set) => ({
@@ -27,7 +28,7 @@ export const useTravelStore = create<TravelStore>((set) => ({
     set({ region });
     localStorage.setItem("region", JSON.stringify(region));
   },
-  updatePreferences: (newPreferences: number[]) => {
+  setPreferences: (newPreferences: number[]) => {
     set({ preferences: newPreferences });
     localStorage.setItem("preferences", JSON.stringify(newPreferences));
   },
@@ -42,5 +43,12 @@ export const useTravelStore = create<TravelStore>((set) => ({
   setLikeTracking: (likeTracking: "Y" | "N") => {
     set({ likeTracking });
     localStorage.setItem("likeTracking", JSON.stringify(likeTracking));
+  },
+  reset: () => {
+    set({ region: null, duration: 0, districts: [] });
+
+    localStorage.removeItem("region");
+    localStorage.removeItem("duration");
+    localStorage.removeItem("districts");
   },
 }));

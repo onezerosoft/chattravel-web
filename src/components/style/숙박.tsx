@@ -8,7 +8,7 @@ import { useTravelStore } from "../../stores/useTravelStore";
 
 const 숙박 = ({ onNext, onPrev }: FunnelProps) => {
   const preferences = useTravelStore((state) => state.preferences);
-  const updatePreferences = useTravelStore((state) => state.updatePreferences);
+  const setPreferences = useTravelStore((state) => state.setPreferences);
 
   const [preference, setPreference] = useState(preferences[2]);
 
@@ -19,7 +19,7 @@ const 숙박 = ({ onNext, onPrev }: FunnelProps) => {
   const savePreferences = () => {
     const newPreferences = [...preferences];
     newPreferences[2] = preference;
-    updatePreferences(newPreferences);
+    setPreferences(newPreferences);
   };
 
   return (

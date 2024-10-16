@@ -24,9 +24,10 @@ const Chat = () => {
 
   const step = useChatStore((state) => state.step);
   const chatId = useChatStore((state) => state.id);
-  const reset = useChatStore((state) => state.reset);
+  const resetChatStore = useChatStore((state) => state.reset);
 
   const duration = useTravelStore((state) => state.duration);
+  const resetTravelStore = useTravelStore((state) => state.reset);
 
   const [userMessages, setUserMessages] = useState<Message[]>([]);
   const [chetMessages, setChetMessages] = useState<Message[]>([]);
@@ -70,7 +71,8 @@ const Chat = () => {
   };
 
   const resetCourse = () => {
-    reset();
+    resetChatStore();
+    resetTravelStore();
     setUserMessages([]);
     setChetMessages([]);
   };

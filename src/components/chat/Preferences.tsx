@@ -12,7 +12,7 @@ const Preferences = memo(() => {
 
   const likeTracking = useTravelStore((store) => store.likeTracking);
   const preferences = useTravelStore((store) => store.preferences);
-  const updatePreferences = useTravelStore((store) => store.updatePreferences);
+  const setPreferences = useTravelStore((store) => store.setPreferences);
 
   const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
@@ -23,7 +23,7 @@ const Preferences = memo(() => {
     if (step !== 4) return;
 
     localStorage.removeItem("preferences");
-    updatePreferences([0, 0, 0, 0]);
+    setPreferences([0, 0, 0, 0]);
     navigate("/style");
   };
 
