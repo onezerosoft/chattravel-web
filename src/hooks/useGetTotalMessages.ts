@@ -29,14 +29,15 @@ const useGetTotalMessages = () => {
           res.result.messages.at(-1)!.messageId.toString()
         );
 
-      if (!res.isSuccess) {
-        makeAlert(
-          "ERROR",
-          "현재 서비스가 불안정하여 \n채팅정보 불러오기에 실패했어요 🥲",
-          "새로고침",
-          "홈으로"
-        );
-      }
+      // FIXME: 논의 후 고도화
+      // if (!res.isSuccess) {
+      //   makeAlert(
+      //     "ERROR",
+      //     "현재 서비스가 불안정하여 \n채팅정보 불러오기에 실패했어요 🥲",
+      //     "새로고침",
+      //     "홈으로"
+      //   );
+      // }
 
       return res;
     },

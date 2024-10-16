@@ -13,7 +13,7 @@ const Restaurant = ({
   placeNumber,
 }: RestaurantProps) => {
   return (
-    <a href={restaurantUrls.doc_url} target="_blank">
+    <a href={restaurant.url} target="_blank">
       <Wrapper>
         <PlaceComment>
           {restaurant.placeName == ""
@@ -22,7 +22,7 @@ const Restaurant = ({
         </PlaceComment>
         <PlaceName>식당 🍱</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
-        <img src={restaurantUrls.thumbnail_url} />
+        <img src={restaurantUrls.image_url} />
         <PlaceInfo>
           <h5>
             {restaurant.placeName == "" ? "근처 식당" : restaurant.placeName}

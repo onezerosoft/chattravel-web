@@ -19,14 +19,17 @@ const Duration = () => {
     localStorage.setItem("activeMessageId", "preferences");
   };
 
+  const districtsString =
+    districts.join(", ").at(-1) == "군"
+      ? districts.join(", ") + "으"
+      : districts.join(", ");
+
   return (
     <>
       <ChatGroup
         who="chet"
         groupKey="duration1"
-        texts={[
-          `${districts.join(", ")}로 떠나는 구나! 여행 기간은 어떻게 돼?`,
-        ]}
+        texts={[`${districtsString}로 떠나는 구나! 여행 기간은 어떻게 돼?`]}
       />
       <ChatGroup who="user" groupKey="duration2">
         <>

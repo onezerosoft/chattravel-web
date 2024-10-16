@@ -9,7 +9,7 @@ interface CafeProps {
 
 const Cafe = ({ cafe, cafeUrls, placeNumber }: CafeProps) => {
   return (
-    <a href={cafeUrls.doc_url} target="_blank">
+    <a href={cafe.url} target="_blank">
       <Wrapper>
         <PlaceComment>
           {cafe.placeName == ""
@@ -18,7 +18,7 @@ const Cafe = ({ cafe, cafeUrls, placeNumber }: CafeProps) => {
         </PlaceComment>
         <PlaceName>카페 ☕️</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
-        <img src={cafeUrls.thumbnail_url} />
+        <img src={cafeUrls.image_url} />
         <PlaceInfo>
           <h5>{cafe.placeName == "" ? "근처 카페" : cafe.placeName}</h5>
           <p>

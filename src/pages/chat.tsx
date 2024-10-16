@@ -24,12 +24,13 @@ const Chat = () => {
 
   const step = useChatStore((state) => state.step);
   const chatId = useChatStore((state) => state.id);
-  const reset = useChatStore((state) => state.reset);
+  const resetChatStore = useChatStore((state) => state.reset);
 
   const duration = useTravelStore((state) => state.duration);
+  const resetTravelStore = useTravelStore((state) => state.reset);
 
   const [userMessages, setUserMessages] = useState<Message[]>([]);
-  const [chetMessages, setChetMessages] = useState<Message[]>([]);
+  const [chetMessages, setChetMessages] = useState<Message[][]>([]);
 
   const { data: totalMessages, status: totalMessagesStatus } =
     useGetTotalMessages();
@@ -60,8 +61,9 @@ const Chat = () => {
       },
     });
 
-    if (res.status) {
-      setChetMessages((prev) => [...prev, ...res.data.result.messages]);
+    if (res.status == 200) {
+      setChetMessages((prev) => [...prev, res.data.result.messages]);
+
       localStorage.setItem(
         "activeMessageId",
         res.data.result.messages.at(-1)!.messageId.toString()
@@ -70,7 +72,8 @@ const Chat = () => {
   };
 
   const resetCourse = () => {
-    reset();
+    resetChatStore();
+    resetTravelStore();
     setUserMessages([]);
     setChetMessages([]);
   };
@@ -142,7 +145,7 @@ const Chat = () => {
                 <LoadingChet />
               ) : (
                 <Messages
-                  messages={[chetMessages[index]]}
+                  messages={chetMessages[index]}
                   scrollDown={scrollDown}
                 />
               )}

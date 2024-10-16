@@ -2,17 +2,16 @@ import Button from "../common/Button";
 import ChatGroup from "./ChatGroup";
 import { useTravelStore } from "../../stores/useTravelStore";
 import { useChatStore } from "../../stores/useChatStore";
-import { memo } from "react";
 import { useNavigate } from "react-router";
 import { PREFERENCE_DESCRIPTIONS_MAP, STYLE_CATEGORIES } from "../../constants";
 import usePostTravelInfo from "../../hooks/usePostTravelInfo";
 
-const Preferences = memo(() => {
+const Preferences = () => {
   const navigate = useNavigate();
 
   const likeTracking = useTravelStore((store) => store.likeTracking);
   const preferences = useTravelStore((store) => store.preferences);
-  const updatePreferences = useTravelStore((store) => store.updatePreferences);
+  const setPreferences = useTravelStore((store) => store.setPreferences);
 
   const step = useChatStore((state) => state.step);
   const next = useChatStore((state) => state.next);
@@ -23,13 +22,14 @@ const Preferences = memo(() => {
     if (step !== 4) return;
 
     localStorage.removeItem("preferences");
-    updatePreferences([0, 0, 0, 0]);
+    setPreferences([0, 0, 0, 0]);
     navigate("/style");
   };
 
   const createTravel = () => {
     if (step !== 4) return;
 
+    localStorage.setItem("activeMessageId", "course");
     next();
     mutate();
   };
@@ -93,6 +93,6 @@ const Preferences = memo(() => {
       </ChatGroup>
     </>
   );
-});
+};
 
 export default Preferences;

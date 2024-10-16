@@ -4,8 +4,10 @@ import { useTravelStore } from "../stores/useTravelStore";
 import { REGION_MAP } from "../constants";
 import { useChatStore } from "../stores/useChatStore";
 import { useAlertStore } from "../stores/useAlertStore";
+import { useNavigate } from "react-router";
 
 const usePostTravelInfo = () => {
+  const navigate = useNavigate();
   const createChat = useChatStore((state) => state.createChat);
 
   const region = useTravelStore((state) => state.region);
@@ -13,7 +15,18 @@ const usePostTravelInfo = () => {
   const duration = useTravelStore((state) => state.duration);
   const preferences = useTravelStore((state) => state.preferences);
 
+  const close = useAlertStore((state) => state.close);
   const makeAlert = useAlertStore((state) => state.makeAlert);
+
+  const onClickTopOption = () => {
+    close();
+    mutate();
+  };
+
+  const onClickBottomOption = () => {
+    close();
+    navigate("/");
+  };
 
   const { mutate, isError } = useMutation({
     mutationFn: () =>
@@ -31,8 +44,10 @@ const usePostTravelInfo = () => {
       makeAlert(
         "ERROR",
         "현재 서비스가 불안정하여 \n여행정보 전송에 실패했어요 🥲",
-        "새로고침",
-        "홈으로"
+        "다시시도",
+        "홈으로",
+        onClickTopOption,
+        onClickBottomOption
       );
     },
   });

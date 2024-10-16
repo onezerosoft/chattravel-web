@@ -20,7 +20,7 @@ const TravelCourse = ({ courses }: TravelCourse) => {
   const places = courses
     .map((course) => course.places)
     .flat()
-    .map((place) => place.placeName);
+    .map((place) => place);
   const { placeThumbnails } = useGetPlaceThumbnails(places);
 
   const getUrls = (place: Place): Document => {
@@ -31,20 +31,20 @@ const TravelCourse = ({ courses }: TravelCourse) => {
       return {
         thumbnail_url: ExpensiveWEBP,
         doc_url: "",
-        image_url: "",
+        image_url: ExpensiveWEBP,
       };
 
     if (place.placeType == "식당")
       return {
         thumbnail_url: RestaurantDefaultThumbnail,
         doc_url: "",
-        image_url: "",
+        image_url: RestaurantDefaultThumbnail,
       };
 
     return {
       thumbnail_url: CafeDefaultThumbnail,
       doc_url: "",
-      image_url: "",
+      image_url: CafeDefaultThumbnail,
     };
   };
 
