@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getTotalMessages } from "../apis/get";
 import { TotalMessagesResponse } from "../types/domain";
 import { useChatStore } from "../stores/useChatStore";
-import { useAlertStore } from "../stores/useAlertStore";
+// import { useAlertStore } from "../stores/useAlertStore";
 
 const useGetTotalMessages = () => {
   const chatId = useChatStore((state) => state.id);
 
-  const makeAlert = useAlertStore((state) => state.makeAlert);
+  // const makeAlert = useAlertStore((state) => state.makeAlert);
 
   const { data, status } = useQuery({
     queryKey: ["totalMessages", chatId],

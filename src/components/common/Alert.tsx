@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import ModalPortal from "./ModalPortal";
-import { useNavigate } from "react-router";
 import { useAlertStore } from "../../stores/useAlertStore";
 
 const Alert = () => {
@@ -9,14 +8,10 @@ const Alert = () => {
   const content = useAlertStore((state) => state.content);
   const topOption = useAlertStore((state) => state.topOption);
   const bottomOption = useAlertStore((state) => state.bottomOption);
-  const close = useAlertStore((state) => state.close);
-
   const onClickTopOtion = useAlertStore((state) => state.onClickTopOption);
   const onClickBottomOtion = useAlertStore(
     (state) => state.onClickBottomOption
   );
-
-  const navigate = useNavigate();
 
   if (!isOpen) return;
 
