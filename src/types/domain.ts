@@ -69,7 +69,7 @@ export interface Place {
 
 export interface Message {
   messageId: number;
-  messageType: "C_TEXT" | "C_COURSE" | "U_TEXT";
+  messageType: "C_COMMON" | "C_TEXT" | "C_COURSE" | "U_TEXT";
   content: {
     message: string;
     courses: Course[];

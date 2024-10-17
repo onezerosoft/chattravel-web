@@ -19,7 +19,7 @@ const Messages = ({ scrollDown, messages }: MessagesProps) => {
           courses={message.content.courses}
         />
       );
-    if (messageType == "C_TEXT")
+    if (messageType == "C_TEXT" || messageType == "C_COMMON")
       return (
         <ChatGroup
           groupKey={message.messageId.toString()}
