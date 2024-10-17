@@ -18,6 +18,8 @@ import { AxiosResponse } from "axios";
 import LoadingDots from "../components/common/LoadingDots";
 import LoadingChet from "../components/chat/LoadingChet";
 import { useChatStore } from "../stores/useChatStore";
+import { useModalStore } from "../stores/useModalStore";
+import ChattingGuide from "../components/chat/ChattingGuide";
 
 const Chat = () => {
   const chatListRef = useRef<HTMLUListElement>(null);
@@ -31,6 +33,9 @@ const Chat = () => {
 
   const [userMessages, setUserMessages] = useState<Message[]>([]);
   const [chetMessages, setChetMessages] = useState<Message[][]>([]);
+
+  const open = useModalStore((state) => state.open);
+  const setModalContent = useModalStore((state) => state.setModalContent);
 
   const { data: totalMessages, status: totalMessagesStatus } =
     useGetTotalMessages();
@@ -110,7 +115,16 @@ const Chat = () => {
     <PageTemplate pageName="Chat" badgeText="Chat with Chet!">
       <ResetButtonWrapper>
         <Button design="secondary" onClick={resetCourse}>
-          + 새 여행코스
+          + 새 대화
+        </Button>
+        <Button
+          design="secondary"
+          onClick={() => {
+            setModalContent(ChattingGuide);
+            open();
+          }}
+        >
+          채팅 가이드
         </Button>
       </ResetButtonWrapper>
       <ChatList ref={chatListRef}>
@@ -186,6 +200,10 @@ const ResetButtonWrapper = styled.div`
   position: absolute;
   top: 200px;
   left: 5%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 export default Chat;
