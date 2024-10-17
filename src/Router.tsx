@@ -10,6 +10,7 @@ import Style from "./pages/style";
 import Travel from "./pages/travel";
 import Header from "./components/common/Header";
 import Alert from "./components/common/Alert";
+import Modal from "./components/common/Modal";
 
 const Root = () => {
   return (
@@ -17,6 +18,7 @@ const Root = () => {
       <Header />
       <Outlet />
       <Alert />
+      <Modal />
     </>
   );
 };

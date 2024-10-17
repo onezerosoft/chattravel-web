@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ModalPortal from "./ModalPortal";
 import { useAlertStore } from "../../stores/useAlertStore";
+import Backdrop from "./Backdrop";
 
 const Alert = () => {
   const isOpen = useAlertStore((state) => state.isOpen);
@@ -17,7 +18,7 @@ const Alert = () => {
 
   return (
     <ModalPortal>
-      <Backdrop $isVisible={isOpen} />
+      <Backdrop />
       <AlertContainer role="dialog">
         <h1>{title}</h1>
         <p>{content}</p>
@@ -97,22 +98,4 @@ const OptionWrapper = styled.button<{ $option: string }>`
     transform: scale(1.02);
     opacity: 80%;
   }
-`;
-
-const Backdrop = styled.div<{ $isVisible: boolean }>`
-  width: 100%;
-  height: 100vh;
-
-  background-color: ${({ $isVisible }) =>
-    $isVisible ? "#222" : "transparent"};
-
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  z-index: 1;
-  opacity: 0.2;
-
-  transition: background-color 0.3s ease-out;
-  transform: translateX(-50%);
 `;
