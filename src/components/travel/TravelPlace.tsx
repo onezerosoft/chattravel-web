@@ -15,7 +15,7 @@ const TravelPlace = ({ place, urls, placeNumber }: PlaceProps) => {
         <PlaceComment>{place.comment}</PlaceComment>
         <PlaceName> 여행지 📌</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
-        <img src={urls.image_url} />
+        <img src={urls.image_url} referrerPolicy="no-referrer" />
         <PlaceInfo>
           <h5>{place.placeName}</h5>
           <p>

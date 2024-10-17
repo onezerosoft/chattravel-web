@@ -22,7 +22,7 @@ const Restaurant = ({
         </PlaceComment>
         <PlaceName>식당 🍱</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
-        <img src={restaurantUrls.image_url} />
+        <img src={restaurantUrls.image_url} referrerPolicy="no-referrer" />
         <PlaceInfo>
           <h5>
             {restaurant.placeName == "" ? "근처 식당" : restaurant.placeName}

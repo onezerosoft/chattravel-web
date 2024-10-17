@@ -18,7 +18,7 @@ const Cafe = ({ cafe, cafeUrls, placeNumber }: CafeProps) => {
         </PlaceComment>
         <PlaceName>카페 ☕️</PlaceName>
         <PlaceNumber>{placeNumber}</PlaceNumber>
-        <img src={cafeUrls.image_url} />
+        <img src={cafeUrls.image_url} referrerPolicy="no-referrer" />
         <PlaceInfo>
           <h5>{cafe.placeName == "" ? "근처 카페" : cafe.placeName}</h5>
           <p>
