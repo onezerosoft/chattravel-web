@@ -27,6 +27,12 @@ export const POPULAR_DISTRICTS = [
   "속초시",
   "양양군",
   "대전광역시",
+  "군산시",
+  "포항시",
+  "청주시",
+  "통영시",
+  "공주시",
+  "춘천시",
 ];
 
 export const REGION_THUMBNAIL_MAP = {
@@ -172,7 +178,8 @@ export const DISTRICT_MAP: Record<string, string[]> = {
     "단양군",
     "괴산군",
     "증평군",
-    "성과군",
+    "옥천군",
+    "보은군",
   ],
   gangwon: [
     "강릉시",
