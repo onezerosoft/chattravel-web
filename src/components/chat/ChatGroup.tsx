@@ -70,30 +70,28 @@ const ChatGroup = ({
   }, [textIndex, charIndex, texts]);
 
   return (
-    <>
-      <ChetWrapper key={JSON.stringify(who + groupKey)}>
-        <ChetSVG height={100} />
-        <ChatBoxContainer $who={who}>
-          {texts.map(
-            (_, index) =>
-              index <= textIndex && (
-                <ChatBox key={groupKey + index} $who={who}>
-                  {displayedTexts[index]}
-                </ChatBox>
-              )
-          )}
-          {needFeedback && (
-            <FeedbackWrapper>
-              <Feedback
-                like={like}
-                hate={hate}
-                handleClickThumbs={handleClickThumbs}
-              />
-            </FeedbackWrapper>
-          )}
-        </ChatBoxContainer>
-      </ChetWrapper>
-    </>
+    <ChetWrapper key={JSON.stringify(who + groupKey)}>
+      <ChetSVG height={100} />
+      <ChatBoxContainer $who={who}>
+        {texts.map(
+          (_, index) =>
+            index <= textIndex && (
+              <ChatBox key={groupKey + index} $who={who}>
+                {displayedTexts[index]}
+              </ChatBox>
+            )
+        )}
+        {needFeedback && (
+          <FeedbackWrapper>
+            <Feedback
+              like={like}
+              hate={hate}
+              handleClickThumbs={handleClickThumbs}
+            />
+          </FeedbackWrapper>
+        )}
+      </ChatBoxContainer>
+    </ChetWrapper>
   );
 };
 
