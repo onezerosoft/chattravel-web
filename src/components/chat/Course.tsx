@@ -7,7 +7,8 @@ import { useChatStore } from "../../stores/useChatStore";
 import { useNavigate } from "react-router";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { ThumbsDownSVG, ThumbsUpSVG } from "../../assets";
+import Feedback from "./Feedback";
+import useFeedback from "../../hooks/useFeedback";
 
 interface CourseProps {
   messageId: number;
@@ -29,10 +30,9 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
   const [courseIndex, setCourseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
 
-  const [like, setLike] = useState(false);
-  const [hate, setHate] = useState(false);
-
   const chatId = useChatStore((state) => state.id);
+
+  const { like, hate, handleClickThumbs } = useFeedback(messageId);
 
   const { mutateAsync } = usePostSaveTravel();
 
@@ -48,23 +48,6 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
     });
 
     navigate(`/travel/travelId=${res.data.result.travelId}`);
-  };
-
-  const handleClickThumbs = (thumb: "like" | "hate") => () => {
-    if (thumb == "like") {
-      setLike((prev) => !prev);
-
-      if (hate == true) {
-        setHate(false);
-      }
-    }
-    if (thumb == "hate") {
-      setHate((prev) => !prev);
-
-      if (like == true) {
-        setLike(false);
-      }
-    }
   };
 
   const getCheckInfo = (place: Place, day: number) => {
@@ -138,12 +121,15 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
           )
       )}
       <BottomContainer>
-        <IconsContainer like={like} hate={hate}>
-          <ThumbsUpSVG width={25} onClick={handleClickThumbs("like")} />
-          <ThumbsDownSVG width={25} onClick={handleClickThumbs("hate")} />
-        </IconsContainer>
+        <Feedback
+          like={like}
+          hate={hate}
+          handleClickThumbs={handleClickThumbs}
+        />
         {courseIndex == courses.length && (
-          <Button onClick={saveTravel}>이 코스 내보내기</Button>
+          <Button design="secondary" onClick={saveTravel}>
+            이 코스 내보내기
+          </Button>
         )}
       </BottomContainer>
     </Wrapper>
@@ -165,27 +151,6 @@ const BottomContainer = styled.div`
   height: fit-content;
 `;
 
-const IconsContainer = styled.div<{ like: boolean; hate: boolean }>`
-  display: flex;
-  gap: 5px;
-
-  & > svg {
-    cursor: pointer;
-    fill: #0f0f0f;
-
-    & > path {
-      stroke: gray;
-    }
-
-    &:nth-of-type(1) {
-      fill: ${({ like }) => (like ? "#222" : "none")};
-    }
-    &:nth-of-type(2) {
-      fill: ${({ hate }) => (hate ? "#222" : "none")};
-    }
-  }
-`;
-
 const Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -193,7 +158,7 @@ const Wrapper = styled.div`
   background-color: #f5f5f5;
   border-radius: 20px;
   padding: 10px 15px;
-  margin: -15px 0 30px 115px;
+  margin: -10px 0 60px 115px;
   font-weight: 500;
   text-align: start;
 

@@ -133,13 +133,15 @@ const Chat = () => {
         {step >= 3 && <Duration />}
         {step >= 4 && <Preferences />}
         {step >= 5 && (
-          <ChatGroup
-            groupKey={"course"}
-            who="chet"
-            texts={[
-              `너만을 위한 ${DURATIONS[duration - 1]} 여행코스를 생성 중이야!\n잠시만 기다려줘~ (약 1분 소요)`,
-            ]}
-          />
+          <CommonWrapper>
+            <ChatGroup
+              groupKey={"course"}
+              who="chet"
+              texts={[
+                `너만을 위한 ${DURATIONS[duration - 1]} 여행코스를 생성 중이야!\n잠시만 기다려줘~ (약 1분 소요)`,
+              ]}
+            />
+          </CommonWrapper>
         )}
         {step >= 5 && totalMessagesStatus == "pending" && (
           <LoadingDotsWrapper>
@@ -170,6 +172,12 @@ const Chat = () => {
     </PageTemplate>
   );
 };
+
+export default Chat;
+
+const CommonWrapper = styled.div`
+  margin-bottom: 25px;
+`;
 
 const LoadingDotsWrapper = styled.div`
   margin-left: 120px;
@@ -205,5 +213,3 @@ const ResetButtonWrapper = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
-
-export default Chat;

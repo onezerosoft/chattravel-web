@@ -47,3 +47,11 @@ export interface TotalMessagesParams {
 export interface TravelCourseParams {
   travelId: number;
 }
+
+export interface FeedbackBody {
+  request: "P" | "N" | "C";
+}
+
+export interface FeedbackParams {
+  messageId: number;
+}

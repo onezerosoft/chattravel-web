@@ -38,10 +38,15 @@ const Districts = () => {
 
   if (!region) return <></>;
 
+  const regionString =
+    REGION_MAP[region].at(-1) == "권"
+      ? REGION_MAP[region] + "으"
+      : REGION_MAP[region];
+
   return (
     <>
       <ChatGroup who={"user"} groupKey={"districts1"}>
-        <p>{REGION_MAP[region]}로 떠나.</p>
+        <p>{regionString}로 떠나.</p>
       </ChatGroup>
       <ChatGroup
         who={"chet"}

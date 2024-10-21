@@ -1,28 +1,35 @@
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import { Children, PropsWithChildren, useEffect, useState } from "react";
 import styled from "styled-components";
 import { ChetSVG } from "../../assets";
 import type { Chat } from "../../types/domain";
+import Feedback from "./Feedback";
+import useFeedback from "../../hooks/useFeedback";
 
 interface ChatGroupProps extends Chat {
   groupKey: string;
   texts?: string[];
+  needFeedback?: boolean;
+  messageId?: number;
 }
 
 const ChatGroup = ({
   who,
   children,
   groupKey,
+  messageId,
+  needFeedback,
   texts,
 }: ChatGroupProps & PropsWithChildren) => {
   const [displayedTexts, setDisplayedTexts] = useState<string[]>([]);
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+  const { like, hate, handleClickThumbs } = useFeedback(messageId);
 
   if (who === "user" || !texts) {
     return (
       <UserWrapper key={JSON.stringify(who + groupKey)}>
         <ChatBoxContainer $who={who}>
-          {React.Children.toArray(children).map((child, index) => (
+          {Children.toArray(children).map((child, index) => (
             <ChatBox key={groupKey + index} $who={who}>
               {child}
             </ChatBox>
@@ -63,23 +70,39 @@ const ChatGroup = ({
   }, [textIndex, charIndex, texts]);
 
   return (
-    <ChetWrapper key={JSON.stringify(who + groupKey)}>
-      <ChetSVG height={100} />
-      <ChatBoxContainer $who={who}>
-        {texts.map(
-          (_, index) =>
-            index <= textIndex && (
-              <ChatBox key={groupKey + index} $who={who}>
-                {displayedTexts[index]}
-              </ChatBox>
-            )
-        )}
-      </ChatBoxContainer>
-    </ChetWrapper>
+    <>
+      <ChetWrapper key={JSON.stringify(who + groupKey)}>
+        <ChetSVG height={100} />
+        <ChatBoxContainer $who={who}>
+          {texts.map(
+            (_, index) =>
+              index <= textIndex && (
+                <ChatBox key={groupKey + index} $who={who}>
+                  {displayedTexts[index]}
+                </ChatBox>
+              )
+          )}
+          {needFeedback && (
+            <FeedbackWrapper>
+              <Feedback
+                like={like}
+                hate={hate}
+                handleClickThumbs={handleClickThumbs}
+              />
+            </FeedbackWrapper>
+          )}
+        </ChatBoxContainer>
+      </ChetWrapper>
+    </>
   );
 };
 
 export default ChatGroup;
+
+const FeedbackWrapper = styled.div`
+  margin-top: -10px;
+  margin-left: 10px;
+`;
 
 const ChetWrapper = styled.li`
   display: flex;
@@ -117,6 +140,6 @@ const ChatBoxContainer = styled.div<{ $who: "chet" | "user" }>`
   display: flex;
   flex-direction: column;
   align-items: ${({ $who }) => ($who === "chet" ? "start" : "flex-end")};
-  margin: ${({ $who }) => ($who === "chet" ? "25px 0" : "0")};
+  margin: ${({ $who }) => ($who === "chet" ? "30px 0 0 0" : "0")};
   gap: 10px;
 `;
