@@ -1,7 +1,10 @@
 import {
   ApiRequestBody,
   ApiRequestParams,
+  FeedbackBody,
+  FeedbackParams,
   SaveTravelBody,
+  SaveTravelParams,
   TravelInfoBody,
   UserMessageBody,
   UserMessageParams,
@@ -24,6 +27,13 @@ export const postUserMessage = async ({
 export const postSaveTravel = async ({
   body,
   params,
-}: ApiRequestBody<SaveTravelBody> & ApiRequestParams<UserMessageParams>) => {
+}: ApiRequestBody<SaveTravelBody> & ApiRequestParams<SaveTravelParams>) => {
   return await api.post(`/chat/${params.chatId}/save-travel`, body);
+};
+
+export const postFeedback = async ({
+  body,
+  params,
+}: ApiRequestBody<FeedbackBody> & ApiRequestParams<FeedbackParams>) => {
+  return await api.post(`/feedback/${params.messageId}`, body);
 };

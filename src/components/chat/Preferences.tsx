@@ -5,6 +5,7 @@ import { useChatStore } from "../../stores/useChatStore";
 import { useNavigate } from "react-router";
 import { PREFERENCE_DESCRIPTIONS_MAP, STYLE_CATEGORIES } from "../../constants";
 import usePostTravelInfo from "../../hooks/usePostTravelInfo";
+import styled from "styled-components";
 
 const Preferences = () => {
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ const Preferences = () => {
 
   if (localStorage.getItem("preferences"))
     return (
-      <>
+      <Container>
         <ChatGroup
           who="chet"
           groupKey="preferences"
@@ -76,11 +77,11 @@ const Preferences = () => {
             </Button>
           </>
         </ChatGroup>
-      </>
+      </Container>
     );
 
   return (
-    <>
+    <Container>
       <ChatGroup
         who="chet"
         groupKey="preferences"
@@ -91,8 +92,14 @@ const Preferences = () => {
           스타일 고르러 가기
         </Button>
       </ChatGroup>
-    </>
+    </Container>
   );
 };
 
 export default Preferences;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;

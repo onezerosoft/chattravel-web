@@ -7,6 +7,8 @@ import { useChatStore } from "../../stores/useChatStore";
 import { useNavigate } from "react-router";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import Feedback from "./Feedback";
+import useFeedback from "../../hooks/useFeedback";
 
 interface CourseProps {
   messageId: number;
@@ -29,6 +31,8 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
   const [charIndex, setCharIndex] = useState(0);
 
   const chatId = useChatStore((state) => state.id);
+
+  const { like, hate, handleClickThumbs } = useFeedback(messageId);
 
   const { mutateAsync } = usePostSaveTravel();
 
@@ -116,22 +120,45 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
             </CourseContent>
           )
       )}
-      {courseIndex == courses.length && (
-        <Button onClick={saveTravel}>코스 내보내기</Button>
-      )}
+      <BottomContainer>
+        <Feedback
+          like={like}
+          hate={hate}
+          handleClickThumbs={handleClickThumbs}
+        />
+        {courseIndex == courses.length && (
+          <Button design="secondary" onClick={saveTravel}>
+            이 코스 내보내기
+          </Button>
+        )}
+      </BottomContainer>
     </Wrapper>
   );
 };
 
 export default Course;
 
+const BottomContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: absolute;
+  bottom: -50px;
+  width: 100%;
+  padding-right: 30px;
+  box-sizing: border-box;
+  height: fit-content;
+`;
+
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #f5f5f5;
   border-radius: 20px;
   padding: 10px 15px;
-  margin: -15px 0 30px 115px;
+  margin: -10px 0 60px 115px;
   font-weight: 500;
   text-align: start;
 
@@ -141,10 +168,6 @@ const Wrapper = styled.div`
 
   gap: 10px;
   flex-grow: 1;
-
-  & > button {
-    align-self: flex-end;
-  }
 `;
 
 const Day = styled.h2`
