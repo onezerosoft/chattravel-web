@@ -16,8 +16,8 @@ async function enableMocking() {
 }
 
 if (import.meta.env.DEV) {
-  // enableMocking().then(start);
-  start();
+  enableMocking().then(start);
+  // start();
 } else {
   start();
 }
