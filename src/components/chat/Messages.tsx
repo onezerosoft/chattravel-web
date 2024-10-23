@@ -18,6 +18,7 @@ const Messages = ({ scrollDown, messages }: MessagesProps) => {
             key={message.messageId + "first"}
             messageId={message.messageId}
             courses={message.content.courses}
+            reaction={message.reaction}
           />
         );
       case "C_TEXT":
@@ -29,6 +30,7 @@ const Messages = ({ scrollDown, messages }: MessagesProps) => {
             who="chet"
             texts={[message.content.message]}
             needFeedback={messageType == "C_TEXT"}
+            reaction={message.reaction}
           />
         );
       case "U_TEXT":
@@ -38,6 +40,7 @@ const Messages = ({ scrollDown, messages }: MessagesProps) => {
             groupKey={message.messageId.toString()}
             messageId={message.messageId}
             who="user"
+            reaction={null}
           >
             {message.content.message}
           </ChatGroup>

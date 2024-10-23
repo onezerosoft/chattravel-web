@@ -55,6 +55,7 @@ const Chat = () => {
           courses: [],
         },
         createdAt: "",
+        reaction: null,
       },
     ]);
 
@@ -141,6 +142,7 @@ const Chat = () => {
               texts={[
                 `너만을 위한 ${DURATIONS[duration - 1]} 여행코스를 생성 중이야!\n잠시만 기다려줘~ (약 1분 소요)`,
               ]}
+              reaction={null}
             />
           </CommonWrapper>
         )}

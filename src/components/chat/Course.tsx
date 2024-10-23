@@ -14,6 +14,7 @@ interface CourseProps {
   messageId: number;
   courses: Course[];
   scrollDown: () => void;
+  reaction: null | "POSITIVE" | "NEGATIVE";
 }
 
 const PLACETYPE_IMOGI_MAP = {
@@ -23,7 +24,7 @@ const PLACETYPE_IMOGI_MAP = {
   여행지: "📌",
 };
 
-const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
+const Course = ({ scrollDown, messageId, courses, reaction }: CourseProps) => {
   const navigate = useNavigate();
 
   const [displayedTexts, setDisplayedTexts] = useState<string[]>([]);
@@ -32,7 +33,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
 
   const chatId = useChatStore((state) => state.id);
 
-  const { like, hate, handleClickThumbs } = useFeedback(messageId);
+  const { like, hate, handleClickThumbs } = useFeedback(messageId, reaction);
 
   const { mutateAsync } = usePostSaveTravel();
 

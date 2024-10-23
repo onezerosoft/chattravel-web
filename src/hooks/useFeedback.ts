@@ -1,9 +1,28 @@
 import { useState } from "react";
 import usePostFeedback from "./usePostFeedback";
 
-const useFeedback = (messageId: number | undefined) => {
-  const [like, setLike] = useState(false);
-  const [hate, setHate] = useState(false);
+const getInitialState = (
+  state: "like" | "hate",
+  reaction: null | "POSITIVE" | "NEGATIVE" | undefined
+) => {
+  if (!reaction) return false;
+
+  if (state == "like" && reaction == "POSITIVE") {
+    return true;
+  }
+  if (state == "hate" && reaction == "NEGATIVE") {
+    return true;
+  }
+
+  return false;
+};
+
+const useFeedback = (
+  messageId: number | undefined,
+  reaction: null | "POSITIVE" | "NEGATIVE" | undefined
+) => {
+  const [like, setLike] = useState(getInitialState("like", reaction));
+  const [hate, setHate] = useState(getInitialState("hate", reaction));
 
   const { mutate } = usePostFeedback();
 

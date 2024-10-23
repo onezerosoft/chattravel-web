@@ -10,6 +10,7 @@ interface ChatGroupProps extends Chat {
   texts?: string[];
   needFeedback?: boolean;
   messageId?: number;
+  reaction?: null | "POSITIVE" | "NEGATIVE";
 }
 
 const ChatGroup = ({
@@ -19,11 +20,12 @@ const ChatGroup = ({
   messageId,
   needFeedback,
   texts,
+  reaction,
 }: ChatGroupProps & PropsWithChildren) => {
   const [displayedTexts, setDisplayedTexts] = useState<string[]>([]);
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  const { like, hate, handleClickThumbs } = useFeedback(messageId);
+  const { like, hate, handleClickThumbs } = useFeedback(messageId, reaction);
 
   if (who === "user" || !texts) {
     return (
