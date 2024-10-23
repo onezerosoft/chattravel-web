@@ -10,7 +10,7 @@ interface ChatGroupProps extends Chat {
   texts?: string[];
   needFeedback?: boolean;
   messageId?: number;
-  reaction: null | "POSITIVE" | "NEGATIVE";
+  reaction?: null | "POSITIVE" | "NEGATIVE";
 }
 
 const ChatGroup = ({

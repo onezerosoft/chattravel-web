@@ -3,7 +3,7 @@ import usePostFeedback from "./usePostFeedback";
 
 const getInitialState = (
   state: "like" | "hate",
-  reaction: null | "POSITIVE" | "NEGATIVE"
+  reaction: null | "POSITIVE" | "NEGATIVE" | undefined
 ) => {
   if (!reaction) return false;
 
@@ -19,7 +19,7 @@ const getInitialState = (
 
 const useFeedback = (
   messageId: number | undefined,
-  reaction: null | "POSITIVE" | "NEGATIVE"
+  reaction: null | "POSITIVE" | "NEGATIVE" | undefined
 ) => {
   const [like, setLike] = useState(getInitialState("like", reaction));
   const [hate, setHate] = useState(getInitialState("hate", reaction));
