@@ -12,14 +12,24 @@ const useFeedback = (messageId: number | undefined) => {
 
     if (thumb == "like") {
       setLike((prev) => !prev);
-      mutate({
-        body: {
-          request: "P",
-        },
-        params: {
-          messageId,
-        },
-      });
+      if (like == false)
+        mutate({
+          body: {
+            reaction: "P",
+          },
+          params: {
+            messageId,
+          },
+        });
+      else if (like == true)
+        mutate({
+          body: {
+            reaction: "C",
+          },
+          params: {
+            messageId,
+          },
+        });
 
       if (hate == true) {
         setHate(false);
@@ -27,6 +37,24 @@ const useFeedback = (messageId: number | undefined) => {
     }
     if (thumb == "hate") {
       setHate((prev) => !prev);
+      if (hate == false)
+        mutate({
+          body: {
+            reaction: "N",
+          },
+          params: {
+            messageId,
+          },
+        });
+      else if (hate == true)
+        mutate({
+          body: {
+            reaction: "C",
+          },
+          params: {
+            messageId,
+          },
+        });
 
       if (like == true) {
         setLike(false);

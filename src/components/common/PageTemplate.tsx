@@ -35,7 +35,7 @@ const Wrapper = styled.div`
 const PageName = styled.div`
   position: absolute;
   top: 80px;
-  left: 80px;
+  left: 90px;
 
   & > h1 {
     font-weight: 600;

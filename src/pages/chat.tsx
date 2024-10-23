@@ -20,6 +20,7 @@ import LoadingChet from "../components/chat/LoadingChet";
 import { useChatStore } from "../stores/useChatStore";
 import { useModalStore } from "../stores/useModalStore";
 import ChattingGuide from "../components/chat/ChattingGuide";
+import Score from "../components/chat/Score";
 
 const Chat = () => {
   const chatListRef = useRef<HTMLUListElement>(null);
@@ -169,6 +170,7 @@ const Chat = () => {
           ))}
         {step >= 5 && <Input onSubmit={sendUserMessage} />}
       </ChatList>
+      <Score />
     </PageTemplate>
   );
 };

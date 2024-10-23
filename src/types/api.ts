@@ -49,9 +49,20 @@ export interface TravelCourseParams {
 }
 
 export interface FeedbackBody {
-  request: "P" | "N" | "C";
+  reaction: "P" | "N" | "C";
 }
 
 export interface FeedbackParams {
   messageId: number;
+}
+
+export interface TrackingCoursesParams {
+  crsKorNm: string;
+}
+
+export interface PlaceThumbnailParams {
+  query: string;
+  sort?: string;
+  page?: number;
+  size?: number;
 }

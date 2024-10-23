@@ -21,6 +21,9 @@ export default Button;
 
 const Wrapper = styled.button<{ $design: ButtonProps["design"] }>`
   padding: 0 15px;
+  box-sizing: border-box;
+  width: fit-content;
+  white-space: nowrap;
   height: 36px;
   background-color: ${({ $design }) =>
     $design == "primary" ? "#232323" : "white"};
