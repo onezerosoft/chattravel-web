@@ -128,7 +128,7 @@ const Course = ({ scrollDown, messageId, courses }: CourseProps) => {
         />
         {courseIndex == courses.length && (
           <Button design="secondary" onClick={saveTravel}>
-            이 코스 내보내기
+            코스 내보내기
           </Button>
         )}
       </BottomContainer>
@@ -158,7 +158,7 @@ const Wrapper = styled.div`
   background-color: #f5f5f5;
   border-radius: 20px;
   padding: 10px 15px;
-  margin: -10px 0 60px 115px;
+  margin: -15px 0 60px 115px;
   font-weight: 500;
   text-align: start;
 

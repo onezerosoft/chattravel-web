@@ -32,6 +32,7 @@ const Messages = ({ scrollDown, messages }: MessagesProps) => {
           />
         );
       case "U_TEXT":
+      default:
         return (
           <ChatGroup
             groupKey={message.messageId.toString()}
@@ -41,8 +42,6 @@ const Messages = ({ scrollDown, messages }: MessagesProps) => {
             {message.content.message}
           </ChatGroup>
         );
-      default:
-        return null;
     }
   });
 };

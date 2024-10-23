@@ -1,7 +1,9 @@
 import { REGION_MAP } from "../constants";
 import {
   ApiRequestParams,
+  PlaceThumbnailParams,
   TotalMessagesParams,
+  TrackingCoursesParams,
   TravelCourseParams,
 } from "../types/api";
 import { api, kakaoSearchApi, tourApi } from "./api";
@@ -44,12 +46,6 @@ export const getTravelCourse = async ({
   return res.data;
 };
 
-interface PlaceThumbnailParams {
-  query: string;
-  sort?: string;
-  page?: number;
-  size?: number;
-}
 export const getPlaceThumbnail = async ({
   params,
 }: ApiRequestParams<PlaceThumbnailParams>) => {
@@ -61,10 +57,6 @@ export const getPlaceThumbnail = async ({
   return res.data;
 };
 
-interface TrackingCoursesParams {
-  crsKorNm: string;
-}
-
 export const getTrackingCourses = async ({
   params,
 }: ApiRequestParams<TrackingCoursesParams>) => {
@@ -73,5 +65,12 @@ export const getTrackingCourses = async ({
   );
 
   if (!res) throw new Error("Failed to fetch tour photos");
+  return res.data;
+};
+
+export const getCurrentScore = async () => {
+  const res = await api.get(`/feedback/currentScore`);
+
+  if (!res) throw new Error("Failed to fetch total messages");
   return res.data;
 };
