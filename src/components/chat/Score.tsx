@@ -11,7 +11,7 @@ const Score = () => {
     <Wrapper>
       <ChetSVG width={50} height={50} />
       <BarWrapper>
-        <Bar $score={50} />
+        <Bar $score={score} />
       </BarWrapper>
       <p>
         현재 챗트의 똑똑지수 <br />

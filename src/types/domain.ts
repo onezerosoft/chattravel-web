@@ -75,6 +75,7 @@ export interface Message {
     courses: Course[];
   };
   createdAt: string;
+  reaction: null | "POSITIVE" | "NEGATIVE";
 }
 
 export interface Document {
