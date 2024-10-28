@@ -59,7 +59,7 @@ const Bar = styled.div<{ $score: number }>`
   width: 7px;
   height: ${({ $score }) => $score}%;
 
-  background: linear-gradient(to bottom, #deff97, #899952);
+  background: linear-gradient(to bottom, #e7ffb3, #96fb00);
 
   align-self: flex-end;
   border-radius: 0 0 5px 5px;
